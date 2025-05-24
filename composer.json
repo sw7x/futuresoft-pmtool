@@ -25,7 +25,13 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "Modules\\": "modules/"
+            
+            "Modules\\": "modules/",
+            
+            "Modules\\Reporting\\": "modules/Reporting/src",
+            "Modules\\Reporting\\Database\\Seeders\\": "modules/Reporting/database/seeders",
+            "Modules\\Reporting\\Database\\Factories\\": "modules/Reporting/database/factories",
+            "Modules\\Reporting\\Tests\\": "modules/Reporting/tests"           
         }
     },
     "autoload-dev": {

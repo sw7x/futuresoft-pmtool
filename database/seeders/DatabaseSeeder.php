@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         * seeders for modules
         */
         $this->call(\Modules\Designation\Database\Seeders\DatabaseSeeder::class);
+        $this->call(\Modules\Reporting\Database\Seeders\DatabaseSeeder::class);
     }
 }

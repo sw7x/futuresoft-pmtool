@@ -13,6 +13,9 @@
         </testsuite>
         <testsuite name="Modules">
             <directory suffix="Test.php">./modules/*/Tests</directory>
+        </testsuite>        
+        <testsuite name="ModulesType2">
+            <directory suffix="Test.php">./modules/*/tests</directory>
         </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">
