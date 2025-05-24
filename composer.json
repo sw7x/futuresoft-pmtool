@@ -6,11 +6,18 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "cartalyst/sentinel": "^5.1",
+        "cviebrock/eloquent-sluggable": "^8.0",
+        "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "moneyphp/money": "^3.3",
+        "ramsey/uuid": "^4.2",
+        "staudenmeir/belongs-to-through": "^2.11",
+        "staudenmeir/eloquent-has-many-deep": "^1.14"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
