@@ -20,5 +20,7 @@ class DatabaseSeeder extends Seeder
         */
         $this->call(\Modules\Designation\Database\Seeders\DatabaseSeeder::class);
         $this->call(\Modules\Reporting\Database\Seeders\DatabaseSeeder::class);
+        $this->call(RoleSeeder::class);
+
     }
 }
