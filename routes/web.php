@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CarController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,24 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/db', [CarController::class,'index'])->name('index');
+
+
+
+
+
+
+Route::get('/admin/user-tabe', function () {
+    return view('admin.user-tabe');
+});
+
+Route::get('/admin/dashboard', function () {
+    return view('admin.user-tabe'); // You can change this to your actual dashboard view later
+})->name('admin.dashboard');
+
+
+
+
+
