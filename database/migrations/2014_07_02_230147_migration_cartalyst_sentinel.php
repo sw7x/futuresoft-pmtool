@@ -133,6 +133,7 @@ class MigrationCartalystSentinel extends Migration
 
             $table->engine = 'InnoDB';
             $table->unique('email');
+            $table->softDeletes();
         });
     }
 

@@ -13,6 +13,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 
 use Cartalyst\Sentinel\Users\EloquentUser as CartalystUser;
 
+use App\Models\Role as RoleModel;
 
 class User extends CartalystUser
 //class User extends Authenticatable
@@ -162,6 +163,21 @@ class User extends CartalystUser
             return null;
         else
             return ($this->activations->first()->completed);
+    }
+
+
+    // In your model
+    public function toArray()
+    {
+        $array = parent::toArray();
+        
+        // Remove specific keys
+        unset($array['roles']);
+        
+        // Or add custom computed fields
+        $array['full_name'] = $this->first_name . ' ' . $this->last_name;
+        
+        return $array;
     }
 
 }
