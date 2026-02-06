@@ -22,5 +22,12 @@ class DatabaseSeeder extends Seeder
         $this->call(\Modules\Reporting\Database\Seeders\DatabaseSeeder::class);
         $this->call(RoleSeeder::class);
 
+        $this->call(DefaultAccountsSeeder::class);
+        
+
+        //$this->call(UserSeeder::class);
+
+
+
     }
 }

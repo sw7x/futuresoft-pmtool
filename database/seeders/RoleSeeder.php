@@ -19,7 +19,7 @@ class RoleSeeder extends Seeder
     {
         try {                        
             
-            DB::table('roles')->insert([
+            $roles = [
                 [
                     'id' => 1,
                     //'uuid'=> str_replace('-', '', Uuid::uuid4()->toString()),
@@ -59,11 +59,27 @@ class RoleSeeder extends Seeder
                     'name' => 'developer',
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s'),
-                ]
+                ]                
+            ];
 
-            ]);
+
+            // Check and insert only non-existing roles
+            foreach ($roles as $role) {
+                $exists = DB::table('roles')
+                    ->where('id', $role['id'])
+                    ->orWhere('slug', $role['slug'])
+                    ->exists();
+                
+                if (!$exists) {
+                    DB::table('roles')->insert($role);
+                    $this->command->info("{$role['slug']} role added.");
+                }else{
+                    $this->command->info("{$role['slug']} role already exists.");
+                }
+            }            
 
         } catch (\Exception $e) {
+            //dump($e->getMessage());
             $this->command->error('Failed to seed roles to database !');
         }   
     }

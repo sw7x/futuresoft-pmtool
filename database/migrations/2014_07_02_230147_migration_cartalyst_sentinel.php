@@ -95,6 +95,7 @@ class MigrationCartalystSentinel extends Migration
         });
 
         Schema::create('users', function (Blueprint $table) {
+            
             //$table->increments('id');
             $table->id();
             $table->string('first_name')->nullable();
@@ -117,13 +118,13 @@ class MigrationCartalystSentinel extends Migration
             $table->text('epf_etf_details')->nullable();            
             $table->text('edu_qualifications')->nullable();
             $table->text('skills')->nullable();   
-
+            $table->date('date_of_birth')->nullable();
 
             $table->boolean('account_status')->default(True);
             $table->enum('employment_status', ['pending', 'active', 'resigned', 'terminated']);
         
             // FK to designations table, but later add constraint 
-            $table->unsignedBigInteger('designation_id');
+            $table->unsignedBigInteger('designation_id')->nullable();
             
             $table->text('permissions')->nullable();
             $table->timestamp('last_login')->nullable();            
