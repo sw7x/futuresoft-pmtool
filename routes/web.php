@@ -15,6 +15,25 @@ use App\Http\Controllers\CarController;
 |
 */
 
+
+
+/*  ======  Artisan routes  -  /routes/web-includes/artisan-commands.php   ============== */
+
+/*  ======  Auth routes     -  /routes/web-includes/auth.php               ============== */
+
+/*  ======  Test routes     -  /routes/web-includes/test.php               ============== */
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
