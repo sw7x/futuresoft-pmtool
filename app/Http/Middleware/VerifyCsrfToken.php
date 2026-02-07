@@ -13,5 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
+        //'/admin/coupon-codes/beneficiaries',
+        //'/admin/coupon-codes/generate-code',
     ];
 }
