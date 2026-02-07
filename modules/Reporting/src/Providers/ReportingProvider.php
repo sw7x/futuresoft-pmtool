@@ -44,8 +44,19 @@ class ReportingProvider extends ServiceProvider
         //$this->loadRoutesFrom(__DIR__ . '/../../routes/routes.php');
         $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
         
-        // Optional: if you register route bindings
+        // TODO - Optional: if you register route bindings
         // Route::model('designation', Designation::class);
+
+
+        // 5. Publish Assets 
+        // to publish files inside into PROJECT_ROOT/public folder 
+        // run - php artisan vendor:publish --tag=reporting-assets --force
+        $this->publishes([
+            __DIR__.'/../../resources/js'       => public_path('modules/reporting/js'),
+            __DIR__.'/../../resources/css'      => public_path('modules/reporting/css'),            
+            __DIR__.'/../../resources/images'   => public_path('modules/reporting/images'),            
+        ], 'reporting-assets');       
+
     }
 
     /*

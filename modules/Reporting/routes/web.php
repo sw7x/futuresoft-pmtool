@@ -12,6 +12,13 @@ Route::middleware('check.report')->group(function () {
         return view('reporting::user');
     });
 
+    Route::get('report-contact', function () {
+        return view('reporting::contact');
+    });
+
+
+
+
     Route::get('report-config', function () {
         //return 'dddddsfsdf3';
         return config('reporting.reporting_max_levels');

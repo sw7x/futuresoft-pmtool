@@ -42,7 +42,9 @@ Route::get('/', function () {
 Route::get('/db', [CarController::class,'index'])->name('index');
 
 
-
+Route::get('/test', function () {
+    return view('test');
+});
 
 
 
