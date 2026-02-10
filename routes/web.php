@@ -68,5 +68,9 @@ Route::get('/admin/dashboard', function () {
 
 
 
+Route::get('/project2', function () {
+    //dd('ddd');
+    return view('project2');
+});
 
 
