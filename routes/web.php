@@ -57,6 +57,10 @@ Route::get('/empty/hh', function () {
     return view('empty');
 });
 
+Route::get('/login1', function () {
+    return view('auth.login-page');
+});
+
 
 Route::get('/admin/user-tabe', function () {
     return view('admin.user-tabe');
