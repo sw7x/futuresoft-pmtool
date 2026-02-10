@@ -46,6 +46,16 @@ Route::get('/test', function () {
     return view('test');
 });
 
+Route::get('/empty', function () {
+    //dd('ddd');
+    return view('test');
+});
+
+
+Route::get('/empty/hh', function () {
+    //dd('ddd');
+    return view('empty');
+});
 
 
 Route::get('/admin/user-tabe', function () {
