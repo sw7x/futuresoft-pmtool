@@ -1,5 +1,5 @@
 @extends('layouts.master',['title' => 'Empty'])
-@section('title','Empty')
+@section('title','Timesheet List')
 
 
 
@@ -36,7 +36,7 @@
 
             <div class="ibox">
                 <div class="ibox-content">                        
-                
+                    <h1>Timesheet List - (no page)</h1>
 
                 </div>
             </div>

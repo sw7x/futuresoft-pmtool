@@ -1,5 +1,5 @@
 @extends('layouts.master',['title' => 'Empty'])
-@section('title','Empty')
+@section('title','Read mail')
 
 
 
@@ -37,7 +37,7 @@
             <div class="ibox">
                 <div class="ibox-content">                        
                 
-
+                    <h1>Read mail</h1>
                 </div>
             </div>
         

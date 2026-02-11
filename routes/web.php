@@ -3,7 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 
-
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\CostController;
+use App\Http\Controllers\ProjectController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,33 +53,110 @@ Route::get('/test', function () {
 
 Route::get('/empty', function () {
     //dd('ddd');
-    return view('test');
-});
-
-
-Route::get('/empty/hh', function () {
-    //dd('ddd');
     return view('empty');
 });
 
-Route::get('/login1', function () {
-    return view('auth.login-page');
+
+
+
+//////////////////////////////
+
+Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+Route::get('/info', function() {  phpinfo();});
+
+
+
+//Route::group(['prefix'=>'project','as'=>'project.'], function(){
+Route::prefix('messages')->name('messages.')->group(function () {
+    Route::get('/', [PageController::class, 'mailbox'])->name('index');
+    Route::get('/read-mail', [PageController::class, 'readMail'])->name('read-mail');
+    Route::get('/compose', [PageController::class, 'compose'])->name('compose');    
 });
 
 
-Route::get('/admin/user-tabe', function () {
-    return view('admin.user-tabe');
+
+
+Route::get('/profile', [PageController::class, 'profile'])->name('profile');
+
+//Route::get('/', ['as'=>'dashboard','uses'=>'PageController@index']);
+Route::get('/404', [PageController::class, 'page404'])->name('404');
+
+//todo - move into auth routes
+Route::get('/login', [PageController::class, 'login'])->name('login');
+
+
+
+/* users */
+Route::group(['prefix'=>'users','as'=>'users.'], function(){
+    Route::get('/',[PageController::class,'users'])->name('index');
+    Route::get('/designations',[PageController::class,'designationManage'])->name('designations');
 });
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.user-tabe'); // You can change this to your actual dashboard view later
-})->name('admin.dashboard');
 
 
+/* project
+Route::group(['prefix' => 'project','as' => 'project.'], function () {   
+    Route::post('login', ['as'=>'login','uses'=>'ProjectController@login']);
+    Route::post('create', ['as'=>'create','uses'=>'ProjectController@create']);
+    Route::get('create', ['as'=>'create','uses'=>'ProjectController@create']);
+    Route::get('/', ['as'=>'list','uses'=>'ProjectController@index']);
+    Route::get('enroll-employees','ProjectController@assignEmployees');
+});
+*/
 
-Route::get('/project2', function () {
-    //dd('ddd');
-    return view('project2');
+Route::group(['prefix'=>'projects','as'=>'projects.'], function(){
+    //Route::post('login', [ProjectController::class,'login'])->name('login');
+    //Route::post('create', [ProjectController::class,'create'])->name('create');
+    
+
+    //Route::get('create', [ProjectController::class,'create'])->name('create');
+    Route::get('/', [ProjectController::class,'index'])->name('list');
+    Route::get('enroll-employees', [ProjectController::class,'assignEmployees'])->name('enroll-employees');
+
+
+    /* client */
+    Route::get('/clients',[ClientController::class, 'client'])->name('clients');
+    Route::post('/clients/create',[ClientController::class, 'createClient'])->name('clients.create');
+
+    /* cost management */
+    Route::get('/invoices',[CostController::class, 'invoices'])->name('invoices');
+
+
 });
 
+
+
+
+/* threads */
+Route::group(['prefix'=>'threads','as'=>'threads.'], function(){
+    Route::get('/project',[ProjectController::class, 'thread'])->name('project');
+    Route::get('/task',[TaskController::class, 'thread'])->name('task');
+});
+
+
+
+/* reporting */
+Route::group(['prefix'=>'reports','as'=>'reports.'], function(){
+    Route::get('/designation-projectwise-timing',[PageController::class, 'desigProjectwiseTiming'])->name('designation-projectwise-timing');
+    Route::get('/developer-projectwise-timing',[PageController::class, 'devProjectwiseTiming'])->name('developer-projectwise-timing');
+});
+
+
+
+/* timesheet */
+Route::group(['prefix'=>'timesheets','as'=>'timesheets.'], function(){
+    Route::get('/',[PageController::class, 'listTimesheet'])->name('list');
+    Route::get('/submit',[PageController::class, 'submitTimesheet'])->name('submit');
+    Route::get('/view',[PageController::class, 'viewTimesheet'])->name('view');
+});
+
+
+
+
+/* task */
+Route::group(['prefix'=>'tasks','as'=>'tasks.'], function(){
+    Route::get('/create',[TaskController::class, 'taskCreate'])->name('create');
+    Route::get('/view',[TaskController::class, 'taskView'])->name('view');
+    Route::get('/assign-developers',[TaskController::class, 'assignEmployees'])->name('assign-developers');
+});
 

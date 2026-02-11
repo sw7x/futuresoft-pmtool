@@ -1,5 +1,5 @@
 @extends('layouts.master',['title' => 'Empty'])
-@section('title','Empty')
+@section('title','project-thread')
 
 
 
@@ -37,7 +37,7 @@
             <div class="ibox">
                 <div class="ibox-content">                        
                 
-
+                    <h1>project-thread</h1>
                 </div>
             </div>
         

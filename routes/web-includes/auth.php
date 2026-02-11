@@ -2,9 +2,9 @@
 
 
 
-use App\Http\Controllers\Auth\ForgotPasswordController;
+//use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController as User_LoginController;
-use App\Http\Controllers\Auth\RegistrationController;
+//use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Auth\ActivationController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 
@@ -17,24 +17,24 @@ use App\Http\Controllers\Auth\ChangePasswordController;
 
 Route::group(['as'=>'auth.','namespace' =>'Auth'], function() {
 
-        Route::get('/reset-password', [ForgotPasswordController::class,'resetPasswordReq'])->name ('reset-password-req-page');
-        Route::post('/reset-password', [ForgotPasswordController::class,'resetPasswordReqSubmit'])->name ('reset-password-req-submit');
+    //Route::get('/reset-password', [ForgotPasswordController::class,'resetPasswordReq'])->name ('reset-password-req-page');
+    //Route::post('/reset-password', [ForgotPasswordController::class,'resetPasswordReqSubmit'])->name ('reset-password-req-submit');
 
-        Route::get('/reset/{email}/{resetCode}', [ForgotPasswordController::class,'resetConfirm'])->name ('reset-password-confirm');
-        Route::post('/reset/{email}/{resetCode}', [ForgotPasswordController::class,'resetConfirmSubmit'])->name ('reset-password-confirm-submit');
+    //Route::get('/reset/{email}/{resetCode}', [ForgotPasswordController::class,'resetConfirm'])->name ('reset-password-confirm');
+    //Route::post('/reset/{email}/{resetCode}', [ForgotPasswordController::class,'resetConfirmSubmit'])->name ('reset-password-confirm-submit');
 
-        Route::get ('/login', [User_LoginController::class,'login'])->name ('login');
-        Route::post ('/login', [User_LoginController::class,'loginSubmit'])->name ('login-submit');
+    Route::get ('/login', [User_LoginController::class,'login'])->name ('login');
+    Route::post ('/login', [User_LoginController::class,'loginSubmit'])->name ('login-submit');
 
-        Route::get ('/register', [RegistrationController::class,'register'])->name ('register');
-        Route::post ('/register', [RegistrationController::class,'postRegister'])->name ('register-submit');
+    //Route::get ('/register', [RegistrationController::class,'register'])->name ('register');
+    //Route::post ('/register', [RegistrationController::class,'postRegister'])->name ('register-submit');
 
-        //form-teacher-register.blade
+    //form-teacher-register.blade
 
-        Route::get ('/teacher-register', [RegistrationController::class,'teacherRegister'])->name('teacher-register');
-        Route::post ('/teacher-register', [RegistrationController::class,'postTeacherRegister'])->name('teacher-register-submit');
+    //Route::get ('/teacher-register', [RegistrationController::class,'teacherRegister'])->name('teacher-register');
+    //Route::post ('/teacher-register', [RegistrationController::class,'postTeacherRegister'])->name('teacher-register-submit');
 
-        Route::get ('/activate/{encrypted_email}/{activation_code}', [ActivationController::class,'activate'])->name ('activate');
+    //Route::get ('/activate/{encrypted_email}/{activation_code}', [ActivationController::class,'activate'])->name ('activate');
 
 
     Route::get('/change-password', [ChangePasswordController::class,'changePassword'])->name ('change-password');

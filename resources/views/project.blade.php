@@ -1,5 +1,5 @@
 @extends('layouts.master')
-
+@section('title','Project List')
 
 @section('css-files')
     <!-- datatables -->
