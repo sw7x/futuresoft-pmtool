@@ -4736,6 +4736,15 @@ body.body-small .footer.fixed {
 .table-bordered > tfoot > tr > td {
   border: 1px solid #e7e7e7;
 }
+
+
+.table-bordered > tfoot > tr > td, 
+.table-bordered > tfoot > tr > th {
+    background-color: #fff96e70;
+}
+
+
+
 .table > thead > tr > th {
   border-bottom: 1px solid #DDDDDD;
   vertical-align: bottom;
