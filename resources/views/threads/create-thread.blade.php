@@ -24,72 +24,49 @@
     <div class="ibox-content m-b-sm border-bottom">
         <div class="row">                   
 
-            <div class="col-lg-6">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <label for="project-select" class="font-weight-bold mb-0 mr-2">Select Project:</label>
-                    </div>
-
-                    <div class="col-lg-9">
-                        <select class="select-project form-control select2" style="width: 100%;" data-placeholder="Select a Project">
-                            <option></option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
-                        </select>
-                    </div>
-                </div>                        
+            <div class="col-lg-4">                
+                <label for="project-select" class="font-weight-bold mb-1 mr-2">Select Project:</label>
+                <select class="select-project form-control select2" style="width: 100%;" data-placeholder="Select a Project">
+                    <option></option>
+                    <option>Alaska</option>
+                    <option>California</option>
+                    <option>Delaware</option>
+                    <option>Tennessee</option>
+                    <option>Texas</option>
+                    <option>Washington</option>
+                </select>
             </div>
 
-            <div class="col-lg-6">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <label for="project-select" class="font-weight-bold mb-0 mr-2">Select Task:</label>
-                    </div>
+            <div class="col-lg-4">                
+                <label for="project-select" class="font-weight-bold mb-1 mr-2">Select Task:</label>
+                <select class="select-project form-control select2" style="width: 100%;" data-placeholder="Select a Project">
+                    <option></option>
+                    <option>Alaska</option>
+                    <option>California</option>
+                    <option>Delaware</option>
+                    <option>Tennessee</option>
+                    <option>Texas</option>
+                    <option>Washington</option>
+                </select>
+            </div>
 
-                    <div class="col-lg-9">
-                        <select class="select-project form-control select2" style="width: 100%;" data-placeholder="Select a Project">
-                            <option></option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
-                        </select>
-                    </div>
-                </div>                        
-            </div>                        
+            <div class="col-lg-4">                
+                <label for="project-select" class="font-weight-bold mb-1 mr-2">Select Thread type:</label>
+                <select class="select-project form-control select2" style="width: 100%;" data-placeholder="Select a Project">
+                    <option></option>
+                    <option>Alaska</option>
+                    <option>California</option>
+                    <option>Delaware</option>
+                    <option>Tennessee</option>
+                    <option>Texas</option>
+                    <option>Washington</option>
+                </select>
+            </div>                                    
 
         </div>
     </div>
 
-    <div class="ibox-content m-b-sm border-bottom">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <label for="project-select" class="font-weight-bold mb-0 mr-2">Select Thread type:</label>
-                    </div>
-
-                    <div class="col-lg-9">
-                        <select class="select-project form-control select2" style="width: 100%;" data-placeholder="Select a Project">
-                            <option></option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
-                        </select>
-                    </div>
-                </div>                        
-            </div>                    
-        </div>
-    </div>
+    
 
 
     <div class="row" id="_sortable-view">

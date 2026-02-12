@@ -19,14 +19,26 @@
         width: 80px; 
     }     
 
+    .forum-post-container .media {
+        background-color: #b5b5a80d;
+        border: 1px solid #a5afa68f;
+        border-radius: 4px;
+        padding: 10px 20px 10px 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.03);
+    }
+
+
     /* Highlight and separate the first post in the thread */
     .forum-post-container > .media:first-of-type {
         background-color: #cafbc94f;
         border: 1px solid #0c700e8f;
         border-radius: 4px;
         padding: 20px 20px 40px 20px;
-        margin-bottom: 25px;
+        margin-bottom: 30px;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.03);
+        margin-right: -5px;
+        margin-left: -5px;
     }
     
     ._forum-post-info {
