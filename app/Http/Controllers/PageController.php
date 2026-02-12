@@ -23,20 +23,24 @@ class PageController extends Controller
         return view('errors.404');    
     }
 
+   
+
     public function mailbox(){
-        return view('mailbox');    
+        return view('messages.mailbox');    
     }
     
     public function readMail(){
-        return view('read-mail');    
-    }    
-
-
-
-   /************************************************/
-    public function compose(){
-        return view('compose');
+        return view('messages.read-mail');    
     }
+   
+    public function compose(){
+        return view('messages.compose');
+    }
+
+    
+
+
+
 
     public function users(){
         return view('users');
