@@ -57,8 +57,15 @@
                         <i class="fa fa-files-o"></i> <span  class="nav-label">Threads</span> <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level collapse" aria-expanded='{{ \Str::is('threads.*', Route::currentRouteName()) ? 'true' : 'false' }}'>
-                        <li class="{{ Route::is('threads.project') ? 'current' : '' }}"><a href="{{ route('threads.project') }}"><i class="fa fa-list-alt"></i>Project Threads</a></li>
-                        <li class="{{ Route::is('threads.task') ? 'current' : '' }}"><a href="{{ route('threads.task') }}"><i class="fa fa-list-alt"></i>Task Threads</a></li>
+                        <li class="{{ Route::is('threads.create') ? 'current' : '' }}"><a href="{{ route('threads.create') }}"><i class="fa fa-list-alt"></i>Create Thread</a></li>
+                        
+                        <li class="{{ Route::is('threads.projects') ? 'current' : '' }}"><a href="{{ route('threads.projects') }}"><i class="fa fa-list-alt"></i>Project Thread List</a></li>
+                        <li class="{{ Route::is('threads.single-project') ? 'current' : '' }}"><a href="{{ route('threads.single-project',19) }}"><i class="fa fa-list-alt"></i>Single Project Thread</a></li>
+
+                        <li class="{{ Route::is('threads.tasks') ? 'current' : '' }}"><a href="{{ route('threads.tasks') }}"><i class="fa fa-list-alt"></i>Task Thread List</a></li>
+                        <li class="{{ Route::is('threads.single-task') ? 'current' : '' }}"><a href="{{ route('threads.single-task',21) }}"><i class="fa fa-list-alt"></i>Single Task Thread</a></li>
+
+
                     </ul>
                 </li>                
 

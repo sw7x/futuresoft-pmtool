@@ -129,8 +129,18 @@ Route::group(['prefix'=>'projects','as'=>'projects.'], function(){
 
 /* threads */
 Route::group(['prefix'=>'threads','as'=>'threads.'], function(){
-    Route::get('/project',[ProjectController::class, 'thread'])->name('project');
-    Route::get('/task',[TaskController::class, 'thread'])->name('task');
+    
+    Route::get('/create',[ProjectController::class, 'createThread'])->name('create');
+
+    Route::get('/projects',[ProjectController::class, 'projectThreadList'])->name('projects');
+    Route::get('/tasks',[TaskController::class, 'takThreadList'])->name('tasks');
+    
+    Route::get('/projects/{id}',[ProjectController::class, 'thread'])->name('single-project');
+    Route::get('/tasks/{id}',[TaskController::class, 'thread'])->name('single-task');
+
+
+
+
 });
 
 

@@ -40,10 +40,20 @@ class ProjectController extends Controller
         return view('project-assign');
     }
 
-    public function thread(){
-        return view('thread-project');
+    
+
+    public function thread($id){
+        //dd($id);
+        return view('threads.project-thread');
     }
 
+    public function projectThreadList(){
+        return view('threads.project-thread-list');
+    }    
 
+
+    public function createThread(){
+        return view('threads.create-thread');
+    }
     
 }
