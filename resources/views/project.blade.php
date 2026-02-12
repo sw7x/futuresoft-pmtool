@@ -9,17 +9,6 @@
 
 @section('page-css')
 <style>
-.dataTables_wrapper .dataTables_length {
-    float: left;
-}
-
-#projects-table_wrapper .dataTables_filter {
-    float: right;
-}
-
-#projects-table_wrapper .dataTables_paginate {
-    float: right;
-}    
 </style>    
 @stop
 
@@ -106,7 +95,7 @@
 
 @section('bootstrap-modals')
 <!--start-----modal for add users-->
-<div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="addProjectModalLabel" aria-hidden="true">
+<div class="modal fade" id="add_project_modal" tabindex="-1" role="dialog" aria-labelledby="addProjectModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -277,10 +266,10 @@
 
             buttons: [
                 {
-                    text: 'Add course',
+                    text: 'Add Project',
                     action: function ( e, dt, node, config ) {
                         //$('#addProjectModal').modal('show');
-                        $('#add-modal').modal('show');
+                        $('#add_project_modal').modal('show');
                         //window.location = '';
                         //  alert( 'Button activated' );
                     },
@@ -301,7 +290,7 @@
 
 
         $('.proj-update').on('click',function (event) {
-            $('#add-modal').modal('show');
+            $('#add_project_modal').modal('show');
         });
 
 
