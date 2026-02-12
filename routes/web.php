@@ -155,8 +155,16 @@ Route::group(['prefix'=>'reports','as'=>'reports.'], function(){
 
 /* timesheet */
 Route::group(['prefix'=>'timesheets','as'=>'timesheets.'], function(){
-    Route::get('/',[PageController::class, 'listTimesheet'])->name('list');
-    Route::get('/submit',[PageController::class, 'submitTimesheet'])->name('submit');
+    Route::get('/pending',[PageController::class, 'pendingTimesheetList'])->name('pending-list');
+    Route::get('/approved',[PageController::class, 'approvedTimesheetList'])->name('approved-list');
+
+
+    Route::get('/my-pending-list',[PageController::class, 'myPendingTimesheetList'])->name('my-pending-list');
+    Route::get('/my-approved-list',[PageController::class, 'myApprovedTimesheetList'])->name('my-approved-list');
+
+
+
+    Route::get('/create',[PageController::class, 'createTimesheet'])->name('create');
     Route::get('/view',[PageController::class, 'viewTimesheet'])->name('view');
 });
 

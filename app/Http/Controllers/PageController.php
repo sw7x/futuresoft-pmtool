@@ -47,16 +47,31 @@ class PageController extends Controller
     }
 
     
-    public function listTimesheet(){
-        return view('timesheet-list');
+    public function pendingTimesheetList(){
+        return view('timesheets.pending-list');
+    }
+    public function approvedTimesheetList(){
+        return view('timesheets.approved-list');
     }
 
-    public function submitTimesheet(){
-        return view('timesheet-submit');
+
+
+
+
+    public function myPendingTimesheetList(){
+        return view('timesheets.my-pending-list');
+    }
+    public function myApprovedTimesheetList(){
+        return view('timesheets.my-approved-list');
+    }
+
+
+    public function createTimesheet(){
+        return view('timesheets.create');
     }
 
     public function viewTimesheet(){
-        return view('timesheet-view');
+        return view('timesheets.view');
     }
 
 

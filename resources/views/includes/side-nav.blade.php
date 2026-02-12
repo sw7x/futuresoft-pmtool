@@ -86,6 +86,8 @@
                     </a>
                     <ul class="nav nav-second-level collapse" aria-expanded='{{ \Str::is('users.*', Route::currentRouteName()) ? 'true' : 'false' }}'>
                         <li class="{{ Route::is('users.index') ? 'current' : '' }}"><a href="{{ route('users.index') }}"><i class="fa fa-pencil-square-o"></i>User Accounts</a></li>
+                        <li class="{{ Route::is('users.index') ? 'current' : '' }}"><a href="{{ route('users.index') }}"><i class="fa fa-pencil-square-o"></i>Create User ---</a></li>
+                        
                         <li class="{{ Route::is('users.designations') ? 'current' : '' }}"><a href="{{ route('users.designations') }}"><i class="fa fa-bookmark"></i>Designations</a></li>
                     </ul>
                 </li>
@@ -105,8 +107,14 @@
                         <i class="fa fa-hourglass-1"></i> <span  class="nav-label">timesheet</span> <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level collapse" aria-expanded='{{ \Str::is('timesheets.*', Route::currentRouteName()) ? 'true' : 'false' }}'>
-                        <li class="{{ Route::is('timesheets.list') ? 'current' : '' }}"><a href="{{ route('timesheets.list') }}"><i class="fa fa-list-ol"></i>Timesheet List</a></li>
-                        <li class="{{ Route::is('timesheets.submit') ? 'current' : '' }}"><a href="{{ route('timesheets.submit') }}"><i class="fa fa-calendar-check-o"></i>Submit Timesheet</a></li>
+                        <li class="{{ Route::is('timesheets.pending-list') ? 'current' : '' }}"><a href="{{ route('timesheets.pending-list') }}"><i class="fa fa-list-ol"></i>Pending Timesheets</a></li>
+                        <li class="{{ Route::is('timesheets.approved-list') ? 'current' : '' }}"><a href="{{ route('timesheets.approved-list') }}"><i class="fa fa-list-ol"></i>Approved Timesheets</a></li>
+                        
+                        <li class="{{ Route::is('timesheets.my-pending-list') ? 'current' : '' }}"><a href="{{ route('timesheets.my-pending-list') }}"><i class="fa fa-list-ol"></i>My Pending Timesheets</a></li>
+                        <li class="{{ Route::is('timesheets.my-approved-list') ? 'current' : '' }}"><a href="{{ route('timesheets.my-approved-list') }}"><i class="fa fa-list-ol"></i>My Approved Timesheets</a></li>
+                        
+
+                        <li class="{{ Route::is('timesheets.create') ? 'current' : '' }}"><a href="{{ route('timesheets.create') }}"><i class="fa fa-calendar-check-o"></i>Create Timesheet</a></li>
                         <li class="{{ Route::is('timesheets.view') ? 'current' : '' }}"><a href="{{ route('timesheets.view') }}"><i class="fa fa-calendar"></i>View Timesheet</a></li>
                     </ul>
                 </li>
