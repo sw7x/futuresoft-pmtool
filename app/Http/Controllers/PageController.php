@@ -80,13 +80,27 @@ class PageController extends Controller
 
 
 
-    public function desigProjectwiseTiming(){
-        return view('desig-projectwise-timing');
+    public function projectTimingsByDesignation(){
+        return view('reports.project-timings-by-designation');
     }
 
-    public function devProjectwiseTiming(){
-        return view('dev-projectwise-timing');
+    public function DesignationTimingsByProject(){
+        return view('reports.designation-timings-by-project');
     }
+
+    public function ProjectTimingsByEmployee(){
+        return view('reports.project-timings-by-employee');
+    }
+
+    public function EmployeeTimingsByProject(){
+        return view('reports.employee-timings-by-project');
+    }
+
+    
+
+
+
+
 
     public function designationManage(){
         return view('designation-manage');

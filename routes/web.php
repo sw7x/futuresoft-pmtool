@@ -147,8 +147,13 @@ Route::group(['prefix'=>'threads','as'=>'threads.'], function(){
 
 /* reporting */
 Route::group(['prefix'=>'reports','as'=>'reports.'], function(){
-    Route::get('/designation-projectwise-timing',[PageController::class, 'desigProjectwiseTiming'])->name('designation-projectwise-timing');
-    Route::get('/developer-projectwise-timing',[PageController::class, 'devProjectwiseTiming'])->name('developer-projectwise-timing');
+    Route::get('/project-timings-by-designation',[PageController::class, 'projectTimingsByDesignation'])->name('project-timings-by-designation');
+    Route::get('/designation-timings-by-project',[PageController::class, 'DesignationTimingsByProject'])->name('designation-timings-by-project');
+    Route::get('/project-timings-by-employee',[PageController::class, 'ProjectTimingsByEmployee'])->name('project-timings-by-employee');
+    Route::get('/employee-timings-by-project',[PageController::class, 'EmployeeTimingsByProject'])->name('employee-timings-by-project');
+
+
+
 });
 
 
