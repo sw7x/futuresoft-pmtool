@@ -37,14 +37,14 @@ class TaskController extends Controller
 
 
     public function assignEmployees(){
-        return view('task-assign');
+        return view('task.task-assign');
     }
     public function taskCreate(){
-        return view('task-create');
+        return view('task.task-create');
     }
 
     public function taskView(){
-        return view('task-view');
+        return view('task.task-view');
     }
 
 
