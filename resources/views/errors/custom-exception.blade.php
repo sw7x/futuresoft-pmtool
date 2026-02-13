@@ -26,8 +26,8 @@
                                     <a class="btn btn-danger mb-2" href="{{ url()->previous() }}">Go back</a>
                                 </div>                                              
                                 <div>
-                                    <a class="btn btn-primary mr-2" href="{{ route('admin.dashboard') }}">Dashboard</a>
-                                    <a class="btn btn-info" href="{{ route('admin.dashboard') }}">Admin Panel</a>
+                                    <a class="btn btn-primary mr-2" href="{{ route('dashboard') }}">Dashboard</a>
+                                    <a class="btn btn-info" href="{{ route('dashboard') }}">Admin Panel</a>
                                 </div>
                             </div>                        
                         </div>
