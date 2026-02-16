@@ -37,16 +37,10 @@ class BreadcrumbUtil{
 
                 try {
                     $isLink = true;
-                    //dump($url);
-                    $result = Http::get($url);
-                    
-                } catch (\Exception $e) {
+                    $result = Http::get($url);                    
+                } catch (\Exception $e) {}
 
-                }
-
-                //dump($result);
-
-                if ($result->failed() || $result->status() === 404) {
+                if (!isset($result) || $result->failed() || $result->status() === 404) {
                     // Url doesnt exist
                     $isLink = false;
                 }
