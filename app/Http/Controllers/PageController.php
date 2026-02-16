@@ -103,7 +103,10 @@ class PageController extends Controller
 
 
     public function designationManage(){
-        return view('designation-manage');
+        return view('designations.designation-manage');
+    }
+    public function viewDesignations(){
+        return view('designations.view-designations');
     }
 
 

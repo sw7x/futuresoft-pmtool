@@ -89,7 +89,9 @@ Route::get('/login', [PageController::class, 'login'])->name('login');
 /* users */
 Route::group(['prefix'=>'users','as'=>'users.'], function(){
     Route::get('/',[PageController::class,'users'])->name('index');
-    Route::get('/designations',[PageController::class,'designationManage'])->name('designations');
+    Route::get('/manage-designations',[PageController::class,'designationManage'])->name('manage-designations');
+    Route::get('/view-designations',[PageController::class,'viewDesignations'])->name('view-designations');
+
 });
 
 

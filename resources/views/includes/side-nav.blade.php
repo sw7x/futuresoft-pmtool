@@ -94,7 +94,8 @@
                         <li class="{{ Route::is('users.index') ? 'current' : '' }}"><a href="{{ route('users.index') }}"><i class="fa fa-users"></i>User accounts</a></li>
                         <li class="{{ Route::is('users.index') ? 'current' : '' }}"><a href="{{ route('users.index') }}"><i class="fa fa-user-plus"></i>Create user ---</a></li>
                         
-                        <li class="{{ Route::is('users.designations') ? 'current' : '' }}"><a href="{{ route('users.designations') }}"><i class="fa fa-id-badge"></i>Designations</a></li>
+                        <li class="{{ Route::is('users.manage-designations') ? 'current' : '' }}"><a href="{{ route('users.manage-designations') }}"><i class="fa fa-id-badge"></i>Manage designations</a></li>
+                        <li class="{{ Route::is('users.view-designations') ? 'current' : '' }}"><a href="{{ route('users.view-designations') }}"><i class="fa fa-id-badge"></i>View designations</a></li>
                     </ul>
                 </li>
 
