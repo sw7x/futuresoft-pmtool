@@ -72,7 +72,7 @@
                                     </h4>
                                 </div>
 
-                                <div id="" class="card-body box-container border-bottom">
+                                <div id="" class="card-body box-container border-bottom overflow-hidden">
                                     <div id="designation_jstree"></div>
                                 </div> 
 

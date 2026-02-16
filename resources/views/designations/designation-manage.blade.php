@@ -64,7 +64,7 @@
                                     </h4>
                                 </div>
 
-                                <div id="" class="card-body box-container border-bottom">
+                                <div id="" class="card-body box-container border-bottom overflow-hidden">
                                     <div id="designation_jstree"></div>
                                 </div> 
 
@@ -189,7 +189,7 @@
                     <button type="button" id="modal-desig-create-btn" class="btn btn-primary">
                         <i class="fa fa-save mr-1"></i> Create
                     </button>
-                    <button type="button" class="btn btn-warning" onclick="resetModalForm()">
+                    <button type="button" id="btnResetModal" class="btn btn-warning">
                         <i class="fa fa-refresh mr-1"></i> Reset
                     </button>
 
@@ -287,7 +287,7 @@ $(function() {
         const desc = $li.data('description') || '';
         const status = $li.data('enable') === false ? 'false' : 'true';
 
-        //$updateForm.find('#desig-name').val(node.text).attr('data-source', id).data('source', id);
+        $updateForm.find('#desig-name').val(node.text).attr('data-source', id).data('source', id);
         $updateForm.find('#desig-name').val(node.text);
         $updateForm.find('#desig-desc').val(desc);
         $updateForm.find('#desig-status').val(status);
@@ -397,13 +397,13 @@ $(function() {
                     ref.delete_node(sel);
                     swal("Deleted!", "Designation and its children removed.", "success");
                     $updateForm[0].reset();
-                    //$updateForm.find('#desig-name').removeData('source').removeAttr('data-source');
+                    $updateForm.find('#desig-name').removeData('source').removeAttr('data-source');
                 }
             });
         } else {
             ref.delete_node(sel);
             $updateForm[0].reset();
-            //$updateForm.find('#desig-name').removeData('source').removeAttr('data-source');
+            $updateForm.find('#desig-name').removeData('source').removeAttr('data-source');
         }
     });
 
@@ -420,13 +420,23 @@ $(function() {
 
     // Reset Modal Form Helper
     function resetModalForm() {
-        $modalForm[0].reset();
-        $modalForm.find('#modal-desig-name').removeData('source').removeAttr('data-source');
+        console.log($modalForm);
+        $modalForm.find('input[type="text"], textarea, select').not('.parent-desig-name').val('');
+        $modalForm.find('select').val('true');        
     }
+
+    // Reset Modal Form Listener
+    $(document).on("click", "#btnResetModal", function() {
+        //$modalForm[0].reset();
+        resetModalForm();
+    });
+
+
 
     // Modal: Open Create Main
     $(document).on("click", "#btnCreateParent", function() {
         resetModalForm();
+        $modalForm.find('#modal-desig-name').removeData('source').removeAttr('data-source');
         $modal.find('.parent-info-div').hide();
         $modal.modal('show');
     });
