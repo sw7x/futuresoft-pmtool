@@ -80,9 +80,11 @@
                         <i class="fa fa-tasks"></i> <span  class="nav-label">Task Management</span> <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level collapse" aria-expanded='{{ \Str::is('tasks.*', Route::currentRouteName()) ? 'true' : 'false' }}'>
-                        <li class="{{ Route::is('tasks.create') ? 'current' : '' }}"><a href="{{ route('tasks.create') }}"><i class="fa fa-plus-square"></i>Create task</a></li>
-                        <li class="{{ Route::is('tasks.view') ? 'current' : '' }}"><a href="{{ route('tasks.view') }}"><i class="fa fa-eye"></i>View task</a></li>
-                        <li class="{{ Route::is('tasks.assign-developers') ? 'current' : '' }}"><a href="{{ route('tasks.assign-developers') }}"><i class="fa fa-user-plus"></i>Assign developers</a></li>
+                        <li class="{{ Route::is('tasks.manage') ? 'current' : '' }}"><a href="{{ route('tasks.manage') }}"><i class="fa fa-sitemap"></i>Manage tasks</a></li>
+                        <li class="{{ Route::is('tasks.view') ? 'current' : '' }}"><a href="{{ route('tasks.view') }}"><i class="fa fa-list-ul"></i>View tasks</a></li>
+                        <li class="{{ Route::is('tasks.assign-developers') ? 'current' : '' }}"><a href="{{ route('tasks.assign-developers') }}"><i class="fa fa-users"></i>Assign developers</a></li>
+                        <li class="{{ Route::is('tasks.view-single') ? 'current' : '' }}"><a href="{{ route('tasks.view-single',7) }}"><i class="fa fa-users"></i>View single task</a></li>
+                        <li class="{{ Route::is('tasks.edit-single') ? 'current' : '' }}"><a href="{{ route('tasks.edit-single',7) }}"><i class="fa fa-edit"></i>Edit/Submit single task</a></li>
                     </ul>
                 </li>
 
@@ -94,8 +96,9 @@
                         <li class="{{ Route::is('users.index') ? 'current' : '' }}"><a href="{{ route('users.index') }}"><i class="fa fa-users"></i>User accounts</a></li>
                         <li class="{{ Route::is('users.index') ? 'current' : '' }}"><a href="{{ route('users.index') }}"><i class="fa fa-user-plus"></i>Create user ---</a></li>
                         
-                        <li class="{{ Route::is('users.manage-designations') ? 'current' : '' }}"><a href="{{ route('users.manage-designations') }}"><i class="fa fa-id-badge"></i>Manage designations</a></li>
-                        <li class="{{ Route::is('users.view-designations') ? 'current' : '' }}"><a href="{{ route('users.view-designations') }}"><i class="fa fa-id-badge"></i>View designations</a></li>
+                        <li class="{{ Route::is('users.manage-designations') ? 'current' : '' }}"><a href="{{ route('users.manage-designations') }}"><i class="fa fa-sitemap"></i>Manage designations</a></li>
+                        <li class="{{ Route::is('users.view-designations') ? 'current' : '' }}"><a href="{{ route('users.view-designations') }}"><i class="fa fa-address-card-o"></i>View designations</a></li>
+                        <li class="{{ Route::is('users.assign-designations') ? 'current' : '' }}"><a href="{{ route('users.assign-designations') }}"><i class="fa fa-id-badge"></i>Assign designations</a></li>
                     </ul>
                 </li>
 

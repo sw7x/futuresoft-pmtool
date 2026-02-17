@@ -1,5 +1,6 @@
-@extends('layouts.master',['title' => 'View Tasks'])
-@section('title','view-tasks')
+@extends('layouts.master',['title' => 'Manage Tasks'])
+@section('title','task-manage')
+
 
 
 
@@ -111,7 +112,28 @@
 
                                 <div id="" class="card-body box-container border-bottom overflow-hidden px-2">
                                     <div id="task_tree_jstree"></div>
-                                </div>                                
+                                </div> 
+
+                                {{-- 
+                                <div class="card-body box-container bg-light">
+                                    <div id="jstree" class="bg-white p-3 rounded shadow-sm border h-100"></div>
+                                </div>
+                                --}}
+
+
+                                <div class="card-footer bg-white border-top-0">
+                                    <div class="d-flex flex-column p-0">
+                                        <button type="button" class="text-left btn btn-primary w-100 mb-2 shadow-sm" id="btnCreateParent">
+                                            <i class="fa fa-plus-circle mr-2"></i> Create main
+                                        </button>
+                                        <button type="button" class="text-left btn btn-info w-100 mb-2 shadow-sm" id="btnCreateSub">
+                                            <i class="fa fa-code-fork mr-2"></i> Create sub
+                                        </button>
+                                        <button type="button" class="text-left btn btn-danger btn-md w-100 shadow-sm" id="btnDelete">
+                                            <i class="fa fa-trash mr-2"></i> Delete
+                                        </button>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
@@ -159,12 +181,12 @@
                                             <small class="form-text text-muted">Closed tasks become read-only.</small>
                                         </div>
 
+                                        
                                         <!-- Effort & Time Tracking -->
                                         <div class="section-header mt-5 mb-4">
                                             <h5 class="text-primary font-bold"><i class="fa fa-hourglass-o mr-1"></i> Effort & Time Tracking</h5>
                                             <hr class="mt-1 mb-3">
                                         </div>
-
                                         
                                         <div class="form-group">
                                             <label>Estimated Duration</label>
@@ -191,7 +213,10 @@
                                             <h5 class="text-primary font-bold"><i class="fa fa-calendar-o mr-1"></i> Schedule & Deadlines</h5>
                                             <hr class="mt-1 mb-3">
                                         </div>
-                                        
+
+
+
+
                                         <div class="form-group">
                                             <label for="assigned-at">Assigned Date & Time</label>
                                             <input type="datetime-local" class="form-control" id="assigned-at" name="assigned_at" value="{{ date('Y-m-d\TH:i') }}" disabled>
@@ -285,7 +310,16 @@
                                             </div>
                                         </div>
 
-                                        
+                                        <div class="mt-4 pt-3 border-top">
+                                            <div class="d-flex">
+                                                <button type="button" id="task-update-btn" class="btn btn-primary flex-fill mr-2 shadow-sm font-semibold">
+                                                    <i class="fa fa-save mr-1"></i> Update Task
+                                                </button>
+                                                <button type="button" class="reset btn btn-danger flex-fill ml-2 shadow-sm font-semibold">
+                                                    <i class="fa fa-refresh mr-1"></i> Reset
+                                                </button>
+                                            </div>
+                                        </div>
 
                                     </form>
                                 </div>
@@ -300,7 +334,206 @@
         </div>
     </div>
 
-    
+    <!-- Task Details Modal -->
+    <div class="modal fade" id="taskDetailsModal" tabindex="-1" role="dialog" aria-labelledby="taskDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h3 class="modal-title" id="taskDetailsModalLabel">
+                        <i class="fa fa-plus-circle mr-2"></i> Create Task
+                    </h3>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    
+
+
+                    <form id="modal-task-create" action="">
+                        
+                        <div class="form-group parent-info-div">
+                            <label for="modal-parent-task-name">Parent Task</label>
+                            <input type="text" class="form-control parent-task-name" id="modal-parent-task-name" value="" disabled>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <label for="task-name">Task Name <span class="text-danger">*</span></label>
+                            {{-- <input type="text" class="form-control" id="task-name" name="task_name" required maxlength="150" placeholder="Enter task name"> --}}
+                            <textarea class="form-control task_name" id="modal-task-name" data-source="" placeholder="Enter task name"></textarea>
+                            <small class="form-text text-muted">A concise summary of the work (max 150 chars).</small>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="task-desc">Description</label>
+                            <textarea class="form-control" rows="6" id="modal-task-desc" name="description" placeholder="Provide detailed instructions or context..."></textarea>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="task-status">Task Status</label>
+                            <select class="form-control" id="modal-task-status" name="status">
+                                <option value="open">Open</option>
+                                <option value="closed">Closed</option>
+                            </select>
+                            <small class="form-text text-muted">Closed tasks become read-only.</small>
+                        </div>
+                        
+
+                        <!-- Effort & Time Tracking -->
+                        <div class="section-header mt-5 mb-4">
+                            <h5 class="text-primary font-bold"><i class="fa fa-hourglass-o mr-1"></i> Effort & Time Tracking</h5>
+                            <hr class="mt-1 mb-3">
+                        </div>
+
+                        
+                        <div class="form-group">
+                            <label>Estimated Duration</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="modal-est-hours" name="est_hours" min="0" placeholder="Hrs">
+                                <div class="input-group-append"><span class="input-group-text">:</span></div>
+                                <input type="number" class="form-control" id="modal-est-mins" name="est_mins" min="0" max="59" placeholder="Mins">
+                            </div>
+                            <small class="form-text text-muted">Predicted time for completion.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Actual Time Spent</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control bg-light" id="modal-actual-hours" name="actual_hours" placeholder="Hrs">
+                                <div class="input-group-append"><span class="input-group-text">:</span></div>
+                                <input type="number" class="form-control bg-light" id="modal-actual-mins" name="actual_mins" placeholder="Mins">
+                            </div>
+                            {{-- <small class="form-text text-muted">Calculated automatically.</small> --}}
+                        </div>
+
+                        <!-- Schedule & Deadlines -->
+                        <div class="section-header mt-5 mb-4">
+                            <h5 class="text-primary font-bold"><i class="fa fa-calendar-o mr-1"></i> Schedule & Deadlines</h5>
+                            <hr class="mt-1 mb-3">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="assigned-at">Assigned Date & Time</label>
+                            <input type="datetime-local" class="form-control" id="modal-assigned-at" name="assigned_at" value="{{ date('Y-m-d\TH:i') }}" disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="deadline">Deadline</label>
+                            <input type="datetime-local" class="form-control" id="modal-deadline" name="deadline">
+                            <small class="form-text text-muted">Must be later than assigned date.</small>
+                        </div>
+
+                        
+
+                        <div class="form-group">
+                            <label for="finished-at">Finished Date & Time</label>
+                            <input type="datetime-local" class="form-control" id="modal-finished-at" name="finished_at">
+                            <small class="form-text text-muted">Auto-filled on completion.</small>
+                        </div>
+
+                        <!-- Task Classification -->
+                        <div class="section-header mt-4 mb-3">
+                            <h5 class="text-primary font-bold"><i class="fa fa-tags mr-1"></i> Classification & Status</h5>
+                            <hr class="mt-1 mb-3">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="task-priority">Priority</label>
+                            <select class="form-control" id="modal-task-priority" name="priority">
+                                <option value="critical">Critical</option>
+                                <option value="high">High</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="low">Low</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="task-progress">Progress</label>
+                            <select class="form-control" id="modal-task-progress" name="progress">
+                                <option value="not_started">Not Started</option>
+                                <option value="in_progress">In Progress</option>
+                                <option value="completed">Completed</option>
+                                <option value="blocked">Blocked</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+
+                        {{-- <div class="form-group">
+                            <label for="task-status">Task Status</label>
+                            <select class="form-control" id="task-status" name="status">
+                                <option value="open">Open</option>
+                                <option value="closed">Closed</option>
+                            </select>
+                            <small class="form-text text-muted">Closed tasks become read-only.</small>
+                        </div> --}}
+
+                        <!-- Collaboration -->
+                        <div class="section-header mt-4 mb-3">
+                            <h5 class="text-primary font-bold"><i class="fa fa-comments mr-1"></i> Collaboration</h5>
+                            <hr class="mt-1 mb-3">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="task-comments">Comments / Notes</label>
+                            <textarea class="form-control" rows="5" id="modal-task-comments" name="comments" placeholder="Add initial notes or comments..."></textarea>
+                        </div>
+
+                        <!-- Ownership & Assignment -->
+                        <div class="section-header mt-4 mb-3">
+                            <h5 class="text-primary font-bold"><i class="fa fa-user-circle mr-1"></i> Ownership & Assignment</h5>
+                            <hr class="mt-1 mb-3">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="mb-1">Created By</label>
+                            <div>
+                                <a href="#" class="text-primary text-sm"><i class="fa fa-user-circle-o mr-1"></i> Admin User</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="mb-1">Assigned By</label>
+                            <div>
+                                <a href="#" class="text-primary text-sm"><i class="fa fa-user-circle-o mr-1"></i> Project Manager</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="mb-1">Assignee To</label>
+                            <div>
+                                <a href="#" class="text-primary text-sm"><i class="fa fa-user-circle-o mr-1"></i> John Doe</a>
+                            </div>
+                        </div>
+
+
+
+
+
+                        
+
+                        
+                        
+                    </form>
+
+
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" id="modal-task-create-btn" class="btn btn-primary">
+                        <i class="fa fa-save mr-1"></i> Create
+                    </button>
+                    <button type="button" class="btn btn-warning" id="btnResetModal">
+                        <i class="fa fa-refresh mr-1"></i> Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
 
 
@@ -441,7 +674,207 @@ $(function() {
         $tree.jstree("open_node", $li);
     }
 
-    
+    /**
+     * Generates a unique ID for new nodes
+     */
+    function generateNodeId(parentId, type) {
+        const ref = $tree.jstree(true);
+        const children = parentId === '#' ? ref.get_node('#').children : ref.get_node(parentId).children;
+        
+        if (type === 'parent') {
+            const numbers = children.map(id => parseInt(id.substring(1)) || 0);
+            const biggest = numbers.length > 0 ? Math.max(...numbers) : 0;
+            return "p" + (biggest + 1);
+        } else {
+            const numbers = children.map(id => (id.includes('-c') ? parseInt(id.split('-c')[1]) : 0));
+            const biggest = numbers.length > 0 ? Math.max(...numbers) : 0;
+            return parentId + "-c" + (biggest + 1);
+        }
+    }
+
+    /**
+     * Checks if a task name is unique within its context
+     */
+    function isNameUnique(name, parentId) {
+        const ref = $tree.jstree(true);
+        const siblings = (parentId === '#') 
+            ? ref.get_json('#', { flat: true }).filter(n => n.parent === '#' && n.type === 'parent')
+            : ref.get_node(parentId).children.map(id => ref.get_node(id));
+
+        const names = siblings.map(node => (node.text || '').toLowerCase());
+        return !names.includes(name.toLowerCase());
+    }
+
+    window.create_parent = function(name, desc = '', status = true) {
+        if (!name) return swal("Oops", "Task cannot be empty", "error");
+        if (!isNameUnique(name, '#')) return swal("Oops", "Main task already exists", "error");
+
+        const ref = $tree.jstree(true);
+        const newId = generateNodeId('#', 'parent');
+        const sel = ref.create_node('#', {
+            "id": newId, "text": name, "type": "parent",
+            "li_attr": { "class": "parent", "data-description": desc, "data-status": status }            
+        }, "last");
+
+        if (sel) {
+            ref.deselect_all();
+            ref.select_node(sel);
+            ref.edit(sel);
+        }
+    };
+
+    window.create_sub = function(name, desc = '', status = true) {
+        if (!name) return swal("Oops", "Task(sub) cannot be empty", "error");
+
+        const ref = $tree.jstree(true);
+        const selParent = ref.get_selected();
+        if (!selParent.length) return swal("Oops", "Please select a parent Task", "error");
+
+        const parentId = selParent[0];
+        if (!isNameUnique(name, parentId)) return swal("Oops", "Task already exists under this parent task", "error");
+
+        const newId = generateNodeId(parentId, 'child');
+        const sel = ref.create_node(parentId, {
+            "id": newId, "text": name, "type": "child",
+            "li_attr": { "class": "child", "data-description": desc, "data-status": status }
+        }, "last");
+
+        if (sel) {
+            ref.deselect_all();
+            ref.select_node(sel);
+            ref.open_node(parentId);
+            ref.edit(sel);
+        }
+    };
+
+
+
+
+
+
+
+    // --- Event Listeners ---
+
+    // Delete Node
+    $("#btnDelete").on("click", function() {
+        const ref = $tree.jstree(true);
+        const sel = ref.get_selected();
+        if (!sel.length) return;
+
+        const node = ref.get_node(sel[0]);
+        const childCount = node.children.length;
+
+        if (childCount > 0) {
+            swal({
+                title: "Warning",
+                text: `Task has ${childCount} child task(s). Delete everything?`,
+                icon: "warning",
+                buttons: ["Abort", "Delete All"],
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    ref.delete_node(sel);
+                    swal("Deleted!", "Task and its children removed.", "success");
+                    $updateForm[0].reset();
+                    $updateForm.find('#task-name').removeData('source').removeAttr('data-source');
+                }
+            });
+        } else {
+            ref.delete_node(sel);
+            $updateForm[0].reset();
+            $updateForm.find('#task-name').removeData('source').removeAttr('data-source');
+        }
+    });
+
+    // Reset Form (Right Side)
+    $updateForm.find("button.reset").on("click", function() {
+        const ref = $tree.jstree(true);
+        const sel = ref.get_selected();
+        if (sel) {
+            populateForm(ref.get_node(sel));
+        } else {
+            $updateForm[0].reset();
+        }
+    });
+
+    // Reset Modal Form Helper
+    function resetModalForm() {
+        console.log($modalForm);
+        $modalForm.find('input[type="text"], textarea, select').not('.parent-task-name').val('');
+        $modalForm.find('select#modal-task-status').val('open');     
+    }
+
+
+    // Reset Modal Form Listener
+    $(document).on("click", "#btnResetModal", function() {
+        resetModalForm();
+    });
+
+
+    // Modal: Open Create Main
+    $(document).on("click", "#btnCreateParent", function() {
+        resetModalForm();
+        $modalForm.find('#modal-task-name').removeData('source').removeAttr('data-source');
+        $modalForm.find('#modal-parent-task-name').val('');
+
+        $modal.find('.parent-info-div').hide();
+        $modal.modal('show');
+    });
+
+    // Modal: Open Create Sub
+    $(document).on("click", "#btnCreateSub", function() {
+        const ref = $tree.jstree(true);
+        const sel = ref.get_selected();
+
+        if (!sel.length) return swal("Oops", "Please select a parent task first", "info");
+
+        const node = ref.get_node(sel[0]);
+        const depth = $('#' + node.id + ' > a').attr('aria-level');
+        if (depth > 1) return swal("Oops", "Nesting limit is 2 levels", "warning");
+
+        resetModalForm();
+        $modal.find('#modal-task-name').attr('data-source', node.id).data('source', node.id);
+        $modal.find('.parent-task-name').val(node.text);
+        $modal.find('.parent-info-div').show();
+        $modal.modal('show');
+    });
+
+    // Modal: Confirm Create
+    $(document).on("click", "#modal-task-create-btn", function() {
+        const name      = $('#modal-task-name').val();
+        const desc      = $('#modal-task-desc').val();
+        const status    = $('#modal-task-status').val();
+        const parentId  = $('#modal-task-name').data('source');
+
+        if (typeof parentId === 'undefined') {
+            create_parent(name, desc, status);
+        } else {
+            create_sub(name, desc, status);
+        }
+
+        $modal.modal('hide');
+    });
+
+    // Update Node (Right Side)
+    $(document).on("click", "#task-update-btn", function() {
+        const name      = $('#task-name').val();
+        const sourceId  = $('#task-name').data('source');
+        const desc      = $('#task-desc').val();
+        const status    = $('#task-status').val();
+
+        //if (!sourceId) return swal("Notice", "Select a node to update", "info");
+
+        const ref = $tree.jstree(true);
+        ref.rename_node(sourceId, name);
+
+        const $li = $("#" + sourceId);
+        $li.attr('data-description', desc).data('description', desc);
+
+
+        $li.attr('data-status', status).data('status', status);
+
+        swal("Updated", "Task details saved locally", "success");
+    });
 });
 </script>
 @stop

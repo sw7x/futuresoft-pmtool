@@ -39,13 +39,23 @@ class TaskController extends Controller
     public function assignEmployees(){
         return view('task.task-assign');
     }
-    public function taskCreate(){
-        return view('task.task-create');
+    public function taskManage(){
+        return view('task.task-manage');
     }
 
     public function taskView(){
         return view('task.task-view');
     }
 
+
+    public function taskViewSingle($id){
+        //dd($id);
+        return view('task.task-view-single');
+    }
+
+    public function taskEditSingle($id){
+        //dd($id);
+        return view('task.task-edit-single');
+    }
 
 }
