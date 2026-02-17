@@ -1,8 +1,15 @@
 @extends('layouts.master',['title' => 'Empty'])
 @section('title','project-assign')
 
+
+
+
 @section('css-files')
+    
 @stop
+
+
+
 
 @section('page-css')
     <style>
@@ -40,6 +47,7 @@
             font-size: 15px;
             margin-right: 14px;
             flex-shrink: 0;
+            /* box-shadow: 0 2px 4px rgba(102, 126, 234, 0.2); */
         }
         .dev-info {
             flex-grow: 1;
@@ -66,9 +74,9 @@
             color: #6c757d;
         }
         .dev-stats i {
-            margin-right: 7px;
+            margin-right: 4px;
             color: #a0aec0;
-            font-size: 14px;
+            font-size: 10px;
         }
         .btn-view-projects {
             color: #83898fd6 !important;
@@ -147,7 +155,6 @@
 
     <div class="">
         
-        
         <div class="row">
             <div class="col-lg-12">
                 @if(Session::has('message'))
@@ -161,32 +168,6 @@
             </div>
         </div>
 
-        <div class="ibox-content m-b-sm border-bottom">
-            <h2 class="mb-4 font-bold text-muted">Select Project</h2>
-            <div class="row">                   
-
-                <div class="col-lg-12">
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <label for="project-select" class="font-weight-bold mb-0 mr-2">Project:</label>
-                        </div>
-
-                        <div class="col-lg-9">
-                            <select class="select-project form-control select2" style="width: 100%;" data-placeholder="Select a Project">
-                                <option></option>
-                                <option>Alaska</option>
-                                <option>California</option>
-                                <option>Delaware</option>
-                                <option>Tennessee</option>
-                                <option>Texas</option>
-                                <option>Washington</option>
-                            </select>
-                        </div>
-                    </div>                        
-                </div>                        
-
-            </div>     
-        </div>
 
         <div class="row">                   
 
@@ -258,8 +239,7 @@
                         <div class="m-t-md">
                             <h5>Serialised Output</h5>
                         </div>
-                        {{-- <textarea id="_nestable-output" class="form-control"></textarea> --}}
-                        <pre id="nestable-output" class="text-base"></pre>
+                        <textarea id="nestable-output" class="form-control"></textarea>
                     </div>
                 </div>
             </div>
@@ -291,7 +271,7 @@
                                         <div class="dev-info">
                                             <span class="dev-name mb-1">Charlie Wilson <span class="dev-role">(DevOps Engineer)</span></span>
                                             <div class="dev-stats">
-                                                <i class="fa fa-calendar-check-o"></i> Assigned: Jan 18, 2024
+                                                <i class="fa fa-briefcase"></i> 2 Active Projects
                                             </div>
                                         </div>
                                         <a href="#" class="btn-view-projects dd-nodrag" data-toggle="tooltip" title="View Projects"><i class="fa fa-info-circle"></i></a>
@@ -303,18 +283,8 @@
                                         <div class="dev-avatar" style="background: #e53e3e;">MB</div>
                                         <div class="dev-info">
                                             <span class="dev-name mb-1">Mark Brown <span class="dev-role">(Backend Developer)</span></span>
-                                        </div>
-                                        <a href="#" class="btn-view-projects dd-nodrag" data-toggle="tooltip" title="View Projects"><i class="fa fa-info-circle"></i></a>
-                                    </div>                                    
-                                </li>
-
-                                <li class="dd-item" data-id="60">
-                                    <div class="dd-handle dev-card">
-                                        <div class="dev-avatar" style="background: #efac11;">FG</div>
-                                        <div class="dev-info">
-                                            <span class="dev-name mb-1">Frank Gary <span class="dev-role">(Backend Developer)</span></span>
                                             <div class="dev-stats">
-                                                <i class="fa fa-briefcase"></i> Assigned: Jan 11, 2025
+                                                <i class="fa fa-briefcase"></i> 4 Active Projects
                                             </div>
                                         </div>
                                         <a href="#" class="btn-view-projects dd-nodrag" data-toggle="tooltip" title="View Projects"><i class="fa fa-info-circle"></i></a>
@@ -341,8 +311,7 @@
                             <h5>Serialised Output</h5>
                         </div>
 
-                        {{-- <textarea id="_nestable2-output" class="form-control"></textarea> --}}
-                        <pre id="nestable2-output" class="text-base"></pre>
+                        <textarea id="nestable2-output" class="form-control"></textarea>
                     </div>
                 </div>
             </div>                
@@ -377,9 +346,6 @@
                                     <i class="fa fa-calendar icon-date"></i> Started: Dec 10, 2023
                                 </div>
                                 <div class="info-item">
-                                    <i class="fa fa-calendar-check-o icon-status" style="color: #4a5568;"></i> Assigned: Dec 12, 2023
-                                </div>
-                                <div class="info-item">
                                     <i class="fa fa-bullseye icon-status"></i> Status: Active
                                 </div>
                             </div>
@@ -394,9 +360,6 @@
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-calendar icon-date"></i> Started: Nov 15, 2023
-                                </div>
-                                <div class="info-item">
-                                    <i class="fa fa-calendar-check-o icon-status" style="color: #4a5568;"></i> Assigned: Nov 20, 2023
                                 </div>
                                 <div class="info-item">
                                     <i class="fa fa-bullseye icon-status"></i> Status: Active
@@ -427,37 +390,38 @@
         var updateOutput = function (e) {
                 var list = e.length ? e : $(e.target),
                 output = list.data('output');
-                //const prettyJsonString = JSON.stringify(jsonData, null, 2);
+                
                 if (window.JSON) {
-                    //output.val(window.JSON.stringify(list.nestable('serialize'), null, 2));//, null, 2));
-                    output.html(window.JSON.stringify(list.nestable('serialize'), null, 4));//, null, 2));
+                    output.val(window.JSON.stringify(list.nestable('serialize')));//, null, 2));
                 } else {
                     output.val('JSON browser support required for this demo.');
                 }
             };
-            var updateAllOutputs = function() {
-                updateOutput($('#nestable'));
-                updateOutput($('#nestable2'));
-            };
+            
+            /**/
 
             // activate Nestable for list 1
             $('#nestable').nestable({
-                group: 1,
-                maxDepth: 1
-            }).on('change', updateAllOutputs);
+                group: 1
+            }).on('change', updateOutput);
 
             // activate Nestable for list 2
             $('#nestable2').nestable({
-               group: 1,
-               maxDepth: 1
-            }).on('change', updateAllOutputs);
+               group: 1
+            }).on('change', updateOutput);
 
             // output initial serialised data
             updateOutput($('#nestable').data('output', $('#nestable-output')));
             updateOutput($('#nestable2').data('output', $('#nestable2-output')));
 
+
+
+
+
             // Initialize tooltips
             $('[data-toggle="tooltip"]').tooltip();
+
+            
 
             // Show Developer Projects Modal
             $(document).on('click', '.btn-view-projects', function(e) {
