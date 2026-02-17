@@ -108,6 +108,8 @@ class PageController extends Controller
     public function viewDesignations(){
         return view('designations.view-designations');
     }
-
+    public function assignDesignations(){
+        return view('designations.assign-designations');
+    }
 
 }

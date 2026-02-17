@@ -91,6 +91,7 @@ Route::group(['prefix'=>'users','as'=>'users.'], function(){
     Route::get('/',[PageController::class,'users'])->name('index');
     Route::get('/manage-designations',[PageController::class,'designationManage'])->name('manage-designations');
     Route::get('/view-designations',[PageController::class,'viewDesignations'])->name('view-designations');
+    Route::get('/assign-designations',[PageController::class,'assignDesignations'])->name('assign-designations');
 
 });
 
@@ -180,8 +181,12 @@ Route::group(['prefix'=>'timesheets','as'=>'timesheets.'], function(){
 
 /* task */
 Route::group(['prefix'=>'tasks','as'=>'tasks.'], function(){
-    Route::get('/create',[TaskController::class, 'taskCreate'])->name('create');
+    Route::get('/manage',[TaskController::class, 'taskManage'])->name('manage');
     Route::get('/view',[TaskController::class, 'taskView'])->name('view');
     Route::get('/assign-developers',[TaskController::class, 'assignEmployees'])->name('assign-developers');
+
+    Route::get('/{id}',[TaskController::class, 'taskViewSingle'])->name('view-single');
+    Route::get('/{id}/edit',[TaskController::class, 'taskEditSingle'])->name('edit-single');
+
 });
 
