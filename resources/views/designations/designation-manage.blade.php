@@ -437,6 +437,8 @@ $(function() {
     $(document).on("click", "#btnCreateParent", function() {
         resetModalForm();
         $modalForm.find('#modal-desig-name').removeData('source').removeAttr('data-source');
+        $modal.find('.parent-desig-name').val('');
+
         $modal.find('.parent-info-div').hide();
         $modal.modal('show');
     });
