@@ -8,7 +8,7 @@
     <style>
         .dd-handle.dev-card {
             height: auto;
-            padding: 5px 10px;
+            padding: 2px 5px;
             background: #6b728005 !important;
             border: 1px solid #cbd5e0 !important;
             color: #2d3748;
@@ -136,6 +136,11 @@
             font-size: 14px;
             margin-right: 6px;
         }
+
+        #nestable2 .dd-handle {
+            padding: 3px 5px;
+        }
+
         .info-item .icon-role { color: #4a5568; }
         .info-item .icon-date { color: #e53e3e; }
         .info-item .icon-status { color: #38a169; }
@@ -163,8 +168,7 @@
 
         <div class="ibox-content m-b-sm border-bottom">
             <h2 class="mb-4 font-bold text-muted">Select Project</h2>
-            <div class="row">                   
-
+            <div class="row">                  
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="col-lg-3">
@@ -183,9 +187,19 @@
                             </select>
                         </div>
                     </div>                        
-                </div>                        
+                </div> 
+            </div>  
 
-            </div>     
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="project-info mt-3">
+                        <span>📅 Start Date: Jan 15, 2024</span>
+                        <span>📅 End Date: Jun 30, 2024</span>
+                        <span>👥 Team Size: 8 members</span>
+                        <span>🎯 Status: In Progress</span>
+                    </div>
+                </div>
+            </div>               
         </div>
 
         <div class="row">                   

@@ -137,6 +137,11 @@
             font-size: 14px;
             margin-right: 6px;
         }
+        
+         #nestable2 .dd-handle {
+            padding: 3px 5px;
+        }
+
         .info-item .icon-role { color: #4a5568; }
         .info-item .icon-date { color: #e53e3e; }
         .info-item .icon-status { color: #38a169; }
@@ -205,7 +210,20 @@
                     </select>
                 </div>                        
 
-            </div>     
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="project-info mt-3">
+                        <span>📅 Start Date: Jan 15, 2024</span>
+                        <span>📅 End Date: Jun 30, 2024</span>
+                        <span>👥 Team Size: 8 members</span>
+                        <span>🎯 Status: In Progress</span>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
 
         <div class="row">                   
