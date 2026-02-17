@@ -14,24 +14,172 @@
 
 @section('page-css')
 <style>
-    /* Disabled designation styling */
-    #designation_jstree .jstree-node.parent[data-enable="false"] .jstree-anchor {
-        opacity: 0.5;
-        text-decoration: line-through;
-        color: #999 !important;
+    /* Assignment Interface Styling */
+    .assignment-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 0px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        margin-bottom: 30px;
+    }
+    .assignment-header {
+        padding: 10px 15px;
+        border-bottom: 1px solid #f1f5f9;
+    }
+    .assignment-header h4 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 700;
+    }
+    .assignment-body {
+        display: flex;
+        padding: 15px 15px;
+        background: #f8fafc;
+        gap: 20px;
+    }
+    .user-list-box {
+        flex: 1;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 0px;
+        display: flex;
+        flex-direction: column;
+        min-height: 450px;
+    }
+    .list-box-header {
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .list-box-header h5 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 700;
+        color: #1e293b;
+    }
+    .count-badge {
+        background: #f1f5f9;
+        color: #64748b;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 10px;
+    }
+    .count-badge.assigned {
+        background: #ecfdf5;
+        color: #10b981;
+    }
+    .search-container {
+        padding: 0 15px 15px 15px;
+    }
+    .search-input-group {
+        position: relative;
+    }
+    .search-input-group i {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #94a3b8;
+        font-size: 14px;
+    }
+    .search-input-group .form-control {
+        padding-left: 35px;
+        height: 35px;
+        font-size: 12px;
+        border-color: #e2e8f0;
+        border-radius: 0px;
+    }
+    .selection-bar {
+        padding: 10px 15px;
+        background: #ed55650d;
+        border-top: 1px solid #e2e8f0;
+        border-bottom: 1px solid #e2e8f0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+        font-weight: 600;
+    }
+    .selection-bar.assigned {
+        background: #1ab3940a;
+    }
+    .selection-bar .text-green { color: #10b981; }
+
+    .user-items-list {
+        flex: 1;
+        overflow-y: auto;
+        padding: 5px 0;
+    }
+    .user-item-row {
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        transition: background 0.2s;
+        cursor: pointer;
+    }
+    .user-item-row:hover {
+        background: #f8fafc;
+    }
+    .user-checkbox {
+        margin-right: 15px;
+    }
+    .initials-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 11px;
+        font-weight: 700;
+        margin-right: 12px;
+        flex-shrink: 0;
+    }
+    .user-info-text {
+        display: flex;
+        flex-direction: column;
+    }
+    .user-name {
+        font-size: 13px;
+        font-weight: 600;
+        color: #1e293b;
+        line-height: 1.2;
+    }
+    .user-desig {
+        font-size: 11px;
+        color: #94a3b8;
     }
 
-    #designation_jstree .jstree-node.child[data-enable="false"] > .jstree-anchor {
-        opacity: 0.5;
-        text-decoration: line-through;
-        color: #999 !important;
+    .middle-actions {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        width: 80px;
+    }
+    .middle-actions .btn{
+        font-weight: bold;
+    }
+    .action-hint {
+        font-size: 12px;
+        color: #6c757d;
+        text-align: center;
+        line-height: 1.4;
     }
 
-    #designation_jstree .jstree-node[data-enable="false"] .jstree-anchor:hover {
-        opacity: 0.6;
-        background: #ddd;
+    .assignment-footer {
+        padding: 15px 15px;
+        background: #f8fafc;
+        border-top: 1px solid #f1f5f9;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
-
     </style>
     @stop
 
@@ -53,75 +201,199 @@
 
             <div class="ibox">
                 <div class="ibox-content">                        
-                    <br>
                     <div class="row">
-                        <div class="col-md-6">
+                        
+                        <div class="col-md-3 px-1">
                             <div class="card mb-3 h-100">
 
-                                <div class="card-header bg-primary text-white">
-                                    <h4 class="card-title m-0 font-semibold">
-                                        <i class="fa fa-sitemap mr-2"></i> Designation Tree View
-                                    </h4>
+                                <div class="card-header bg-primary text-white _bg-white border-bottom d-flex align-items-center" style="padding: 10px 15px;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="mr-2 rounded d-flex align-items-center justify-content-center">
+                                            <i class="fa fa-sitemap"></i>
+                                        </div>
+                                        <div class="lh-1">
+                                            <h4 class="m-0 font-bold" style="font-size: 16px;">Designation Tree</h4>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div id="" class="card-body box-container border-bottom overflow-hidden">
+                                <div id="" class="card-body box-container border-bottom overflow-hidden px-1 pt-2">
                                     <div id="designation_jstree"></div>
-                                </div>                               
-
-
-                                
-
+                                </div>                            
+                            
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="card mb-3 h-100">
-                                <div class="card-header bg-primary text-white">
-                                    <h4 class="card-title m-0 font-semibold">
-                                        <i class="fa fa-address-card-o mr-2"></i> Designation Details
-                                    </h4>
+                        <div class="col-md-9 pl-2 pr-1 ">
+                            
+                            <!-- 
+                            <div class="row">
+                                <div class="col-lg-12">                                    
+                                    <div class="designation-summary-card d-flex align-items-center bg-primary" style="min-height: 60px; margin-top: 0;">
+                                        <div class="summary-left">
+                                            <span class="summary-badge">Design</span>
+                                            <div class="summary-content">
+                                                <h3 class="summary-title" id="view-desig-title" style="font-size: 16px;">UI Designer</h3>
+                                            </div>
+                                        </div>
+                                        <div class="summary-stats">
+                                            <div class="stat-item">
+                                                <span class="stat-value" id="view-stat-assigned">3</span>
+                                                <span class="stat-label">Assigned</span>
+                                            </div>
+                                            <div class="stat-item">
+                                                <span class="stat-value" id="view-stat-available">3</span>
+                                                <span class="stat-label">Available</span>
+                                            </div>
+                                            <div class="stat-item">
+                                                <span class="stat-value" id="view-stat-total">6</span>
+                                                <span class="stat-label">Total</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                            </div> 
+                            -->
 
-                                <div id="" class="card-body box-container">
-                                    <form id="designation-update-form" action="">
-                                        <div class="">
-
-                                            <div class="form-group">
-                                                <label for="desig-name">Designation Name</label>
-                                                <input type="text" class="form-control" id="desig-name" data-source="" disabled>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label for="desig-desc">Description</label>
-                                                <textarea class="form-control" rows="5" id="desig-desc" disabled></textarea>
-                                            </div>
-
-
-
-                                            <div class="form-group">
-                                                <label for="desig-status">Status</label>
-                                                <select class="form-control" id="desig-status" disabled>
-                                                    <option value="true">Enable</option>
-                                                    <option value="false">Disable</option>
-                                                </select>
-                                            </div>                                            
-
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="assignment-card">
+                                        <div class="assignment-header bg-primary">
+                                            <h4>Manage Employee Assignments — <span id="header-desig-name">UI Designer</span></h4>
                                         </div>
 
-                                    </form>
+                                        <div class="assignment-body">
+                                            <!-- Available Users -->
+                                            <div class="user-list-box">
+                                                <div class="list-box-header">
+                                                    <h5>Available Users</h5>
+                                                    <span class="count-badge">3</span>
+                                                </div>
+                                                <div class="search-container">
+                                                    <div class="search-input-group">
+                                                        <i class="fa fa-search"></i>
+                                                        <input type="text" class="form-control" placeholder="Search users...">
+                                                    </div>
+                                                </div>
+                                                <div class="selection-bar">
+                                                    <div>
+                                                        <input type="checkbox" id="select-all-available" class="user-checkbox">
+                                                        <label for="select-all-available" class="mb-0">Select all</label>
+                                                    </div>
+                                                    <span class="text-red">0 selected</span>
+                                                </div>
+                                                <div class="user-items-list" id="available-users-list">
+                                                    <div class="user-item-row">
+                                                        <input type="checkbox" class="user-checkbox">
+                                                        <div class="initials-avatar" style="background: #3b82f6;">UA</div>
+                                                        <div class="user-info-text">
+                                                            <span class="user-name">User A UI</span>
+                                                            <span class="user-desig">UI Designer</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="user-item-row">
+                                                        <input type="checkbox" class="user-checkbox">
+                                                        <div class="initials-avatar" style="background: #8b5cf6;">UB</div>
+                                                        <div class="user-info-text">
+                                                            <span class="user-name">User B UI</span>
+                                                            <span class="user-desig">UI Designer</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="user-item-row">
+                                                        <input type="checkbox" class="user-checkbox">
+                                                        <div class="initials-avatar" style="background: #d946ef;">UC</div>
+                                                        <div class="user-info-text">
+                                                            <span class="user-name">User C UI</span>
+                                                            <span class="user-desig">UI Designer</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Middle Actions -->
+                                            <div class="middle-actions">
+                                                <button class="btn btn-primary _btn-action btn-add">Add ►</button>
+                                                <p class="action-hint">Check users<br>then click</p>
+                                                <button class="btn btn-danger _btn-action btn-remove">◄ Remove</button>
+                                            </div>
+
+                                            <!-- Assigned Users -->
+                                            <div class="user-list-box">
+                                                <div class="list-box-header">
+                                                    <h5>Assigned Users</h5>
+                                                    <span class="count-badge assigned">3</span>
+                                                </div>
+                                                <div class="search-container">
+                                                    <div class="search-input-group">
+                                                        <i class="fa fa-search"></i>
+                                                        <input type="text" class="form-control" placeholder="Search assigned...">
+                                                    </div>
+                                                </div>
+                                                <div class="selection-bar assigned">
+                                                    <div>
+                                                        <input type="checkbox" id="select-all-assigned" class="user-checkbox">
+                                                        <label for="select-all-assigned" class="mb-0">Select all</label>
+                                                    </div>
+                                                    <span class="text-green">0 selected</span>
+                                                </div>
+                                                <div class="user-items-list" id="assigned-users-list">
+                                                    <div class="user-item-row">
+                                                        <input type="checkbox" class="user-checkbox">
+                                                        <div class="initials-avatar" style="background: #1e3a8a;">SA</div>
+                                                        <div class="user-info-text">
+                                                            <span class="user-name">Staff A UI</span>
+                                                            <span class="user-desig">UI Designer</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="user-item-row">
+                                                        <input type="checkbox" class="user-checkbox">
+                                                        <div class="initials-avatar" style="background: #7c3aed;">SB</div>
+                                                        <div class="user-info-text">
+                                                            <span class="user-name">Staff B UI</span>
+                                                            <span class="user-desig">UI Designer</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="user-item-row">
+                                                        <input type="checkbox" class="user-checkbox">
+                                                        <div class="initials-avatar" style="background: #db2777;">SC</div>
+                                                        <div class="user-info-text">
+                                                            <span class="user-name">Staff C UI</span>
+                                                            <span class="user-desig">UI Designer</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="assignment-footer">
+                                            <div class="footer-status">
+                                                <strong>3 employees</strong> assigned to <span class="text-primary font-bold">UI Designer</span>
+                                            </div>
+                                            
+                                            <div class="footer-actions">
+                                                <div class="form-field">
+                                                    <button type="submit" class="btn btn-primary px-4 shadow-sm">
+                                                        <i class="fa fa-save mr-2"></i> Save
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger ml-2 px-4 shadow-sm">
+                                                        <i class="fa fa-refresh mr-1"></i> Cancel
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
-                            </div>                           
+                            </div>               
+                                                   
                         </div>    
 
                     </div>
-
                 </div>
             </div>
 
         </div>
-    </div>
-
-    
+    </div>    
 @stop
 
 
