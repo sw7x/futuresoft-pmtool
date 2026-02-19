@@ -45,16 +45,22 @@
                         <i class="fa fa-code"></i> <span  class="nav-label">Project Management</span> <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level collapse" aria-expanded='{{ \Str::is('projects.*', Route::currentRouteName()) ? 'true' : 'false' }}'>
-                        <li class="{{ Route::is('projects.list') ? 'current' : '' }}"><a href="{{ route('projects.list') }}"><i class="fa fa-list-ol"></i>Project list</a></li>
-
-                        <li class=""><a href=""><i class="fa fa-plus-square"></i>Create project ----</a></li>
-                        <li class=""><a href=""><i class="fa fa-user-plus"></i>Create client ----</a></li>
-                        <li class=""><a href=""><i class="fa fa-file-text-o"></i>Create invoice ----</a></li>
                         
+                        <li class="{{ Route::is('projects.list') ? 'current' : '' }}"><a href="{{ route('projects.list') }}"><i class="fa fa-list-ol"></i>Project list</a></li>
+                        <li class="{{ Route::is('projects.create-project') ? 'current' : '' }}"><a href="{{ route('projects.create-project') }}"><i class="fa fa-plus-square"></i>Create project</a></li>
+                        <li class="{{ Route::is('projects.single-project') ? 'current' : '' }}"><a href="{{ route('projects.single-project',12) }}"><i class="fa fa-folder-open"></i>Single project</a></li>
+
+                        
+                        <li class="{{ Route::is('projects.clients') ? 'current' : '' }}"><a href="{{ route('projects.clients') }}"><i class="fa  fa-street-view text-red"></i>Clients</a></li>
+                        <li class="{{ Route::is('projects.create-client') ? 'current' : '' }}"><a href="{{ route('projects.create-client') }}"><i class="fa fa-user-plus"></i>Create client</a></li>
+                        <li class="{{ Route::is('projects.single-client') ? 'current' : '' }}"><a href="{{ route('projects.single-client',3) }}"><i class="fa fa-user"></i>Single client</a></li>
+
+                        <li class="{{ Route::is('projects.invoices') ? 'current' : '' }}"><a href="{{ route('projects.invoices') }}"><i class="fa fa-dollar"></i>Invoices</a></li>
+                        <li class="{{ Route::is('projects.create-invoice') ? 'current' : '' }}"><a href="{{ route('projects.create-invoice') }}"><i class="fa fa-file-text-o"></i>Create invoice</a></li>
+                        <li class="{{ Route::is('projects.single-invoice') ? 'current' : '' }}"><a href="{{ route('projects.single-invoice',5) }}"><i class="fa fa-file-text"></i>Single invoice</a></li>
 
                         <li class="{{ Route::is('projects.enroll-employees') ? 'current' : '' }}"><a href="{{ route('projects.enroll-employees') }}"><i class="fa fa-users"></i>Enroll developers</a></li>
-                        <li class="{{ Route::is('projects.clients') ? 'current' : '' }}"><a href="{{ route('projects.clients') }}"><i class="fa  fa-street-view text-red"></i>Clients</a></li>
-                        <li class="{{ Route::is('projects.invoices') ? 'current' : '' }}"><a href="{{ route('projects.invoices') }}"><i class="fa fa-dollar"></i>Invoices</a></li>
+
                     </ul>
                 </li>            
     

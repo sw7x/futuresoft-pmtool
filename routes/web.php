@@ -119,15 +119,38 @@ Route::group(['prefix'=>'projects','as'=>'projects.'], function(){
 
     //Route::get('create', [ProjectController::class,'create'])->name('create');
     Route::get('/', [ProjectController::class,'index'])->name('list');
+    Route::get('/create-project', [ProjectController::class,'createProject'])->name('create-project');
+    Route::get('/{id}', [ProjectController::class,'singleProject'])->name('single-project');
     Route::get('enroll-employees', [ProjectController::class,'assignEmployees'])->name('enroll-employees');
+
 
 
     /* client */
     Route::get('/clients',[ClientController::class, 'client'])->name('clients');
-    Route::post('/clients/create',[ClientController::class, 'createClient'])->name('clients.create');
+    //Route::post('/clients/create',[ClientController::class, 'createClient'])->name('clients.create');
+    Route::get('/create-client',[ClientController::class, 'createClient'])->name('create-client');
+    Route::get('/clients/{id}',[ClientController::class, 'singleClient'])->name('single-client');
+
+
+
 
     /* cost management */
     Route::get('/invoices',[CostController::class, 'invoices'])->name('invoices');
+    Route::get('/create-invoice',[CostController::class, 'createInvoice'])->name('create-invoice');
+    Route::get('/invoices/{id}',[CostController::class, 'singleInvoice'])->name('single-invoice');
+
+
+
+
+
+
+                      
+
+
+
+
+
+
 
 
 });

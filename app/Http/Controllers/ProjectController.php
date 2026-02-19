@@ -34,10 +34,21 @@ class ProjectController extends Controller
 
 
     public function index(){
-        return view('project');
+        return view('projects.project-list');
+    }    
+
+    public function createProject(){
+        return view('projects.project-create');
+    }    
+
+    public function singleProject($id){
+        return view('projects.project-single');
     }
+
+
+
     public function assignEmployees(){
-        return view('project-assign');
+        return view('projects.project-assign');
     }
 
     

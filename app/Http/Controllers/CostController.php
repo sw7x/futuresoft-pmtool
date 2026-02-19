@@ -20,8 +20,29 @@ class CostController extends Controller
 //    }
 
     public function invoices(){
-        return view('invoice-list');
+        return view('invoices.invoice-list');
+    }    
+
+    public function createInvoice(){
+        return view('invoices.invoice-create');
+    }    
+
+    public function singleInvoice($id){
+        return view('invoices.invoice-single');
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

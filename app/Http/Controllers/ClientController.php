@@ -13,32 +13,20 @@ namespace App\Http\Controllers;
 class ClientController extends Controller
 {
     public function client(){
-        return view('client');
-    }
-    
-    
+        return view('clients.client-list');
+    }    
+
     public function createClient(){
-    //public function createClient(ClientService $clientService,ClientFormRequest $request){
-        // accessing client service class to create client
-        //dd($_POST);
+        return view('clients.client-create');
+    }    
 
-       // $this->validate ($request,[
-       //     'client-name'=>'required',
-       // ]);
-
-        //return redirect('client');
-
-       // dd();
-
-        //return redirect()->back();
-
-        //$isClientCreate = $clientService->createClient($request);
-        //dd($isClientCreate);
-
-        dd('createClient');
-
-
+    public function singleClient(){
+        return view('clients.client-single');
     }
+    
+
+    
+    
 
 
 
