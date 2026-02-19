@@ -10,6 +10,76 @@
     <link href="{{asset('css/plugins/iCheck/custom.css')}}" rel="stylesheet">
     <link rel='stylesheet' href="{{asset('plugins/filepond/css/filepond-plugin-image-preview.min.css')}}">
     <link rel='stylesheet' href="{{asset('plugins/filepond/css/filepond.min.css')}}">
+    <style>
+        /* Modern Premium Badge System */
+        .premium-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 14px;
+            font-weight: 600;
+            font-size: 11px;
+            border-radius: 0px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 5px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            border: 1px solid transparent;
+        }
+
+        .designation-badge-container .premium-badge{
+            display: block;
+        }
+        
+        .premium-badge:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+        }
+        
+        .premium-badge i {
+            margin-right: 6px;
+            font-size: 13px;
+        }
+
+        /* Designation Specific Styles */
+        .badge-designation-primary {
+            background-color: #f0f7ff;
+            color: #0056b3;
+            border-color: #d0e3ff;
+        }
+        .badge-designation-info {
+            background-color: #f0fbff;
+            color: #007094;
+            border-color: #ccf0ff;
+        }
+        .badge-designation-success {
+            background-color: #f2fff5;
+            color: #1a7f37;
+            border-color: #cef5d6;
+        }
+
+        /* Employment Status Specific Styles */
+        .status-active {
+            background-color: #ecfdf3;
+            color: #027a48;
+            border-color: #abefc6;
+        }
+        .status-pending {
+            background-color: #f9fafb;
+            color: #344054;
+            border-color: #eaecf0;
+        }
+        .status-resigned {
+            background-color: #fffcf0;
+            color: #b54708;
+            border-color: #fedf89;
+        }
+        .status-terminated {
+            background-color: #fffbfa;
+            color: #b42318;
+            border-color: #fee4e2;
+        }
+    </style>
 @stop
 
 
@@ -29,7 +99,7 @@
                             :canClose="true" />
                     @endif
 
-                    <h3 class="mb-3 font-bold text-lg"><i class="fa fa-address-card"></i> Account Type</h3>
+                    <h3 class="mb-3 font-bold text-lg"><i class="fa fa-id-badge"></i> Employee Position</h3>
                     
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label">Role</label>
@@ -37,6 +107,20 @@
                             <div class="form-control-static text-sm">Developer</div>
                         </div>
                     </div>
+
+
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">Designations</label>
+                        <div class="col-sm-4 designation-badge-container">
+                            <div class="premium-badge badge-designation-primary"><i class="fa fa-code"></i> Software Engineer</div>
+                            <div class="premium-badge badge-designation-info"><i class="fa fa-users"></i> Team Lead</div>
+                            <div class="premium-badge badge-designation-success"><i class="fa fa-star"></i> Scrum Master</div>
+                        </div>
+                    </div>
+
+
+
+
 
                     <div class="hr-line-dashed"></div>
                     <h3 class="mb-3 font-bold text-lg"><i class="fa fa-user-circle-o"></i> Personal Information</h3>
@@ -164,18 +248,20 @@
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label">Account Status</label>
                         <div class="col-sm-8">
-                            <span class="label label-primary mb-2">Enabled</span>
-                            <span class="label label-warning">Disabled</span>
+                            <span class="label label-primary py-2 px-3 text-base mr-2">Enabled</span>
+                            <span class="label label-warning py-2 px-3 text-base">Disabled</span>
                         </div>
                     </div>
                 
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label">Employment Status</label>
                         <div class="col-sm-8">
-                            <span class="label label-default mr-2">Pending</span>
-                            <span class="label label-primary mr-2">Active</span>
-                            <span class="label label-warning mr-2">Resigned</span>
-                            <span class="label label-danger">Terminated</span>
+                            <div class="form-control-static">
+                                <span class="premium-badge status-pending mr-2"><i class="fa fa-clock-o"></i> Pending</span>
+                                <span class="premium-badge status-active mr-2"><i class="fa fa-check-circle"></i> Active</span>
+                                <span class="premium-badge status-resigned mr-2"><i class="fa fa-sign-out"></i> Resigned</span>
+                                <span class="premium-badge status-terminated"><i class="fa fa-times-circle"></i> Terminated</span>    
+                            </div>
                         </div>
                     </div>
 
