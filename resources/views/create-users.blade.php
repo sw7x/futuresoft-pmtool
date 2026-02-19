@@ -44,13 +44,8 @@
                     
                     <form class="pm-create-form" id="" action="" method="post">
                         
-
-
-                        <div class="hr-line-dashed"></div>
                         <h3 class="mb-3 font-bold text-lg"><i class="fa fa-address-card"></i> Account Type</h3>
                         
-
-
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Role <span class="text-red-500 text-sm font-bold">*</span></label>
                             <div class="col-sm-8">

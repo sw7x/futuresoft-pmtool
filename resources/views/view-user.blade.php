@@ -29,7 +29,6 @@
                             :canClose="true" />
                     @endif
 
-                    <div class="hr-line-dashed"></div>
                     <h3 class="mb-3 font-bold text-lg"><i class="fa fa-address-card"></i> Account Type</h3>
                     
                     <div class="form-group row">
