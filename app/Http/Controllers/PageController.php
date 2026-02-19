@@ -10,9 +10,7 @@ class PageController extends Controller
 {
 
     
-    public function profile(){
-        return view('profile');    
-    }
+    
     
     public function login(){
        //return view('login');
@@ -40,18 +38,20 @@ class PageController extends Controller
     
 
 
-
+    public function profile(){
+        return view('users.user-profile');    
+    }
 
     public function users(){
-        return view('users');
+        return view('users.user-list');
     }
 
     public function createUsers(){
-        return view('create-users');
+        return view('users.user-create');
     }    
 
     public function viewSingleUser(){
-        return view('view-user');
+        return view('users.user-view');
     }
 
 
@@ -113,7 +113,7 @@ class PageController extends Controller
 
 
     public function designationManage(){
-        return view('designations.designation-manage');
+        return view('designations.manage-designations');
     }
     public function viewDesignations(){
         return view('designations.view-designations');

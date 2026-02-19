@@ -90,14 +90,14 @@ Route::get('/login', [PageController::class, 'login'])->name('login');
 Route::group(['prefix'=>'users','as'=>'users.'], function(){
     Route::get('/',[PageController::class,'users'])->name('index');
     Route::get('/create',[PageController::class,'createUsers'])->name('create');
-    Route::get('/{id}',[PageController::class,'viewSingleUser'])->name('view-single');
+    
     
 
     Route::get('/manage-designations',[PageController::class,'designationManage'])->name('manage-designations');
 
     Route::get('/view-designations',[PageController::class,'viewDesignations'])->name('view-designations');
     Route::get('/assign-designations',[PageController::class,'assignDesignations'])->name('assign-designations');
-
+Route::get('/{id}',[PageController::class,'viewSingleUser'])->name('view-single');
 });
 
 
