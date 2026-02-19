@@ -83,7 +83,7 @@
                         <li class="{{ Route::is('tasks.manage') ? 'current' : '' }}"><a href="{{ route('tasks.manage') }}"><i class="fa fa-sitemap"></i>Manage tasks</a></li>
                         <li class="{{ Route::is('tasks.view') ? 'current' : '' }}"><a href="{{ route('tasks.view') }}"><i class="fa fa-list-ul"></i>View tasks</a></li>
                         <li class="{{ Route::is('tasks.assign-developers') ? 'current' : '' }}"><a href="{{ route('tasks.assign-developers') }}"><i class="fa fa-users"></i>Assign developers</a></li>
-                        <li class="{{ Route::is('tasks.view-single') ? 'current' : '' }}"><a href="{{ route('tasks.view-single',7) }}"><i class="fa fa-users"></i>View single task</a></li>
+                        <li class="{{ Route::is('tasks.view-single') ? 'current' : '' }}"><a href="{{ route('tasks.view-single',7) }}"><i class="fa fa-eye"></i>View single task</a></li>
                         <li class="{{ Route::is('tasks.edit-single') ? 'current' : '' }}"><a href="{{ route('tasks.edit-single',7) }}"><i class="fa fa-edit"></i>Edit/Submit single task</a></li>
                     </ul>
                 </li>
@@ -94,7 +94,9 @@
                     </a>
                     <ul class="nav nav-second-level collapse" aria-expanded='{{ \Str::is('users.*', Route::currentRouteName()) ? 'true' : 'false' }}'>
                         <li class="{{ Route::is('users.index') ? 'current' : '' }}"><a href="{{ route('users.index') }}"><i class="fa fa-users"></i>User accounts</a></li>
-                        <li class="{{ Route::is('users.index') ? 'current' : '' }}"><a href="{{ route('users.index') }}"><i class="fa fa-user-plus"></i>Create user ---</a></li>
+                        <li class="{{ Route::is('users.create') ? 'current' : '' }}"><a href="{{ route('users.create') }}"><i class="fa fa-user-plus"></i>Create user</a></li>
+
+                        <li class="{{ Route::is('users.view-single') ? 'current' : '' }}"><a href="{{ route('users.view-single',7) }}"><i class="fa fa-user-plus"></i>View user</a></li>
                         
                         <li class="{{ Route::is('users.manage-designations') ? 'current' : '' }}"><a href="{{ route('users.manage-designations') }}"><i class="fa fa-sitemap"></i>Manage designations</a></li>
                         <li class="{{ Route::is('users.view-designations') ? 'current' : '' }}"><a href="{{ route('users.view-designations') }}"><i class="fa fa-address-card-o"></i>View designations</a></li>
@@ -159,6 +161,20 @@
                         <li class="{{ Route::is('messages.read-mail') ? 'current' : '' }}"><a href="{{ route('messages.read-mail') }}"><i class="fa  fa-map-o"></i>Read</a></li>
                     </ul>
                 </li>
+
+                <li class="active">
+                    <a aria-expanded="true">
+                        <i class="fa fa-wrench"></i><span class="nav-label">Settings</span> <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level collapse in" aria-expanded="true" style="">
+                        <li class=""><a href="">General - Settings---</a></li>
+
+                        <li class=""><a href="">Advanced - Settings---</a></li>
+                    </ul>
+                </li>
+
+
+
 
                 <li><a href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Login</a></li>
                         

@@ -94,7 +94,7 @@
     }
     .selection-bar {
         padding: 10px 15px;
-        background: #ed55650d;
+        background: #f2f2f2;
         border-top: 1px solid #e2e8f0;
         border-bottom: 1px solid #e2e8f0;
         display: flex;
@@ -104,7 +104,7 @@
         font-weight: 600;
     }
     .selection-bar.assigned {
-        background: #1ab3940a;
+        background: #f2f2f2;
     }
     .selection-bar .text-green { color: #10b981; }
 
@@ -280,7 +280,7 @@
                                                         <input type="checkbox" id="select-all-available" class="user-checkbox">
                                                         <label for="select-all-available" class="mb-0">Select all</label>
                                                     </div>
-                                                    <span class="text-red">0 selected</span>
+                                                    <span class="_text-red">0 selected</span>
                                                 </div>
                                                 <div class="user-items-list" id="available-users-list">
                                                     <div class="user-item-row">
@@ -334,7 +334,7 @@
                                                         <input type="checkbox" id="select-all-assigned" class="user-checkbox">
                                                         <label for="select-all-assigned" class="mb-0">Select all</label>
                                                     </div>
-                                                    <span class="text-green">0 selected</span>
+                                                    <span class="_text-green">0 selected</span>
                                                 </div>
                                                 <div class="user-items-list" id="assigned-users-list">
                                                     <div class="user-item-row">

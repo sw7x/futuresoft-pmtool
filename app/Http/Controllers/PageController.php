@@ -46,7 +46,17 @@ class PageController extends Controller
         return view('users');
     }
 
-    
+    public function createUsers(){
+        return view('create-users');
+    }    
+
+    public function viewSingleUser(){
+        return view('view-user');
+    }
+
+
+
+
     public function pendingTimesheetList(){
         return view('timesheets.pending-list');
     }

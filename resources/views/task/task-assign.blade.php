@@ -9,7 +9,7 @@
     <style>
         .dd-handle.dev-card {
             height: auto;
-            padding: 5px 10px;
+            padding: 2px 5px;
             background: #6b728005 !important;
             border: 1px solid #cbd5e0 !important;
             color: #2d3748;

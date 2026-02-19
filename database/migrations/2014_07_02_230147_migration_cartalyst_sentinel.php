@@ -104,10 +104,10 @@ class MigrationCartalystSentinel extends Migration
             $table->string('username',25)->nullable();
             $table->string('password');
             
-
-            $table->string('phone',20);
+            $table->date('date_of_birth')->nullable();
             $table->enum('gender', ['male','female','other']);
             $table->text('address')->nullable();
+            $table->string('phone',20);
             $table->text('nic')->unique();
             $table->text('profile_pic')->nullable();
 
@@ -118,14 +118,12 @@ class MigrationCartalystSentinel extends Migration
             $table->text('epf_etf_details')->nullable();            
             $table->text('edu_qualifications')->nullable();
             $table->text('skills')->nullable();   
-            $table->date('date_of_birth')->nullable();
-
+            
             $table->boolean('account_status')->default(True);
             $table->enum('employment_status', ['pending', 'active', 'resigned', 'terminated']);
+            $table->timestamp("termination_date")->nullable();
+
         
-            // FK to designations table, but later add constraint 
-            $table->unsignedBigInteger('designation_id')->nullable();
-            
             $table->text('permissions')->nullable();
             $table->timestamp('last_login')->nullable();            
             $table->timestamps();
