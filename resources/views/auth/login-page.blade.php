@@ -67,6 +67,74 @@
                 background-color: #f2dede;
                 border-color: #ebccd1;
             }
+
+
+            /* ------------------------------------ */
+            /* custom checkbox   -------------------*/
+            /* ------------------------------------ */
+            .custom-checkbox {
+                display: block;
+                position: relative;
+                padding-left: 30px;
+                margin-bottom: 12px;
+                cursor: pointer;
+                font-size: 11px;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                color: #fff;
+                font-weight: 200;
+            }
+
+            .custom-checkbox input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                height: 0;
+                width: 0;
+            }
+
+            .checkmark {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 15px;
+                width: 15px;
+                background-color: #eee;
+                border-radius: 2px;
+            }
+
+            .custom-checkbox:hover input ~ .checkmark {
+                background-color: #ccc;
+            }
+
+            .custom-checkbox input:checked ~ .checkmark {
+                background-color: #39424c; /* Login button color */
+            }
+
+            .checkmark:after {
+                content: "";
+                position: absolute;
+                display: none;
+            }
+
+            .custom-checkbox input:checked ~ .checkmark:after {
+                display: block;
+            }
+
+            .custom-checkbox .checkmark:after {
+                left: 5px;
+                top: 1px;
+                width: 7px;
+                height: 12px;
+                border: solid white;
+                border-width: 0 3px 3px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+
         </style>
     </head>
     <body>
@@ -107,6 +175,16 @@
                                         <i id="eyeIcon" class="fa fa-eye"></i>
                                     </button>
                                 </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <label class="custom-checkbox">Remember Me
+                                    <input type="checkbox" name="remember_me">
+                                    <span class="checkmark"></span>
+                                </label>
                             </div>
                         </div>
 
