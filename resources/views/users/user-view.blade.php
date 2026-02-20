@@ -1,15 +1,13 @@
 @extends('layouts.master',['title' => 'View single Users'])
 @section('title','View single Users')
 
-@section('css-files')
-    <!-- select2 -->
-    <link href="{{asset('css/plugins/select2/select2.min.css')}}" rel="stylesheet">
-    <!-- bootstrap datapicker -->
-    <link href="{{asset('css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('plugins/summernote-0.8.18/summernote-bs4.css')}}">
-    <link href="{{asset('css/plugins/iCheck/custom.css')}}" rel="stylesheet">
-    <link rel='stylesheet' href="{{asset('plugins/filepond/css/filepond-plugin-image-preview.min.css')}}">
-    <link rel='stylesheet' href="{{asset('plugins/filepond/css/filepond.min.css')}}">
+@section('css-files')    
+    
+@stop
+
+
+
+@section('page-css')
     <style>
         /* Modern Premium Badge System */
         .premium-badge {
@@ -306,17 +304,6 @@
 
 
 @section('script-files')
-    <!-- iCheck -->
-    <script src="{{asset('js/plugins/iCheck/icheck.min.js')}}"></script>
-
-    <!-- Select2 -->
-    <script src="{{asset('js/plugins/select2/select2.full.min.js')}}"></script>
-
-    <!-- Data picker -->
-    <script src="{{asset('js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
-
-    <!-- SUMMERNOTE -->
-    <script src="{{asset('plugins/summernote-0.8.18/summernote-bs4.js')}}"></script>
 @stop
 
 
