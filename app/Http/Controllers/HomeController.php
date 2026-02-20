@@ -9,11 +9,4 @@ namespace App\Http\Controllers;
 
 class HomeController extends Controller
 {
-    //
-    public function index(){
-        //$users = DB::table('project')->get();
-        //dd ($users);
-        //dd ('hhhh');
-        return view('dashboard');
-    }
 }

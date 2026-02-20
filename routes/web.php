@@ -1,14 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CarController;
 
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CostController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\TimesheetController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\DesignationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,7 +48,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/db', [CarController::class,'index'])->name('index');
+Route::get('/db', [PageController::class,'index2'])->name('index');
 
 
 Route::get('/test', function () {
@@ -61,22 +65,22 @@ Route::get('/empty', function () {
 
 //////////////////////////////
 
-Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [PageController::class, 'index'])->name('dashboard');
 Route::get('/info', function() {  phpinfo();});
 
 
 
 //Route::group(['prefix'=>'project','as'=>'project.'], function(){
 Route::prefix('messages')->name('messages.')->group(function () {
-    Route::get('/', [PageController::class, 'mailbox'])->name('index');
-    Route::get('/read-mail', [PageController::class, 'readMail'])->name('read-mail');
-    Route::get('/compose', [PageController::class, 'compose'])->name('compose');    
+    Route::get('/', [MessageController::class, 'mailbox'])->name('index');
+    Route::get('/read-mail', [MessageController::class, 'readMail'])->name('read-mail');
+    Route::get('/compose', [MessageController::class, 'compose'])->name('compose');  
 });
 
 
 
 
-Route::get('/profile', [PageController::class, 'profile'])->name('profile');
+Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 
 //Route::get('/', ['as'=>'dashboard','uses'=>'PageController@index']);
 Route::get('/404', [PageController::class, 'page404'])->name('404');
@@ -88,16 +92,16 @@ Route::get('/login', [PageController::class, 'login'])->name('login');
 
 /* users */
 Route::group(['prefix'=>'users','as'=>'users.'], function(){
-    Route::get('/',[PageController::class,'users'])->name('index');
-    Route::get('/create',[PageController::class,'createUsers'])->name('create');
+    Route::get('/',[UserController::class,'users'])->name('index');
+    Route::get('/create',[UserController::class,'createUsers'])->name('create');
     
     
 
-    Route::get('/manage-designations',[PageController::class,'designationManage'])->name('manage-designations');
+    Route::get('/manage-designations',[DesignationController::class,'designationManage'])->name('manage-designations');
 
-    Route::get('/view-designations',[PageController::class,'viewDesignations'])->name('view-designations');
-    Route::get('/assign-designations',[PageController::class,'assignDesignations'])->name('assign-designations');
-Route::get('/{id}',[PageController::class,'viewSingleUser'])->name('view-single');
+    Route::get('/view-designations',[DesignationController::class,'viewDesignations'])->name('view-designations');
+    Route::get('/assign-designations',[DesignationController::class,'assignDesignations'])->name('assign-designations');
+Route::get('/{id}',[UserController::class,'viewSingleUser'])->name('view-single');
 });
 
 
@@ -119,41 +123,40 @@ Route::group(['prefix'=>'projects','as'=>'projects.'], function(){
 
     //Route::get('create', [ProjectController::class,'create'])->name('create');
     Route::get('/', [ProjectController::class,'index'])->name('list');
-    Route::get('/create-project', [ProjectController::class,'createProject'])->name('create-project');
-    Route::get('/{id}', [ProjectController::class,'singleProject'])->name('single-project');
+    Route::get('/create', [ProjectController::class,'createProject'])->name('create');
     Route::get('enroll-employees', [ProjectController::class,'assignEmployees'])->name('enroll-employees');
-
-
-
-    /* client */
-    Route::get('/clients',[ClientController::class, 'client'])->name('clients');
-    //Route::post('/clients/create',[ClientController::class, 'createClient'])->name('clients.create');
-    Route::get('/create-client',[ClientController::class, 'createClient'])->name('create-client');
-    Route::get('/clients/{id}',[ClientController::class, 'singleClient'])->name('single-client');
-
-
+    
 
 
     /* cost management */
-    Route::get('/invoices',[CostController::class, 'invoices'])->name('invoices');
-    Route::get('/create-invoice',[CostController::class, 'createInvoice'])->name('create-invoice');
-    Route::get('/invoices/{id}',[CostController::class, 'singleInvoice'])->name('single-invoice');
+    Route::group(['prefix'=>'invoices','as'=>'invoices.'], function(){
+        Route::get('/',[CostController::class, 'invoices'])->name('list');
+        Route::get('/create',[CostController::class, 'createInvoice'])->name('create');
+        Route::get('/{id}',[CostController::class, 'singleInvoice'])->name('single');
+    });
 
 
+    /* client */
+    Route::group(['prefix'=>'clients','as'=>'clients.'], function(){
+        Route::get('/',[ClientController::class, 'client'])->name('list');
+        //Route::post('/clients/create',[ClientController::class, 'createClient'])->name('clients.create');
+        Route::get('/create',[ClientController::class, 'createClient'])->name('create');
+        Route::get('/{id}',[ClientController::class, 'singleClient'])->name('single');
+    });
 
-
-
-
-                      
-
-
-
-
-
-
-
+Route::get('/{id}', [ProjectController::class,'singleProject'])->name('single');
 
 });
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -178,10 +181,10 @@ Route::group(['prefix'=>'threads','as'=>'threads.'], function(){
 
 /* reporting */
 Route::group(['prefix'=>'reports','as'=>'reports.'], function(){
-    Route::get('/project-timings-by-designation',[PageController::class, 'projectTimingsByDesignation'])->name('project-timings-by-designation');
-    Route::get('/designation-timings-by-project',[PageController::class, 'DesignationTimingsByProject'])->name('designation-timings-by-project');
-    Route::get('/project-timings-by-employee',[PageController::class, 'ProjectTimingsByEmployee'])->name('project-timings-by-employee');
-    Route::get('/employee-timings-by-project',[PageController::class, 'EmployeeTimingsByProject'])->name('employee-timings-by-project');
+    Route::get('/project-timings-by-designation',[ReportController::class, 'projectTimingsByDesignation'])->name('project-timings-by-designation');
+    Route::get('/designation-timings-by-project',[ReportController::class, 'DesignationTimingsByProject'])->name('designation-timings-by-project');
+    Route::get('/project-timings-by-employee',[ReportController::class, 'ProjectTimingsByEmployee'])->name('project-timings-by-employee');
+    Route::get('/employee-timings-by-project',[ReportController::class, 'EmployeeTimingsByProject'])->name('employee-timings-by-project');
 
 
 
@@ -191,17 +194,17 @@ Route::group(['prefix'=>'reports','as'=>'reports.'], function(){
 
 /* timesheet */
 Route::group(['prefix'=>'timesheets','as'=>'timesheets.'], function(){
-    Route::get('/pending',[PageController::class, 'pendingTimesheetList'])->name('pending-list');
-    Route::get('/approved',[PageController::class, 'approvedTimesheetList'])->name('approved-list');
+    Route::get('/pending',[TimesheetController::class, 'pendingTimesheetList'])->name('pending-list');
+    Route::get('/approved',[TimesheetController::class, 'approvedTimesheetList'])->name('approved-list');
 
 
-    Route::get('/my-pending-list',[PageController::class, 'myPendingTimesheetList'])->name('my-pending-list');
-    Route::get('/my-approved-list',[PageController::class, 'myApprovedTimesheetList'])->name('my-approved-list');
+    Route::get('/my-pending-list',[TimesheetController::class, 'myPendingTimesheetList'])->name('my-pending-list');
+    Route::get('/my-approved-list',[TimesheetController::class, 'myApprovedTimesheetList'])->name('my-approved-list');
 
 
 
-    Route::get('/create',[PageController::class, 'createTimesheet'])->name('create');
-    Route::get('/view',[PageController::class, 'viewTimesheet'])->name('view');
+    Route::get('/create',[TimesheetController::class, 'createTimesheet'])->name('create');
+    Route::get('/view',[TimesheetController::class, 'viewTimesheet'])->name('view');
 });
 
 
@@ -218,3 +221,12 @@ Route::group(['prefix'=>'tasks','as'=>'tasks.'], function(){
 
 });
 
+
+
+
+
+/* settings */
+Route::group(['prefix'=>'settings','as'=>'settings.'], function(){
+    Route::get('/general',[SettingsController::class, 'loadGeneralPage'])->name('general');
+    Route::get('/advanced',[SettingsController::class, 'loadAdvancedPage'])->name('advanced');   
+});

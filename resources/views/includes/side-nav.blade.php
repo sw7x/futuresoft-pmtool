@@ -47,17 +47,17 @@
                     <ul class="nav nav-second-level collapse" aria-expanded='{{ \Str::is('projects.*', Route::currentRouteName()) ? 'true' : 'false' }}'>
                         
                         <li class="{{ Route::is('projects.list') ? 'current' : '' }}"><a href="{{ route('projects.list') }}"><i class="fa fa-list-ol"></i>Project list</a></li>
-                        <li class="{{ Route::is('projects.create-project') ? 'current' : '' }}"><a href="{{ route('projects.create-project') }}"><i class="fa fa-plus-square"></i>Create project</a></li>
-                        <li class="{{ Route::is('projects.single-project') ? 'current' : '' }}"><a href="{{ route('projects.single-project',12) }}"><i class="fa fa-folder-open"></i>Single project</a></li>
+                        <li class="{{ Route::is('projects.create') ? 'current' : '' }}"><a href="{{ route('projects.create') }}"><i class="fa fa-plus-square"></i>Create project</a></li>
+                        <li class="{{ Route::is('projects.single') ? 'current' : '' }}"><a href="{{ route('projects.single',12) }}"><i class="fa fa-folder-open"></i>Single project</a></li>
 
                         
-                        <li class="{{ Route::is('projects.clients') ? 'current' : '' }}"><a href="{{ route('projects.clients') }}"><i class="fa  fa-street-view text-red"></i>Clients</a></li>
-                        <li class="{{ Route::is('projects.create-client') ? 'current' : '' }}"><a href="{{ route('projects.create-client') }}"><i class="fa fa-user-plus"></i>Create client</a></li>
-                        <li class="{{ Route::is('projects.single-client') ? 'current' : '' }}"><a href="{{ route('projects.single-client',3) }}"><i class="fa fa-user"></i>Single client</a></li>
+                        <li class="{{ Route::is('projects.clients.list') ? 'current' : '' }}"><a href="{{ route('projects.clients.list') }}"><i class="fa  fa-street-view text-red"></i>Clients</a></li>
+                        <li class="{{ Route::is('projects.clients.create') ? 'current' : '' }}"><a href="{{ route('projects.clients.create') }}"><i class="fa fa-user-plus"></i>Create client</a></li>
+                        <li class="{{ Route::is('projects.clients.single') ? 'current' : '' }}"><a href="{{ route('projects.clients.single',3) }}"><i class="fa fa-user"></i>Single client</a></li>
 
-                        <li class="{{ Route::is('projects.invoices') ? 'current' : '' }}"><a href="{{ route('projects.invoices') }}"><i class="fa fa-dollar"></i>Invoices</a></li>
-                        <li class="{{ Route::is('projects.create-invoice') ? 'current' : '' }}"><a href="{{ route('projects.create-invoice') }}"><i class="fa fa-file-text-o"></i>Create invoice</a></li>
-                        <li class="{{ Route::is('projects.single-invoice') ? 'current' : '' }}"><a href="{{ route('projects.single-invoice',5) }}"><i class="fa fa-file-text"></i>Single invoice</a></li>
+                        <li class="{{ Route::is('projects.invoices.list') ? 'current' : '' }}"><a href="{{ route('projects.invoices.list') }}"><i class="fa fa-dollar"></i>Invoices</a></li>
+                        <li class="{{ Route::is('projects.invoices.create') ? 'current' : '' }}"><a href="{{ route('projects.invoices.create') }}"><i class="fa fa-file-text-o"></i>Create invoice</a></li>
+                        <li class="{{ Route::is('projects.invoices.single') ? 'current' : '' }}"><a href="{{ route('projects.invoices.single',5) }}"><i class="fa fa-file-text"></i>Single invoice</a></li>
 
                         <li class="{{ Route::is('projects.enroll-employees') ? 'current' : '' }}"><a href="{{ route('projects.enroll-employees') }}"><i class="fa fa-users"></i>Enroll developers</a></li>
 
@@ -168,16 +168,17 @@
                     </ul>
                 </li>
 
-                <li class="active">
-                    <a aria-expanded="true">
-                        <i class="fa fa-wrench"></i><span class="nav-label">Settings</span> <span class="fa arrow"></span>
+                <li class="{{ \Str::is('settings.*', Route::currentRouteName()) ? 'active current' : '' }}">                
+                    <a href="#" class="" aria-expanded='{{ \Str::is('settings.*', Route::currentRouteName()) ? 'true' : 'false' }}'>
+                        <i class="fa fa-wrench"></i><span  class="nav-label">Settings</span> <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level collapse in" aria-expanded="true" style="">
-                        <li class=""><a href="">General - Settings---</a></li>
-
-                        <li class=""><a href="">Advanced - Settings---</a></li>
+                        <li class="{{ Route::is('settings.general') ? 'current' : '' }}"><a href="{{ route('settings.general') }}"><i class="fa fa-cog"></i>General - Settings</a></li>
+                        <li class="{{ Route::is('settings.advanced') ? 'current' : '' }}"><a href="{{ route('settings.advanced') }}"><i class="fa fa-cogs"></i>Advanced - Settings</a></li>
                     </ul>
                 </li>
+                
+                
 
 
 

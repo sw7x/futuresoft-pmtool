@@ -1,5 +1,5 @@
-@extends('layouts.master',['title' => 'Client single'])
-@section('title','Client single')
+@extends('layouts.master',['title' => 'General settings'])
+@section('title','General settings')
 
 
 
@@ -37,7 +37,7 @@
             <div class="ibox">
                 <div class="ibox-content">                        
                 
-                    Client single
+
                 </div>
             </div>
         
