@@ -310,16 +310,6 @@
     <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <script src="{{ asset('plugins/jstree/dist/jstree.js')}}"></script>
 
-    <!-- DataTables
-    <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js')}}/"></script>
-    <script src="{{ asset('plugins/datatables/dataTables.bootstrap.min.js')}}/"></script> -->
-
-    <!-- AdminLTE App 
-    <script src="{{ asset('js/app.min.js')}}/"></script>-->
-
-    <!-- AdminLTE for demo purposes 
-    <script src="{{ asset('js/demo.js')}}/"></script>-->
-
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 @stop
