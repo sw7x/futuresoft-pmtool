@@ -7,12 +7,6 @@
     <!-- select2 -->
     <link href="{{asset('css/plugins/select2/select2.min.css')}}" rel="stylesheet">
 
-    <!-- bootstrap datapicker -->
-    <link href="{{asset('css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
-
-    <link rel="stylesheet" href="{{asset('plugins/summernote-0.8.18/summernote-bs4.css')}}">
-    <!-- <link href="css/plugins/summernote/summernote-bs4.css" rel="stylesheet">-->
-
     <link href="{{asset('css/plugins/iCheck/custom.css')}}" rel="stylesheet">
 
     <link rel='stylesheet' href="{{asset('plugins/filepond/css/filepond-plugin-image-preview.min.css')}}">
@@ -27,7 +21,7 @@
                                                      
             <div class="ibox">
                 <div class="ibox-content">
-                    Client create
+                    
                     
                     @foreach ($errors->all() as $error)
                         {{-- $error --}}
@@ -41,26 +35,20 @@
                             :message2="Session::get('pm_add_message2') ?? ''"  
                             :canClose="true" />
                     @endif
+                
 
-                    
-                    
                     <form class="pm-create-form" id="" action="" method="post">
-                        
-                        <h3 class="mb-3 font-bold text-lg"><i class="fa fa-address-card"></i> Account Type</h3>
-                        
+                    
+                        <h3 class="mb-3 font-bold text-lg"><i class="fa fa-user"></i> Client Information</h3>
+
+                        <!-- Name -->
                         <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Role <span class="text-red-500 text-sm font-bold">*</span></label>
+                            <label class="col-sm-4 col-form-label">Client Name <span class="text-red-500 text-sm font-bold">*</span></label>
                             <div class="col-sm-8">
-                                <select class="form-control m-b" required id="user_role" name="user_role" value="{{ old('user_role') }}">
-                                    <option></option>
-                                    <option {{ old("user_role") == 'developer' ? "selected":"" }} value="developer">Developer</option>
-                                    <option {{ old("user_role") == 'project_manager' ? "selected":"" }} value="project_manager">Project Manager</option>
-                                    <option {{ old("user_role") == 'manager' ? "selected":"" }} value="manager">Manager</option>
-                                    <option {{ old("user_role") == 'owner' ? "selected":"" }} value="owner">Owner</option>
-                                </select>
-                                @if ($errors->has('user_role'))
+                                <input type="text" name="name" class="form-control" required value="{{ old('name') }}" placeholder="Enter client name">
+                                 @if ($errors->has('name'))
                                     <ul class="mt-1">
-                                        @foreach ($errors->get('user_role') as $error)
+                                        @foreach ($errors->get('name') as $error)
                                             <li class="text-red-600 text-xs font-bold">{{ $error }}</li>
                                         @endforeach
                                     </ul>
@@ -68,45 +56,62 @@
                             </div>
                         </div>
 
+                        <!-- Company Name -->
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Company Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="company_name" class="form-control" value="{{ old('company_name') }}" placeholder="Enter company name">
+                                @if ($errors->has('company_name'))
+                                    <ul class="mt-1">
+                                        @foreach ($errors->get('company_name') as $error)
+                                            <li class="text-red-600 text-xs font-bold">{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </div>
+                        </div>
 
-
-
+                        <!-- Client Type -->
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Client Type <span class="text-red-500 text-sm font-bold">*</span></label>
+                            <div class="col-sm-8">
+                                <div class="i-checks">
+                                    <label> <input {{  old('client_type') == "initial" ? "checked" : (old('client_type') =="company" ? "" : "checked") }}
+                                                   type="radio" checked value="initial" name="client_type"> <i></i> Initial </label>
+                                </div>
+                                <div class="i-checks">
+                                    <label> <input {{  old('client_type') == "company" ? "checked" : "" }}
+                                                   type="radio" value="company" name="client_type"> <i></i> Company </label>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="hr-line-dashed"></div>
-                        <h3 class="mb-3 font-bold text-lg"><i class="fa fa-user-circle-o"></i> Personal Information</h3>
-                        <div class="form-group  row">
-                            <label class="col-sm-4 col-form-label">First Name <span class="text-red-500 text-sm font-bold">*</span></label>
-                            <div class="col-sm-8">
-                                <input type="text" name="fname" class="form-control" required value="{{ old('fname') }}" placeholder="Enter your first name">
-                                @if ($errors->has('fname'))
-                                    <ul class="mt-1">
-                                        @foreach ($errors->get('fname') as $error)
-                                            <li class="text-red-600 text-xs font-bold">{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                @endif
-                            </div>
-                        </div>
+                        <h3 class="mb-3 font-bold text-lg"><i class="fa fa-envelope"></i> Contact & Location</h3>
 
-                        <div class="form-group  row">
-                            <label class="col-sm-4 col-form-label">Last Name <span class="text-red-500 text-sm font-bold">*</span></label>
-                            <div class="col-sm-8">
-                                <input type="text" name="lname" class="form-control" required value="{{ old('lname') }}" placeholder="Enter your last name">
-                                @if ($errors->has('lname'))
-                                    <ul class="mt-1">
-                                        @foreach ($errors->get('lname') as $error)
-                                            <li class="text-red-600 text-xs font-bold">{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group  row">
+                        <!-- Email -->
+                        <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Email <span class="text-red-500 text-sm font-bold">*</span></label>
-                            <div class="col-sm-8">
-                                <input type="qemail" name="email" class="form-control" required value="{{ old('email') }}" placeholder="your@email.com">
-                                @if ($errors->has('email'))
+                            <div class="col-sm-8" id="email-container">
+                                <div class="input-group mb-2 email-entry">
+                                    <input type="email" name="email[]" class="form-control" value="{{ old('email.0') }}" placeholder="client@email.com" required>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-success add-email" type="button"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                                @if(old('email'))
+                                    @foreach(old('email') as $index => $email)
+                                        @if($index > 0)
+                                            <div class="input-group mb-2 email-entry">
+                                                <input type="email" name="email[]" class="form-control" value="{{ $email }}" placeholder="client@email.com">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-danger remove-email" type="button"><i class="fa fa-minus"></i></button>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @endif
+                                 @if ($errors->has('email'))
                                     <ul class="mt-1">
                                         @foreach ($errors->get('email') as $error)
                                             <li class="text-red-600 text-xs font-bold">{{ $error }}</li>
@@ -116,95 +121,29 @@
                             </div>
                         </div>
 
-                        <div class="form-group  row">
-                            <label class="col-sm-4 col-form-label">Username <span class="text-red-500 text-sm font-bold">*</span></label>
-                            <div class="col-sm-8">
-                                <input type="text" name="username" class="form-control" value="{{ old('username') }}">
-                                <small>Leave blank if you want to auto generate username</small><br>
-                                <small>Only aplha numeric charaters allowed (no spaces, no special characters)</small>
-                                @if (Session::get('is_pm_usernameFill')=='y' && $errors->has('username'))
-                                    <ul class="mt-1">
-                                        @foreach ($errors->get('username') as $error)
-                                            <li class="text-red-600 text-xs font-bold">{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                @endif
-                            </div>
-                        </div>
-
+                        <!-- Phone -->
                         <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Password <span class="text-red-500 text-sm font-bold">*</span></label>
-                            <div class="col-sm-8 password-container">
-                                <input type="password" class="password_field form-control" placeholder="Password (6 to 12 alpha numeric characters) *"
-                                       name="password" maxlength="12" minlength="6" required value="{{ old('password') }}"/>
-                                <button type="button" id="btnToggle" class="pw-toggle" style="right: 20px;">
-                                    <i id="eyeIcon" class="fa fa-eye"></i>
-                                </button>
-                                @if ($errors->has('password'))
-                                    <ul class="mt-1">
-                                        @foreach ($errors->get('password') as $error)
-                                            <li class="text-red-600 text-xs font-bold">{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                @endif
-                            </div>
-                        </div>
-
-
-                        <div class="hr-line-dashed"></div>
-                        <h3 class="mb-3 font-bold text-lg"><i class="fa fa-id-card-o"></i> Demographic Information</h3>
-                        
-
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Date of Birth</label>
-                            <div class="col-sm-8 input-group date">
-                                <span class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </span>
-                                <input type="text" class="form-control" name="date_of_birth" value="{{ old('date_of_birth') }}" placeholder="mm / dd / yyyy">
-                                <div class="w-full">
-                                    @if ($errors->has('date_of_birth'))
-                                        <ul class="mt-1">
-                                            @foreach ($errors->get('date_of_birth') as $error)
-                                                <li class="text-red-600 text-xs font-bold">{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    @endif
+                            <label class="col-sm-4 col-form-label">Phone <span class="text-red-500 text-sm font-bold">*</span></label>
+                            <div class="col-sm-8" id="phone-container">
+                                <div class="input-group mb-2 phone-entry">
+                                    <input type="tel" name="phone[]" class="form-control" value="{{ old('phone.0') }}" placeholder="+94 77 123 4567" required>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-success add-phone" type="button"><i class="fa fa-plus"></i></button>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>                                             
-                    
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Gender <span class="text-red-500 text-sm font-bold">*</span></label>
-                            <div class="col-sm-8">
-                                <select class="form-control m-b" required id="gender" name="gender" value="{{ old('gender') }}">
-                                    <option></option>
-                                    <option {{ old("gender") == 'male' ? "selected":"" }} value="male">Male</option>
-                                    <option {{ old("gender") == 'female' ? "selected":"" }} value="female">Female</option>
-                                    <option {{ old("gender") == 'other' ? "selected":"" }} value="other">Other</option>
-                                </select>
-                                @if ($errors->has('gender'))
-                                    <ul class="mt-1">
-                                        @foreach ($errors->get('gender') as $error)
-                                            <li class="text-red-600 text-xs font-bold">{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
+                                @if(old('phone'))
+                                    @foreach(old('phone') as $index => $phone)
+                                        @if($index > 0)
+                                            <div class="input-group mb-2 phone-entry">
+                                                <input type="tel" name="phone[]" class="form-control" value="{{ $phone }}" placeholder="+94 77 123 4567">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-danger remove-phone" type="button"><i class="fa fa-minus"></i></button>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
                                 @endif
-                            </div>
-                        </div>                                                      
-                    
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Address</label>
-                            <div class="col-sm-8">
-                                <textarea name="address" class="form-control" rows="3" placeholder="Enter your full address">{{ old('address') }}</textarea>
-                            </div>
-                        </div>                                                    
-                            
-                        <div class="form-group  row">
-                            <label class="col-sm-4 col-form-label">Phone Number<span class="text-red-500 text-sm font-bold">*</span></label>
-                            <div class="col-sm-8">
-                                <input type="tel" name="phone" class="form-control" required value="{{ old('phone') }}" placeholder="+94 77 123 4567">
-                                @if ($errors->has('phone'))
+                                 @if ($errors->has('phone'))
                                     <ul class="mt-1">
                                         @foreach ($errors->get('phone') as $error)
                                             <li class="text-red-600 text-xs font-bold">{{ $error }}</li>
@@ -212,140 +151,70 @@
                                     </ul>
                                 @endif
                             </div>
-                        </div>                                                
-                    
+                        </div>
+
+                        <!-- Address -->
                         <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">NIC Number <span class="text-red-500 text-sm font-bold">*</span></label>
+                            <label class="col-sm-4 col-form-label">Address</label>
                             <div class="col-sm-8">
-                                <input type="text" name="nic" class="form-control" placeholder="Enter your NIC number" required value="{{ old('nic') }}">
+                                <textarea name="address" class="form-control" rows="3" placeholder="Enter full address">{{ old('address') }}</textarea>
+                                <small>Separate lines with commas</small><br>
                             </div>
                         </div>
-                                                                               
 
-                        <div class="hr-line-dashed"></div>
-                        <h3 class="mb-3 font-bold text-lg"><i class="fa fa-briefcase"></i> Professional Information</h3>
-                        
-                            
+                         <!-- Country -->
                         <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Hourly Rate</label>
+                            <label class="col-sm-4 col-form-label">Country</label>
                             <div class="col-sm-8">
-                                <input type="number" name="hourly_rate" class="form-control" placeholder="e.g. 25.00" value="{{ old('hourly_rate') }}">
-                            </div>
-                        </div>
-                    
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Monthly Salary</label>
-                            <div class="col-sm-8">
-                                <input type="number" name="monthly_salary" class="form-control" placeholder="e.g. 5000.00" value="{{ old('monthly_salary') }}">
-                            </div>
-                        </div>                                                    
-                                                                          
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">EPF/ETF Details</label>
-                            <div class="col-sm-8">
-                                <textarea name="epf_etf" class="form-control" rows="2" placeholder="Enter EPF/ETF account numbers">{{ old('epf_etf') }}</textarea>
-                            </div>
-                        </div>                                                        
-                        
-
-                        <div class="hr-line-dashed"></div>
-                        <h3 class="mb-3 font-bold text-lg"><i class="fa fa-graduation-cap"></i> Qualifications & Skills</h3>
-                        
-
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Education qualifications</label>
-                            <div class="col-sm-8">
-                                <div class="border border-edu">
-                                    <textarea rows="3" class="form-control" name="edu_details" placeholder="List your educational qualifications">{{ old('edu_details') }}</textarea>
-                                </div>
-                            </div>
-                        </div>                                                    
-
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Skills</label>
-                            <div class="col-sm-8">
-                                <textarea name="skills" class="form-control" rows="3" placeholder="List your key skills">{{ old('skills') }}</textarea>
-                                <small class="text-muted">Separate skills with commas</small>
-                            </div>
-                        </div>                                                    
-
-                        <div class="hr-line-dashed"></div>
-                        <h3 class="mb-3 font-bold text-lg"><i class="fa fa-clock-o"></i> Employment Details</h3>
-                        
-
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Account Status <span class="text-red-500 text-sm font-bold">*</span></label>
-                            <div class="col-sm-8">
-                                <div class="i-checks">
-                                    <label> <input {{  old('account_stat') == "enable" ? "checked" : (old('account_stat') =="disable" ? "" : "checked") }}
-                                                   type="radio" checked value="enable" name="account_stat"> <i></i> Enable </label>
-                                </div>
-                                <div class="i-checks">
-                                    <label> <input {{  old('account_stat') == "disable" ? "checked" : "" }}
-                                                   type="radio" value="disable" name="account_stat"> <i></i> Disable </label>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        
-
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Employment Status <span class="text-red-500 text-sm font-bold">*</span></label>
-                            <div class="col-sm-8">
-                                <select class="form-control m-b" required id="employment_status" name="employment_status" value="{{ old('employment_status') }}">
-                                    <option></option>
-                                    <option {{ old("employment_status") == 'pending' ? "selected":"" }} value="pending">Pending</option>
-                                    <option {{ old("employment_status") == 'active' ? "selected":"" }} value="active">Active</option>
-                                    <option {{ old("employment_status") == 'resigned' ? "selected":"" }} value="resigned">Resigned</option>
-                                    <option {{ old("employment_status") == 'terminated' ? "selected":"" }} value="terminated">Terminated</option>
-                                </select>
-                                @if ($errors->has('employment_status'))
+                                <x-country-dropdown id="country" name="country" cls="__selectpicker form-control m-b" req="required" selectedVal="{{old('country')}}">                                
+                                </x-country-dropdown>
+                                @if ($errors->has('country'))
                                     <ul class="mt-1">
-                                        @foreach ($errors->get('employment_status') as $error)
+                                        @foreach ($errors->get('country') as $error)
                                             <li class="text-red-600 text-xs font-bold">{{ $error }}</li>
                                         @endforeach
                                     </ul>
-                                @endif
+                                @endif                                  
                             </div>
-                        </div>
+                        </div>                           
 
 
+                        <div class="hr-line-dashed"></div>
+                        <h3 class="mb-3 font-bold text-lg"><i class="fa fa-info-circle"></i> Additional Information</h3>
 
-
-                                                                            
+                        <!-- Description -->
                         <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Termination Date</label>
-                            <div class="col-sm-8 input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                <input type="text" class="form-control" name="termination_date" placeholder="mm / dd / yyyy">
+                            <label class="col-sm-4 col-form-label">Description</label>
+                            <div class="col-sm-8">
+                                <textarea name="description" class="form-control" rows="3" placeholder="Enter description">{{ old('description') }}</textarea>
                             </div>
                         </div>
-                   
-                        <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Date Joined <span class="text-red-500 text-sm font-bold">*</span></label>
-                            <div class="col-sm-8 input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                <input type="text" class="form-control" name="date_joined" placeholder="mm / dd / yyyy">
-                            </div>
-                        </div>
-                                                                                
 
+                        <!-- Comments -->
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Comments</label>
+                            <div class="col-sm-8">
+                                <textarea name="comments" class="form-control" rows="3" placeholder="Enter comments">{{ old('comments') }}</textarea>
+                            </div>
+                        </div>
+                        
                         <div class="hr-line-dashed"></div>
                         <h3 class="mb-3 font-bold text-lg"><i class="fa fa-camera"></i> Profile Picture</h3>
 
-                        <div class="form-group row"><label class="col-sm-4 col-form-label">Profile image</label>
+                        <!-- Profile Image -->
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Profile image</label>
                             <div class="col-sm-8">
                                 <input type="file"
-                                       class="filepond-img profile_img"
-                                       name="profile_img"
+                                       class="filepond-img client_img"
+                                       name="client_img"
                                        accept="image/webp, image/png, image/jpeg, image/gif"
                                        data-max-file-size="1MB"/>
                                 <p>Image size : 500x500</p>
                             </div>
-                        </div>                                              
-                            
-                        <div class="hr-line-dashed"></div>
+                        </div>
 
+                        <div class="hr-line-dashed"></div>
 
                         {{ csrf_field() }}
                         <div class="form-group row">
@@ -355,6 +224,7 @@
                             </div>
                         </div>
                     </form>
+                                    
 
                 </div>
             </div>
@@ -372,15 +242,7 @@
 
     <!-- Select2 -->
     <script src="{{asset('js/plugins/select2/select2.full.min.js')}}"></script>
-
-    <!-- Data picker -->
-    <script src="{{asset('js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
-
-    <!-- SUMMERNOTE -->
-    <!-- <script src="../assets/summernote-0.8.18/summernote-lite.js"></script> -->
-    <script src="{{asset('plugins/summernote-0.8.18/summernote-bs4.js')}}"></script>
-
-
+ 
     <script src="{{asset('plugins/filepond/js/filepond-plugin-file-encode.min.js')}}"></script>
     <script src="{{asset('plugins/filepond/js/filepond-plugin-file-validate-size.min.js')}}"></script>
     <script src="{{asset('plugins/filepond/js/filepond-plugin-image-exif-orientation.min.js')}}"></script>
@@ -413,159 +275,55 @@
             FilePondPluginFileValidateType
         );
         // Select the file input and use create() to turn it into a pond
-        const pond = FilePond.create(document.querySelector('.profile_img'));
+        const pond = FilePond.create(document.querySelector('.client_img'));
 
     })();
 
-
-    
-
-
-
-
-
-
-
-
     $(document).ready(function(){
-
-        //var elem = document.querySelector('.ccode-stat');
-        //var init = new Switchery(elem);
-
-        //$('[name="pm_edu-details"]').summernote();
-
-        $('[name="edu_details"]').summernote({
-            //placeholder: 'Hello bootstrap 4',
-            tabsize: 2,
-            height: 250,
-            width: '100%',
-            toolbar: [
-
-                ['style', ['style']],
-                //['font', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
-                ['fontname', ['fontname']],
-                ['fontsize', ['fontsize']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['height', ['height']],
-                ['table', ['table']],
-                ['insert', [
-                    'link',
-                    //'picture',
-                    //'video',
-                    'hr'
-                ]
-                ],
-                ['view', [
-                    //'fullscreen',
-                    'codeview',
-                    'help']
-                ]
-            ],
-        });
-        @if(old('edu_details'))
-            $('[name="edu_details"]').summernote('code', '{{old('edu_details')}}');
-        @endif
-
-
-
-
-        
-
-
-
-
-
-
-        // General Datepicker Initializer for all fields with class 'date'
-        {{-- 
-        $('.date input').datepicker({
-            autoclose: true,
-            format: "mm/dd/yyyy",
-            keyboardNavigation: false,
-            forceParse: false,
-            calendarWeeks: true,
-            todayHighlight: true,
-            endDate: '+0d'
-        });
-        --}}
-
-        
-
-
-        $('[name="date_of_birth"]').datepicker({
-            autoclose: true,
-            format: "mm/dd/yyyy",
-            keyboardNavigation: false,
-            forceParse: false,
-            calendarWeeks: true,
-            todayHighlight: true,
-            endDate: '+0d',
-            startDate: '-99y',
-        });
-        @if(old('date_of_birth'))
-            $("[name='date_of_birth']").datepicker("update", '{{old('date_of_birth')}}');
-        @endif
-        
-
-        $('[name="termination_date"]').datepicker({
-            autoclose: true,
-            format: "mm/dd/yyyy",
-            keyboardNavigation: false,
-            forceParse: false,
-            calendarWeeks: true,
-            todayHighlight: true,
-            endDate: '+0d',
-            startDate: '-99y',
-        });
-        @if(old('termination_date'))
-            $("[name='termination_date']").datepicker("update", '{{old('termination_date')}}');
-        @endif
-
-
-        $('[name="date_joined"]').datepicker({
-            autoclose: true,
-            format: "mm/dd/yyyy",
-            keyboardNavigation: false,
-            forceParse: false,
-            calendarWeeks: true,
-            todayHighlight: true,
-            endDate: '+0d',
-            startDate: '-99y',
-        });
-        @if(old('date_joined'))
-            $("[name='date_joined']").datepicker("update", '{{old('date_joined')}}');
-        @endif
-
-
-
-
-
-
-        $("#gender").select2({
-            placeholder: "Select PM gender",
+        $("#client_type").select2({
+            placeholder: "Select client type",
             allowClear: true,
             width: '100%'
         });
 
-
-        $("#user_role").select2({
-            placeholder: "Select user role",
+        $("#country").select2({
+            placeholder: "Select a country",
             allowClear: true,
             width: '100%'
+        });   
+        
+        // Dynamic Phone Numbers
+        $(".add-phone").click(function(){
+            var phoneHtml = `
+            <div class="input-group mb-2 phone-entry">
+                <input type="tel" name="phone[]" class="form-control" placeholder="+94 77 123 4567">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-danger remove-phone" type="button"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>`;
+            $("#phone-container").find(".phone-entry").last().after(phoneHtml);
         });
 
+        $(document).on('click', '.remove-phone', function(){
+            $(this).closest('.phone-entry').remove();
+        });
 
-        $("#employment_status").select2({
-            placeholder: "Select employment_status",
-            allowClear: true,
-            width: '100%'
+        // Dynamic Emails
+        $(".add-email").click(function(){
+            var emailHtml = `
+            <div class="input-group mb-2 email-entry">
+                <input type="email" name="email[]" class="form-control" placeholder="client@email.com">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-danger remove-email" type="button"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>`;
+            $("#email-container").find(".email-entry").last().after(emailHtml);
+        });
+
+        $(document).on('click', '.remove-email', function(){
+            $(this).closest('.email-entry').remove();
         });
         
-
-
-
     });
 </script>
 @stop
