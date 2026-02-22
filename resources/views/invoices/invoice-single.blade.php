@@ -72,10 +72,92 @@ if (!isset($invoice)) {
             justify-content: flex-end;
             gap: 5px;
         }
+
+
+
+        /* ====Invoice Context==== */
+        /* 2x2 Info Grid Styling */
+        .info-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .info-badge {
+            display: flex;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            /* Flex basis for 2x2 grid (minus gap) */
+            flex: 1 1 calc(50% - 15px);
+            min-width: 250px;
+            transition: all 0.2s ease;
+        }
+        .info-badge:hover {
+            background: #ffffff;
+            border-color: #cbd5e0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .info-badge i {
+            font-size: 26px; /* Bigger Icons */
+            margin-right: 18px;
+            color: #667eea;
+            width: 32px;
+            text-align: center;
+        }
+        .info-badge .info-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #718096;
+            display: block;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+        .info-badge .info-value {
+            font-size: 15px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+        .text-muted-custom {
+            color: #a0aec0;
+        }
     </style>
 @stop
 
 @section('content')
+    <div class="ibox-content m-b-sm border-bottom">
+        
+        <h2 class="m-0 font-bold text-dark">Invoice Context</h2>
+            
+
+        <div class="info-group">
+            <!-- Project Detail -->
+            <div class="info-badge">
+                <i class="fa fa-rocket"></i>
+                <div>
+                    <span class="info-label">Project</span>
+                    <span class="info-value">FutureSoft ERP Update</span>
+                </div>
+            </div>
+
+            <!-- Client Detail -->
+            <div class="info-badge">
+                <i class="fa fa-id-card-o"></i>
+                <div>
+                    <span class="info-label">Client</span>
+                    <span class="info-value">Global Solutions Inc.</span>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+
+
+
     <div class="row">
         <div class="col-lg-12">
                                                      
@@ -140,8 +222,8 @@ if (!isset($invoice)) {
                         </div>
                         <div class="col-md-6 display-group">
                             <div class="display-label">Transaction Reference</div>
-                            <div class="display-value font-mono text-slate-700 bg-slate-100 _px-2 py-1 rounded inline-block text-sm">
-                                {{ $invoice->transaction_reference ?? 'N/A' }}
+                            <div class="display-value font-mono text-slate-700 bg-slate-100 px-2 py-1 rounded inline-flex align-items-center text-sm">
+                                <i class="fa fa-hashtag mr-2 text-slate-400"></i> {{ $invoice->transaction_reference ?? 'N/A' }}
                             </div>
                         </div>
                     </div>
