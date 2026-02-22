@@ -119,7 +119,26 @@
         <h2 class="mb-4 font-bold text-muted">Select Project(ajax)</h2>
         <div class="row">                   
 
-            <div class="col-lg-12">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label for="project-select" class="font-weight-bold mb-0 mr-2">Client:<small>(optional)</small></label>
+                    </div>
+
+                    <div class="col-lg-9">
+                        <select class="select-project form-control select2" style="width: 100%;" data-placeholder="Select a Project">
+                            <option></option>
+                            <option>Alaska</option>
+                            <option>California</option>
+                            <option>Delaware</option>
+                            <option>Tennessee</option>
+                            <option>Texas</option>
+                            <option>Washington</option>
+                        </select>
+                    </div>
+                </div>                        
+            </div>
+            <div class="col-lg-6">
                 <div class="row">
                     <div class="col-lg-3">
                         <label for="project-select" class="font-weight-bold mb-0 mr-2">Project:</label>
@@ -139,7 +158,7 @@
                 </div>                        
             </div>                        
 
-        </div>     
+        </div>    
     </div>
 
 

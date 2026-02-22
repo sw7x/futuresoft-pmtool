@@ -797,12 +797,8 @@
                     text: 'Add owner',
                     href : 'uuu',
                     action: function ( e, dt, node, config ) {
-                        //$('#addProjectModal').modal('show');
-                        //$('#add-modal').modal('show');
-                        
-                        //todo
-                        {{-- window.location = '{{route('admin.users.create').'#tab-owners'}}'; --}}
-                        alert( 'Button activated' );
+                        window.location = '{{route('users.create').'#tab-owners'}}';
+                        {{-- alert( 'Button activated' ); --}}
                     },
                     className: 'add-ct mb-3 btn-green '
                 }
@@ -850,12 +846,8 @@
                     text: 'Add manager',
                     href : 'uuu',
                     action: function ( e, dt, node, config ) {
-                        //$('#addProjectModal').modal('show');
-                        //$('#add-modal').modal('show');
-                        
-                        //todo
-                        {{-- window.location = '{{route('admin.users.create').'#tab-managers'}}'; --}}
-                        alert( 'Button activated' );
+                        window.location = '{{route('users.create').'#tab-managers'}}';
+                        {{-- alert( 'Button activated' ); --}}
                     },
                     className: 'add-ct mb-3 btn-green '
                 }
@@ -904,12 +896,8 @@
                     text: 'Add Project Manager',
                     href : 'uuu',
                     action: function ( e, dt, node, config ) {
-                        //$('#addProjectModal').modal('show');
-                        //$('#add-modal').modal('show');
-                        
-                        //todo
-                        {{-- window.location = '{{route('admin.users.create').'#tab-pms'}}'; --}}
-                        alert( 'Button activated' );
+                        window.location = '{{route('users.create').'#tab-pms'}}';
+                        {{-- alert( 'Button activated' ); --}}
                     },
                     className: 'add-ct mb-3 btn-green '
                 }
@@ -958,13 +946,8 @@
                     text: 'Add Developer',
                     href : 'uuu',
                     action: function ( e, dt, node, config ) {
-                        //$('#addProjectModal').modal('show');
-                        //$('#add-modal').modal('show');
-                        
-
-                        //todo
-                        {{-- window.location = '{{route('admin.users.create').'#tab-developers'}}'; --}}
-                        alert( 'Button activated' );
+                        window.location = '{{route('users.create').'#tab-developers'}}';
+                        {{--  alert( 'Button activated' ); --}}
 
                     },
                     className: 'add-ct mb-3 btn-green '

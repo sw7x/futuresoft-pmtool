@@ -168,10 +168,21 @@
         </div>
 
         <div class="ibox-content m-b-sm border-bottom">
-            <h2 class="mb-4 font-bold text-muted">Select Task</h2>
-            <div class="row">                   
-
-                <div class="col-lg-4">
+            <h2 class="mb-4 font-bold text-muted">Select Project</h2>
+            <div class="row">                  
+                <div class="col-lg-6">
+                    <label for="project-select" class="font-weight-bold mb-0 mr-2">Client:<small>(optional)</small></label>
+                    <select class="select-project form-control select2" style="width: 100%;" data-placeholder="Select a Project">
+                        <option></option>
+                        <option>Alaska</option>
+                        <option>California</option>
+                        <option>Delaware</option>
+                        <option>Tennessee</option>
+                        <option>Texas</option>
+                        <option>Washington</option>
+                    </select>
+                </div>
+                <div class="col-lg-6">
                     <label for="project-select" class="font-weight-bold mb-0 mr-2">Project:</label>
                     <select class="select-project form-control select2" style="width: 100%;" data-placeholder="Select a Project">
                         <option></option>
@@ -182,34 +193,7 @@
                         <option>Texas</option>
                         <option>Washington</option>
                     </select>
-                </div>
-
-                <div class="col-lg-4">
-                    <label for="project-select" class="font-weight-bold mb-0 mr-2">Parent Task:(ajax)</label>
-                    <select class="select-project form-control select2" style="width: 100%;" data-placeholder="Select a Project">
-                        <option></option>
-                        <option>Alaska</option>
-                        <option>California</option>
-                        <option>Delaware</option>
-                        <option>Tennessee</option>
-                        <option>Texas</option>
-                        <option>Washington</option>
-                    </select>
-                </div>
-
-                <div class="col-lg-4">
-                    <label for="project-select" class="font-weight-bold mb-0 mr-2">Sub Task:(ajax)</label>
-                    <select class="select-project form-control select2" style="width: 100%;" data-placeholder="Select a Project">
-                        <option></option>
-                        <option>Alaska</option>
-                        <option>California</option>
-                        <option>Delaware</option>
-                        <option>Tennessee</option>
-                        <option>Texas</option>
-                        <option>Washington</option>
-                    </select>
-                </div>                        
-
+                </div>                                      
             </div>
 
             <div class="row">
@@ -222,14 +206,44 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
 
-        <div class="row">                   
 
+        <div class="ibox-content m-b-sm border-bottom">
+            <h2 class="mb-4 font-bold text-muted">Select Task</h2>            
+            <div class="row">                   
+                <div class="col-lg-6">
+                    <label for="project-select" class="font-weight-bold mb-0 mr-2">Parent Task:(ajax)</label>
+                    <select class="select-project form-control select2" style="width: 100%;" data-placeholder="Select a Project">
+                        <option></option>
+                        <option>Alaska</option>
+                        <option>California</option>
+                        <option>Delaware</option>
+                        <option>Tennessee</option>
+                        <option>Texas</option>
+                        <option>Washington</option>
+                    </select>
+                </div>
+                <div class="col-lg-6">
+                    <label for="project-select" class="font-weight-bold mb-0 mr-2">Sub Task:(ajax)</label>
+                    <select class="select-project form-control select2" style="width: 100%;" data-placeholder="Select a Project">
+                        <option></option>
+                        <option>Alaska</option>
+                        <option>California</option>
+                        <option>Delaware</option>
+                        <option>Tennessee</option>
+                        <option>Texas</option>
+                        <option>Washington</option>
+                    </select>
+                </div>                       
+            </div>          
+        </div>
+
+        
+        <div class="row">                   
             <div class="col-lg-6">
                 <div class="ibox ">
+                    
                     <div class="ibox-title d-flex justify-content-between align-items-center pr-4">
                         <h5 class="m-0">Available Developers</h5>
                         <span class="border rounded-sm _label _label-default px-2 py-1 text-xs bg-gray-200">8 Developers</span>
@@ -242,27 +256,18 @@
                         </p>
 
 
-            <div class="m-b-md">
-                <label for="project-select" class="font-weight-bold mb-1 mr-2">Select Developer:</label>
-                <select class="select-project form-control select2" style="width: 100%;" data-placeholder="Select a Project">
-                    <option></option>
-                    <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
-                </select>
-            </div>
-
-
-
-
-
-
-
-
-
+                        <div class="m-b-md">
+                            <label for="project-select" class="font-weight-bold mb-1 mr-2">Select Developer:</label>
+                            <select class="select-project form-control select2" style="width: 100%;" data-placeholder="Select a Project">
+                                <option></option>
+                                <option>Alaska</option>
+                                <option>California</option>
+                                <option>Delaware</option>
+                                <option>Tennessee</option>
+                                <option>Texas</option>
+                                <option>Washington</option>
+                            </select>
+                        </div>
 
                         <div class="dd" id="nestable">
                             <ol class="dd-list">
@@ -293,9 +298,11 @@
                                 </li>
                             </ol>
                         </div>
+
                         <div class="m-t-md">
                             <h5>Serialised Output</h5>
                         </div>
+                        
                         {{-- <textarea id="_nestable-output" class="form-control"></textarea> --}}
                         <pre id="nestable-output" class="text-base"></pre>
                     </div>
