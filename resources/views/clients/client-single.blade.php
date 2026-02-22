@@ -133,6 +133,10 @@
             text-align: right;
             padding: 0 0 40px;
         }
+
+
+
+        
     </style>
 @stop
 
@@ -160,11 +164,11 @@
                 <div class="info-card-body">
                     <div class="info-grid">
                         <div class="info-item">
-                            <span class="info-label">Client Name</span>
+                            <span class="info-label"><i class="fa fa-user-o mr-1"></i> Client Name</span>
                             <span class="info-value">{{ $client->name ?? 'Christopher J. Miller' }}</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Company Name</span>
+                            <span class="info-label"><i class="fa fa-building-o mr-1"></i> Company Name</span>
                             <span class="info-value">{{ $client->company_name ?? 'Apex Solutions Ltd.' }}</span>
                         </div>
                         <div class="info-item">
@@ -177,7 +181,7 @@
                             </span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Account Creation Date</span>
+                            <span class="info-label"><i class="fa fa-calendar-plus-o mr-1"></i> Account Creation Date</span>
                             <span class="info-value">{{ $client->created_at ?? 'October 24, 2023' }}</span>
                         </div>
                     </div>
@@ -193,7 +197,7 @@
                 <div class="info-card-body">
                     <div class="info-grid">
                         <div class="info-item">
-                            <span class="info-label">Email Address(es)</span>
+                            <span class="info-label"><i class="fa fa-envelope-o mr-1"></i> Email Address(es)</span>
                             <div class="info-value text-primary">
                                 <div>{{ $client->email ?? 'chris.miller@apexsolutions.com' }}</div>
                                 <div>{{ $client->secondary_email ?? 'billing@apexsolutions.com' }}</div>
@@ -201,7 +205,7 @@
                             </div>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Phone Number(s)</span>
+                            <span class="info-label"><i class="fa fa-phone mr-1"></i> Phone Number(s)</span>
                             <div class="info-value">
                                 <div>{{ $client->phone ?? '+1 (555) 098-7654' }}</div>
                                 <div style="">{{ $client->office_phone ?? '+1 (555) 123-4567' }}</div>
@@ -209,11 +213,11 @@
                             </div>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Country</span>
+                            <span class="info-label"><i class="fa fa-globe mr-1"></i> Country</span>
                             <span class="info-value">{{ $client->country ?? 'United States' }}</span>
                         </div>
                         <div class="info-item full-width">
-                            <span class="info-label">Physical Address</span>
+                            <span class="info-label"><i class="fa fa-map-marker mr-1"></i> Physical Address</span>
                             <span class="info-value">
                                 {!! nl2br(e($client->address ?? "4528 Commercial Way,\nSpring Hill,\nFL 34606")) !!}
                             </span>
@@ -249,6 +253,99 @@
                     </div>
                 </div>
             </div>
+
+            <div class="ibox-content m-b-sm border-bottom">
+        
+                <h3 class="mb-3 font-bold text-dark">Client Summary</h3>
+                
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card bg-light border-0 shadow-none mb-3">
+                            <div class="card-body p-3 border-gray-200 border rounded">
+                                <div class="d-flex align-items-center">
+                                    <div class="mr-3 text-primary"><i class="fa fa-briefcase fa-2x"></i></div>
+                                    <div>
+                                        <div class="font-bold text-sm">Total Projects</div>
+                                        <div class="text-base text-muted">23</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-light border-0 shadow-none mb-3">
+                            <div class="card-body p-3 border-gray-200 border rounded">
+                                <div class="d-flex align-items-center">
+                                    <div class="mr-3 text-info"><i class="fa fa-check-circle-o fa-2x"></i></div>
+                                    <div>
+                                        <div class="font-bold text-sm">Finished Projects</div>
+                                        <div class="text-base text-muted">11</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-light border-0 shadow-none mb-3">
+                            <div class="card-body p-3 border-gray-200 border rounded">
+                                <div class="d-flex align-items-center">
+                                    <div class="mr-3 text-success"><i class="fa fa-clock-o fa-2x"></i></div>
+                                    <div>
+                                        <div class="font-bold text-sm">Pending Projects</div>
+                                        <div class="text-base text-muted">12</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                {{-- <div class="info-group">
+                    <!-- Project Detail -->
+                    <div class="info-badge">
+                        <i class="fa fa-briefcase"></i>
+                        <div>
+                            <span class="info-label">Project</span>
+                            <span class="info-value">FutureSoft ERP Update</span>
+                        </div>
+                    </div>
+
+                    <!-- Client Detail -->
+                    <div class="info-badge">
+                        <i class="fa fa-building-o"></i>
+                        <div>
+                            <span class="info-label">Client</span>
+                            <span class="info-value">Global Solutions Inc.</span>
+                        </div>
+                    </div>
+
+                    <!-- Parent Task Detail -->
+                    <div class="info-badge">
+                        <i class="fa fa-level-up"></i>
+                        <div>
+                            <span class="info-label">Parent Task</span>
+                            <span class="info-value">Database Migration Module</span>
+                        </div>
+                    </div>
+
+                    <!-- Project Status -->
+                    <div class="info-badge">
+                        <i class="fa fa-bullseye" style="color: #38a169;"></i>
+                        <div>
+                            <span class="info-label">Project Status</span>
+                            <span class="info-value">In Progress (65%)</span>
+                        </div>
+                    </div>
+                </div> --}}
+            
+
+
+            </div>
+
+
 
             <!-- Buttons -->
             <div class="action-footer">
