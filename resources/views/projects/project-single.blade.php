@@ -143,6 +143,164 @@ if (!isset($project)) {
 
 
 
+        /* ====Invoice Context==== */
+        /* 2x2 Info Grid Styling */
+        .info-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .info-badge {
+            display: flex;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            /* Flex basis for 3rd column grid (minus gap) */
+            flex: 1 1 calc(33.333% - 15px);
+            min-width: 200px;
+            transition: all 0.2s ease;
+        }
+        .info-badge:hover {
+            background: #ffffff;
+            border-color: #cbd5e0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .info-badge i {
+            font-size: 26px; /* Bigger Icons */
+            margin-right: 18px;
+            color: #667eea;
+            width: 32px;
+            text-align: center;
+        }
+        .info-badge .info-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #718096;
+            display: block;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+        .info-badge .info-value {
+            font-size: 15px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+        .text-muted-custom {
+            color: #a0aec0;
+        }
+
+        /* ====Project Milestones Timeline==== */
+        .milestone-timeline {
+            position: relative;
+            padding: 20px 0;
+            margin-top: 10px;
+        }
+        .milestone-timeline::before {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: #e2e8f0;
+        }
+        .milestone-item {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 30px;
+        }
+        .milestone-item:last-child {
+            margin-bottom: 0;
+        }
+        .milestone-marker {
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #fff;
+            border: 4px solid #cbd5e0;
+            z-index: 2;
+        }
+        .milestone-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px 20px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .milestone-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-color: #cbd5e0;
+        }
+        .milestone-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .milestone-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #2d3748;
+        }
+        .milestone-desc {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        .milestone-dates {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #f1f5f9;
+        }
+        .date-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .date-box i {
+            color: #a0aec0;
+            font-size: 14px;
+        }
+        .date-label {
+            display: block;
+            font-size: 10px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #94a3b8;
+            letter-spacing: 0.5px;
+        }
+        .date-value {
+            font-size: 12px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+        
+        /* Color Variations */
+        .milestone-blue .milestone-marker { border-color: #4299e1; }
+        .milestone-blue .milestone-name { color: #2b6cb0; }
+        
+        .milestone-green .milestone-marker { border-color: #48bb78; }
+        .milestone-green .milestone-name { color: #2f855a; }
+        
+        .milestone-orange .milestone-marker { border-color: #ed8936; }
+        .milestone-orange .milestone-name { color: #c05621; }
+
+        .milestone-red .milestone-marker { border-color: #f56565; }
+        .milestone-red .milestone-name { color: #c53030; }
+
+        .milestone-purple .milestone-marker { border-color: #9f7aea; }
+        .milestone-purple .milestone-name { color: #6b46c1; }
+
     </style>
 @stop
 
@@ -320,6 +478,183 @@ if (!isset($project)) {
                             {!! $project->documentation ?? '<span class="text-slate-400 italic">No documentation available.</span>' !!}
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="ibox-content m-b-sm border-bottom">
+        
+                <h2 class="m-0 font-bold text-dark">Resource & Financial Overview</h2>            
+
+                <div class="info-group">                    
+                    <div class="info-badge">
+                        <i class="fa fa-users"></i>
+                        <div>
+                            <span class="info-label">Assigned Employees(Developers)</span>
+                            <span class="info-value">12</span>
+                        </div>
+                    </div>
+                    <div class="info-badge">
+                        <i class="fa fa-credit-card" style="color: #e53e3e;"></i>
+                        <div>
+                            <span class="info-label">Total Cost (Till Today)</span>
+                            <span class="info-value">$ 25000.00</span>
+                        </div>
+                    </div>
+                    <div class="info-badge">
+                        <i class="fa fa-university" style="color: #38a169;"></i>
+                        <div>
+                            <span class="info-label">Total Income (Till Today)</span>
+                            <span class="info-value">$ 34500.00</span>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+
+            <div class="ibox-content m-b-sm border-bottom">
+        
+                <h2 class="m-0 font-bold text-dark mb-3">Project Milestones</h2>            
+
+                <div class="milestone-timeline">
+                    <!-- Milestone 1 -->
+                    <div class="milestone-item milestone-blue">
+                        <div class="milestone-marker"></div>
+                        <div class="milestone-card">
+                            <div class="milestone-header">
+                                <span class="milestone-name">Requirement Analysis & Design</span>
+                                <span class="badge badge-primary">Completed</span>
+                            </div>
+                            <div class="milestone-desc">Defining the core system architecture, data flow diagrams, and finalizing user interface mockups with stakeholder approval.</div>
+                            <div class="milestone-dates">
+                                <div class="date-box">
+                                    <i class="fa fa-calendar-o"></i>
+                                    <div>
+                                        <span class="date-label">Scheduled Range</span>
+                                        <span class="date-value">Jan 01 - Jan 20, 2026</span>
+                                    </div>
+                                </div>
+                                <div class="date-box">
+                                    <i class="fa fa-calendar-check-o text-success"></i>
+                                    <div>
+                                        <span class="date-label">Actual Range</span>
+                                        <span class="date-value">Jan 02 - Jan 22, 2026</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 2 -->
+                    <div class="milestone-item milestone-green">
+                        <div class="milestone-marker"></div>
+                        <div class="milestone-card">
+                            <div class="milestone-header">
+                                <span class="milestone-name">Backend Infrastructure Setup</span>
+                                <span class="badge badge-success">On Track</span>
+                            </div>
+                            <div class="milestone-desc">Deployment of cloud servers, database schema migration, and implementation of core authentication microservices.</div>
+                            <div class="milestone-dates">
+                                <div class="date-box">
+                                    <i class="fa fa-calendar-o"></i>
+                                    <div>
+                                        <span class="date-label">Scheduled Range</span>
+                                        <span class="date-value">Feb 01 - Feb 28, 2026</span>
+                                    </div>
+                                </div>
+                                <div class="date-box">
+                                    <i class="fa fa-clock-o text-info"></i>
+                                    <div>
+                                        <span class="date-label">Actual Range</span>
+                                        <span class="date-value">Feb 05 - Ongoing</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 3 -->
+                    <div class="milestone-item milestone-orange">
+                        <div class="milestone-marker"></div>
+                        <div class="milestone-card">
+                            <div class="milestone-header">
+                                <span class="milestone-name">Frontend Core Components</span>
+                                <span class="badge badge-warning">Delayed</span>
+                            </div>
+                            <div class="milestone-desc">Building the dashboard widgets, interactive charts, and integrating the real-time notification system via WebSockets.</div>
+                            <div class="milestone-dates">
+                                <div class="date-box">
+                                    <i class="fa fa-calendar-o"></i>
+                                    <div>
+                                        <span class="date-label">Scheduled Range</span>
+                                        <span class="date-value">Mar 05 - Apr 10, 2026</span>
+                                    </div>
+                                </div>
+                                <div class="date-box">
+                                    <i class="fa fa-exclamation-circle text-warning"></i>
+                                    <div>
+                                        <span class="date-label">Actual Range</span>
+                                        <span class="date-value">Pending...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 4 -->
+                    <div class="milestone-item milestone-purple">
+                        <div class="milestone-marker"></div>
+                        <div class="milestone-card">
+                            <div class="milestone-header">
+                                <span class="milestone-name">Beta Release & Bug Fixing</span>
+                                <span class="badge badge-info">In Progress</span>
+                            </div>
+                            <div class="milestone-desc">Rolling out the beta version to the internal team for regression testing and squashing identified UI/UX bugs.</div>
+                            <div class="milestone-dates">
+                                <div class="date-box">
+                                    <i class="fa fa-calendar-o"></i>
+                                    <div>
+                                        <span class="date-label">Scheduled Range</span>
+                                        <span class="date-value">May 01 - May 25, 2026</span>
+                                    </div>
+                                </div>
+                                <div class="date-box">
+                                    <i class="fa fa-refresh fa-spin text-info"></i>
+                                    <div>
+                                        <span class="date-label">Actual Range</span>
+                                        <span class="date-value">May 02 - Active</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Milestone 5 -->
+                    <div class="milestone-item milestone-red">
+                        <div class="milestone-marker"></div>
+                        <div class="milestone-card">
+                            <div class="milestone-header">
+                                <span class="milestone-name">External API Integration</span>
+                                <span class="badge badge-danger">Delayed</span>
+                            </div>
+                            <div class="milestone-desc">Syncing with third-party payment gateways and shipping aggregators. Currently blocked by vendor documentation updates.</div>
+                            <div class="milestone-dates">
+                                <div class="date-box">
+                                    <i class="fa fa-calendar-o"></i>
+                                    <div>
+                                        <span class="date-label">Scheduled Range</span>
+                                        <span class="date-value">Jun 10 - Jun 30, 2026</span>
+                                    </div>
+                                </div>
+                                <div class="date-box">
+                                    <i class="fa fa-warning text-danger"></i>
+                                    <div>
+                                        <span class="date-label">Actual Range</span>
+                                        <span class="date-value">Awaiting Vendor Link</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div> 
 
