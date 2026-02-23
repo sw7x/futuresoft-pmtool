@@ -61,12 +61,13 @@
                 <button class="bg-red-800 hover:bg-red-500 btn btn-sm" style="float: right" id="chngpwclose">X</button>
                 <div class="clear"></div>
             </div>
-            <div class="mb-content"  id="changePasswordStatus">
-                <p class="font-bold"></p>
-            </div>
+            
 
             <div class="mb-content">
-                <form action="" id="admin_change_password" method="post" name="" autocomplete="off">
+                <form action="{{route('auth.change-password-submit')}}" id="admin_change_password" method="post" name="" autocomplete="off">
+                    <div class="mb-content"  id="changePasswordStatus">
+                        <p class="font-bold"></p>
+                    </div>
 
                     <div class="form-group password-container">
                         <label for="" style="float:left;padding:10px 0px;">Type Password<span></span></label><br/>
@@ -89,8 +90,8 @@
 
                     <div>
                         <div id="hint1" class="hint"></div>
-
-                        <input class="btn bg-green-500 hover:bg-green-600 formbuttons text-white font-bold py-2 px-4 rounded" style="float:left" name="change_password_submit" type="submit" value="Submit" id="asd">
+                        {{csrf_field ()}}
+                        <input class="btn bg-green-500 hover:bg-green-600 formbuttons text-white font-bold py-2 px-4 rounded" style="float:left" name="change_password_submit" value="Submit" id="asd">
                         <input class="btn bg-red-600 hover:bg-red-600 formbuttons text-white font-bold py-2 px-4 rounded" style="float:right" name="" type="reset" value="Reset" id="">
                         <div class="clear"></div>
                     </div>
@@ -191,7 +192,7 @@
 
     <script>
 	{{--
-		var changepwUrl = '{{route('admin.changePassword')}}';
+		var changepwUrl = '{{route('auth.change-password-submit')}}';
 	--}}
     </script>
 

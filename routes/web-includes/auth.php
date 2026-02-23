@@ -37,7 +37,7 @@ Route::group(['as'=>'auth.','namespace' =>'Auth'], function() {
     //Route::get ('/activate/{encrypted_email}/{activation_code}', [ActivationController::class,'activate'])->name ('activate');
 
 
-    Route::get('/change-password', [ChangePasswordController::class,'changePassword'])->name ('change-password');
+    //Route::get('/change-password', [ChangePasswordController::class,'changePassword'])->name ('change-password');
     Route::post('/change-password', [ChangePasswordController::class,'postChangePassword'])->name ('change-password-submit');
 
     Route::post ('/logout', [User_LoginController::class,'logout'])->name('logout');

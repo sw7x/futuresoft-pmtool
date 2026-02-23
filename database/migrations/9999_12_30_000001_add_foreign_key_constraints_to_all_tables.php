@@ -21,11 +21,11 @@ class AddForeignKeyConstraintsToAllTables extends Migration
         //courses         - db tables belongs to modules 
         //projects,tasks  - db tables belongs to modules
 
-        Schema::table('users', function (Blueprint $table) {
+        /*Schema::table('users', function (Blueprint $table) {
             if (Schema::hasTable('designations')) {
                 $table->foreign('designation_id')->references('id')->on('designations')->onDelete('cascade');
             }
-        });
+        });*/
         
         if (Schema::hasTable('courses')) {
             Schema::table('courses', function (Blueprint $table) {                
@@ -50,9 +50,9 @@ class AddForeignKeyConstraintsToAllTables extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {            
+        /*Schema::table('users', function (Blueprint $table) {            
             $table->dropForeign(['designation_id']);                      
-        });
+        });*/
         
         if (Schema::hasTable('courses')) {
             Schema::table('courses', function (Blueprint $table) {

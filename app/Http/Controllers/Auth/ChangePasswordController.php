@@ -21,15 +21,18 @@ class ChangePasswordController extends Controller
     }
 
 
+    /*
     public function changePassword(Request $request) {
         $this->hasGateAllowed(AuthAbilities::CHANGE_PASSWORD);
         return view ('auth.form-change-password');
     }
+    */
 
 
     public function postChangePassword(Request $request) {
-        $this->hasGateAllowed(AuthAbilities::CHANGE_PASSWORD);
-        
+        //$this->hasGateAllowed(AuthAbilities::CHANGE_PASSWORD);
+
+
         try{
 
             $validator = Validator::make($request->all(), [
@@ -37,40 +40,55 @@ class ChangePasswordController extends Controller
                 'password_new'          =>'required|min:6|max:12',
             ],[]);
 
-            if ($validator->fails())
-                return back()->withErrors($validator,'changePw')->withInput();
+            if ($validator->fails()){
+                $errors = $validator->errors(); // Get errors variable (MessageBag)
+                $messages = $errors->all(); // Get all messages as simple array
+                
+                return response()->json([
+                    'status'    => 'error',
+                    'msg'       => $messages[0] // or $errors->first()
+                ], 422);                
+            }
 
             $hasher         = Sentinel::getHasher();
             $oldPassword    = $request->password_old;
             $password       = $request->password_new;
-
-            if($password == '')
-                throw new CustomException('invalid value for current password');
-
-            if($oldPassword == '')
-                throw new CustomException('invalid value for new password');
+            
 
             $user = Sentinel::getUser();
-            if(is_null($user))
-                abort(401, 'You need to login before change your password');
+            if(is_null($user)){
+                return response()->json([
+                    'status'    => 'error',
+                    'msg'       => 'You need to login before change your password'
+                ], 401);
+            }
 
-            if (!$hasher->check($oldPassword, $user->password))
-                return redirect()->back()->with(AlertDataUtil::error('Current password is incorrect'));
+            if (!$hasher->check($oldPassword, $user->password)){
+                return response()->json([
+                    'status'    => 'error',
+                    'msg'       => 'Current password is incorrect'
+                ], 400); // Changed to 400 Bad Request
+            }
 
             Sentinel::update($user, array('password' => $password));
             
-            return redirect()->route('auth.change-password', [])
-                ->with(AlertDataUtil::success('Password successfully updated'));
+            return response()->json([
+                'status'    => 'success',
+                'msg'       => 'Password successfully updated'
+            ], 200);
+           
 
         }catch(CustomException $e){
-            return redirect()->back()->with(AlertDataUtil::error($e->getMessage()));
+            return response()->json([
+                'status'    => 'error',
+                'msg'       => $e->getMessage()
+            ], 400);
 
         }catch(\Exception $e){
-            return redirect()->back()->with(
-                AlertDataUtil::error('Failed to change your password',[
-                    //'message'   => $e->getMessage(),
-                ])
-            );
+            return response()->json([
+                'status'    => 'error',
+                'msg'       => 'Failed to change your password'
+            ], 500);
         }
     }
 

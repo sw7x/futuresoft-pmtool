@@ -1,6 +1,4 @@
 
-
-
 $('.flash-msg .close').click(function(event){
     $(this).parent().fadeOut(700, function(){ $(this).remove();});
     event.preventDefault();
@@ -29,49 +27,70 @@ $('.pw-toggle').click(function(event){
 //admin panel change password
 $('#admin_change_password input[name="change_password_submit"]').click(function(event){
 
-    let password_old = $('#admin_change_password input[name="password_old"]').val();
-    let password_new = $('#admin_change_password input[name="password_new"]').val();
+    let $form = $('#admin_change_password');
+
+    let password_old = $form.find('input[name="password_old"]').val();
+    let password_new = $form.find('input[name="password_new"]').val();
+    let token        = $form.find('input[name="_token"]').val();
+    let $statusTxt   = $form.find('#changePasswordStatus p');
+    let changepwUrl  = $form.attr('action');
 
     if(password_old == ''){
-        $('#changePasswordStatus p').html('invalid value for current password');
-        $('#changePasswordStatus p').removeClass('text-green-700');
-        $('#changePasswordStatus p').addClass('text-red-700');
-    }else if(password_new ==''){
-        $('#changePasswordStatus p').html('invalid value for new password');
-        $('#changePasswordStatus p').removeClass('text-green-700');
-        $('#changePasswordStatus p').addClass('text-red-700');
-    }else{
-        $.ajax({
-            url: changepwUrl,
-            type: "post",
-            data: {
-                old_password : password_old,
-                password : password_new,
-                _token :'{{csrf_token ()}}'
-            } ,
-            success: function (response) {
-
-                if(response['status'] == 'success'){
-                    $('#changePasswordStatus p').html('Suceess');
-                    $('#changePasswordStatus p').addClass('text-green-700');
-                    $('#changePasswordStatus p').removeClass('text-red-700');
-
-                    $("#chngpwclose").trigger('click');
-
-                }else{
-                    $('#changePasswordStatus p').html('Error');
-                    $('#changePasswordStatus p').removeClass('text-green-700');
-                    $('#changePasswordStatus p').addClass('text-red-700');
-                }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.log(textStatus, errorThrown);
-                $('#changePasswordStatus p').html('Error');
-                $('#changePasswordStatus p').removeClass('text-green-700');
-                $('#changePasswordStatus p').addClass('text-red-700');
-            }
-        });
+        $statusTxt.html('Invalid value for current password');
+        $statusTxt.removeClass('text-green-700');
+        $statusTxt.addClass('text-red-700');
+        return;
     }
+
+
+    if(password_new ==''){
+        $statusTxt.html('Invalid value for new password');
+        $statusTxt.removeClass('text-green-700');
+        $statusTxt.addClass('text-red-700');
+        return;
+    }
+
+    if(password_old == password_new){
+        $statusTxt.html('Both old and new passwords are same');
+        $statusTxt.removeClass('text-green-700');
+        $statusTxt.addClass('text-red-700');
+        return;
+    }
+    
+
+    $.ajax({
+        url: changepwUrl,
+        type: "post",
+        data: {
+            password_new : password_new,
+            password_old : password_old,
+            _token :token
+        } ,
+        success: function (response) {
+
+            //console.log(response);
+            if(response['status'] == 'success'){
+                $statusTxt.html('Suceess');
+                $statusTxt.addClass('text-green-700');
+                $statusTxt.removeClass('text-red-700');
+
+                $("#chngpwclose").trigger('click');
+
+            }else{
+                $statusTxt.html(response.msg);
+                $statusTxt.removeClass('text-green-700');
+                $statusTxt.addClass('text-red-700');
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+
+            $statusTxt.html(jqXHR.responseJSON.msg);
+            //$statusTxt.html('Error');
+            $statusTxt.removeClass('text-green-700');
+            $statusTxt.addClass('text-red-700');
+        }
+    });
+    
 
     event.preventDefault();
 });

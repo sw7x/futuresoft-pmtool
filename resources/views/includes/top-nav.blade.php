@@ -126,7 +126,7 @@
                     --}}
                     {{-- @can(AuthAbilities::CHANGE_PASSWORD) --}}
                     <li>
-                        <a href="" class="mb-control">
+                        <a href="#" class="mb-control" id="chngpwlink">
                         <i class="fa fa-unlock" ></i>Change Password</a>
                     </li>
                     {{-- @endcan --}}
