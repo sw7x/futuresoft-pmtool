@@ -26,13 +26,13 @@ class LoginController extends Controller
 
 
     public function login(){
-        $this->hasGateAllowed(AuthAbilities::LOGIN);
-        return view ('auth.form-login');
+        //$this->hasGateAllowed(AuthAbilities::LOGIN);
+        return view ('auth.login-page');
     }
 
     
     public function loginSubmit(Request $request){
-        $this->hasGateAllowed(AuthAbilities::LOGIN);
+        //$this->hasGateAllowed(AuthAbilities::LOGIN);
 
         try{
 
@@ -44,7 +44,7 @@ class LoginController extends Controller
                 'password.required' => 'password field is required.',
             ]);
 
-            if ($validator->fails())
+            if($validator->fails())
                 return redirect()->back()->withErrors($validator,'loginForm')->withInput();
 
             $remember_me = isset($request->remeber_me) ? true : false;
@@ -56,8 +56,9 @@ class LoginController extends Controller
 
             
             $arr = ['login' => $request->email, 'password' => $request->password];            
-            if(Sentinel::authenticate($arr, $remember_me)){                
-                return redirect()->route('admin.dashboard');
+            if(Sentinel::authenticate($arr, $remember_me)){    
+                $currentUser    = Sentinel::getUser();            
+                return redirect()->route('dashboard');
             }else{
                 $pwResetTxt = "if you dont remember your password then contact admin for password reset";
                 return redirect()->back()
@@ -105,7 +106,7 @@ class LoginController extends Controller
 
     //todo
     public function logout(Request $request){
-        $this->hasGateAllowed(AuthAbilities::LOGOUT);
+        //$this->hasGateAllowed(AuthAbilities::LOGOUT);
 
         if(sentinel::check()){
             Sentinel::logout();

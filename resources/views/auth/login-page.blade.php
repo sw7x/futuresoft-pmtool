@@ -158,11 +158,11 @@
 
 
 
-                    <form action="" class="form-horizontal" method="post" autocomplete="off">
+                    <form action="{{route('auth.login-submit')}}" class="form-horizontal" method="post" autocomplete="off">
 
                         <div class="form-group">
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Username or Email *" name="uname" required/>
+                                <input type="text" class="form-control" placeholder="Username or Email *" name="email" required/>
                             </div>
                         </div>
 
@@ -171,9 +171,7 @@
                                 <div class="password-container">
                                     <input type="password" class="password_field form-control" placeholder="Password (6 to 12 alpha numeric characters) *"
                                            name="password" maxlength="12" minlength="6" required/>
-                                    <button type="button" id="btnToggle" class="pw-toggle">
-                                        <i id="eyeIcon" class="fa fa-eye"></i>
-                                    </button>
+                                    <button type="button" id="btnToggle" class="pw-toggle"><i id="eyeIcon" class="fa fa-eye"></i></button>
                                 </div>
                             </div>
                         </div>

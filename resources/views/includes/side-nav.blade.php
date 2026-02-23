@@ -15,19 +15,16 @@
                     <div class="dropdown profile-element">
                         <img alt="image" class="_bg-white _rounded-circle" src="{{asset('images/logo.png')}}"/>                        
                         @if(Sentinel::check())
-                            <a class="dropdown-toggle" href="#">
-                                {{-- 
+                            <a class="dropdown-toggle" href="#">                                 
                                 <span class="mt-1 text-white text-center text-lg __text-muted text-xs block">{{optional($currentUser)->username}}</span>
-                                --}}
+                                {{--
                                 <span class="mt-1 text-white text-center text-lg __text-muted text-xs block">username</span>
+                                --}}
                             </a>
 
-                            <div class="text-center">
-                            {{--                                 
-                            <small class="text-white">( {{$currentUserRole}} )</small>
-                            --}}                                
-                            <small class="text-white">( currentUserRole )</small>
-
+                            <div class="text-center">                                                           
+                            <small class="text-white">( {{$currentUserRole}} )</small>                                                         
+                            {{--  <small class="text-white">( currentUserRole )</small>--}}  
                             </div>                        
                         @endif                       
                     </div>
@@ -183,7 +180,7 @@
 
 
 
-                <li><a href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Login</a></li>
+                <li><a href="{{ route('auth.login') }}"><i class="fa fa-sign-in"></i> Login</a></li>
                         
                 <li class="{{ Route::is('profile') ? 'active current' : '' }}">
                     <a href="{{ route('profile') }}">

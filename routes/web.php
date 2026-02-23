@@ -85,8 +85,7 @@ Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 //Route::get('/', ['as'=>'dashboard','uses'=>'PageController@index']);
 Route::get('/404', [PageController::class, 'page404'])->name('404');
 
-//todo - move into auth routes
-Route::get('/login', [PageController::class, 'login'])->name('login');
+
 
 
 

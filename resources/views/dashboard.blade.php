@@ -36,7 +36,7 @@
 
             <div class="ibox">
                 <div class="ibox-content">
-                          
+                    [{{Sentinel::check()}}]      
 
                     <a href="{{URL::to('/')}}">/</a><br>
                     <a href="{{URL::to('/info')}}">/info</a><br>

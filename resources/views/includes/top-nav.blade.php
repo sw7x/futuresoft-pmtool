@@ -124,20 +124,20 @@
                         <i class="fa fa-unlock" ></i>Change Password</a>
                     </li>
                     --}}
-                    @can(AuthAbilities::CHANGE_PASSWORD)
+                    {{-- @can(AuthAbilities::CHANGE_PASSWORD) --}}
                     <li>
                         <a href="" class="mb-control">
                         <i class="fa fa-unlock" ></i>Change Password</a>
                     </li>
-                    @endcan
+                    {{-- @endcan --}}
                     
-                    @can(AuthAbilities::LOGOUT)
+                    {{-- @can(AuthAbilities::LOGOUT) --}}
                         <li>
                             <a href="#" class="mb-control" id="signoutlink">
                                 <i class="fa fa-sign-out"></i>Log out
                             </a>
                         </li>
-                    @endcan
+                    {{-- @endcan --}}
 
                 </ul>
                 @endif

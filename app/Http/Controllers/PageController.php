@@ -14,11 +14,6 @@ class PageController extends Controller
         return view('dashboard');
     }
 
-    public function login(){
-       //return view('login');
-       return view('auth.login-page');
-    }
-
     public function page404(){
         return view('errors.404');    
     }   
