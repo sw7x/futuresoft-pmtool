@@ -210,7 +210,8 @@
             </div>  
 
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12 border">
+                    <h4>Project summary</h4>
                     <div class="project-info mt-3">
                         <span>📅 Start Date: Jan 15, 2024</span>
                         <span>📅 End Date: Jun 30, 2024</span>
@@ -237,18 +238,38 @@
                         </p>
 
 
-            <div class="m-b-md">
-                <label for="project-select" class="font-weight-bold mb-1 mr-2">Select Developer:</label>
-                <select class="select-project form-control select2" style="width: 100%;" data-placeholder="Select a Project">
-                    <option></option>
-                    <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
-                </select>
-            </div>
+                        <div class="row mb-5">
+                            <div class="col-lg-6">
+                                <label for="project-select" class="font-weight-bold mb-1 mr-2">Parent Designation:</label>
+                                <select class="select-project form-control select2" style="width: 100%;" data-placeholder="Select a Project">
+                                    <option></option>
+                                    <option>Alaska</option>
+                                    <option>California</option>
+                                    <option>Delaware</option>
+                                    <option>Tennessee</option>
+                                    <option>Texas</option>
+                                    <option>Washington</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="project-select" class="font-weight-bold mb-1 mr-2">Sub Designation:</label>
+                                <select class="select-project form-control select2" style="width: 100%;" data-placeholder="Select a Project">
+                                    <option></option>
+                                    <option>Alaska</option>
+                                    <option>California</option>
+                                    <option>Delaware</option>
+                                    <option>Tennessee</option>
+                                    <option>Texas</option>
+                                    <option>Washington</option>
+                                </select> 
+                            </div>
+                        </div>
+
+
+
+
+
+            
 
 
 
@@ -288,11 +309,14 @@
                                 </li>
                             </ol>
                         </div>
+
                         <div class="m-t-md">
                             <h5>Serialised Output</h5>
                         </div>
+
                         {{-- <textarea id="_nestable-output" class="form-control"></textarea> --}}
                         <pre id="nestable-output" class="text-base"></pre>
+
                     </div>
                 </div>
             </div>
