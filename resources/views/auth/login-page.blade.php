@@ -135,6 +135,22 @@
                 transform: rotate(45deg);
             }
 
+            .text-lg{
+                font-size: 1.5rem;
+                line-height: 1.75rem;
+            }
+            .text-base{
+                font-size: 1.25rem;
+                line-height: 1.5rem;
+            }
+            .text-sm{
+                font-size: 1rem;
+                line-height: 1.25rem;
+            }
+            
+
+
+
         </style>
     </head>
     <body>
@@ -212,26 +228,41 @@
 
         <script src="{{asset('js/jquery-3.1.1.min.js')}}"></script>
         <script>
-            // Show/Hide password field
-            $('.pw-toggle').click(function(event){
-                let icon          = $(this).children('i');
-                let passwordInput = $(this).parent().find('input.password_field');
+            $(document).ready(function() {
 
-                if (passwordInput.attr('type') === 'password') {
-                    passwordInput.prop('type', 'text');
-                    icon.addClass("fa-eye-slash");
-                } else {
-                    passwordInput.prop('type', 'password');
-                    icon.removeClass("fa-eye-slash");
-                }
+                // Show/Hide password field
+                $('.pw-toggle').click(function(event){
+                    let icon          = $(this).children('i');
+                    let passwordInput = $(this).parent().find('input.password_field');
+
+                    if (passwordInput.attr('type') === 'password') {
+                        passwordInput.prop('type', 'text');
+                        icon.addClass("fa-eye-slash");
+                    } else {
+                        passwordInput.prop('type', 'password');
+                        icon.removeClass("fa-eye-slash");
+                    }
                 //icon.addClass('aa');
                 //passwordInput.addClass('bb');
+                });
+
+
+                $('.flash-msg .close').click(function(event){
+                    $(this).parent().fadeOut(700, function(){ 
+                        $(this).remove();
+                    });
+                    event.preventDefault();
+                    event.stopPropagation();
+                });
+
+
+
+
             });
 
 
-			$('.flash-msg .close').click(function(event){
-				$(this).parent().fadeOut(700, function(){ $(this).remove();});
-			});
+
+            
         </script>
     </body>
 </html>

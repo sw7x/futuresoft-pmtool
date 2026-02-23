@@ -6,11 +6,17 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\User;
 
+use App\Permissions\Abilities\AuthAbilities;
+use App\Permissions\Traits\PermissionCheck;
+
+
 
 class PageController extends Controller
 {
+    use PermissionCheck;
 
     public function index(){
+        $this->hasPermission(AuthAbilities::CHANGE_PASSWORD);
         return view('dashboard');
     }
 

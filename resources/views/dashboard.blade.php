@@ -1,3 +1,8 @@
+@php    
+    use App\Permissions\Abilities\AuthAbilities;
+@endphp
+
+
 @extends('layouts.master',['title' => 'Dashboard'])
 @section('title','Dashboard')
 
@@ -36,7 +41,31 @@
 
             <div class="ibox">
                 <div class="ibox-content">
-                    [{{Sentinel::check()}}]      
+                    [{{Sentinel::check()}}]
+
+                    <div class="border mb-2" style="min-height: 50px;">
+                        @can(AuthAbilities::CHANGE_PASSWORD)
+                            <h3>CHANGE_PASSWORD</h3>
+                        @endcan
+                    </div>
+                    
+                    <div class="border mb-2" style="min-height: 50px;">
+                        @can(AuthAbilities::LOGOUT)
+                        <h3>LOGOUT</h3>
+                        @endcan  
+                    </div>                  
+
+                    <div class="border mb-2" style="min-height: 50px;">
+                        @can(AuthAbilities::LOGIN)
+                        <h3>LOGOUT</h3>
+                        @endcan
+                    </div>
+
+
+
+
+
+
 
                     <a href="{{URL::to('/')}}">/</a><br>
                     <a href="{{URL::to('/info')}}">/info</a><br>

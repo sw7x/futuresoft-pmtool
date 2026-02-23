@@ -5,6 +5,20 @@ namespace App\Exceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
+use Illuminate\Cookie\Middleware\EncryptCookies;
+use Illuminate\Session\Middleware\StartSession;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
+use Sentinel;
+use App\Models\Role as RoleModel;
+use App\Exceptions\CustomException;
+use App\Exceptions\InvalidUserTypeException;
+use Illuminate\Auth\Access\AuthorizationException;
+
+//use Illuminate\Foundation\Application;
+//use App;
+use Illuminate\Support\Facades\App;
+use App\Common\Utils\AlertDataUtil;
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -40,16 +54,15 @@ class Handler extends ExceptionHandler
     }
 
 
-    
-    //TODO
-    /*
-    public function render($request, Throwable $exception){      
+    public function render($request, Throwable $exception){
+        
+
 
         $isGuest    = !Sentinel::check();        
         if(!$isGuest){
             $user            = Sentinel::getUser();
             $userRole        = optional($user->roles()->first())->name;   
-            $allRoles        = [RoleModel::ADMIN, RoleModel::EDITOR, RoleModel::MARKETER, RoleModel::TEACHER, RoleModel::STUDENT];
+            $allRoles        = [RoleModel::ADMIN, RoleModel::OWNER, RoleModel::MANAGER, RoleModel::PROJECT_MANAGER, RoleModel::DEVELOPER];
             $invalidUserRole = !in_array($userRole, $allRoles);
         }       
         
@@ -59,7 +72,16 @@ class Handler extends ExceptionHandler
 
             $statuCode  =   $exception->getStatusCode();
             if ($exception->getStatusCode() == 401)
-                $errorPage  =   'errors.401';
+                //$errorPage  =   'errors.401';
+                return redirect()->route('auth.login')
+                    ->with(AlertDataUtil::error('Authentication is required',[
+                        'message2' => 'The page you are trying to access is inaccessible to unauthenticated users.'
+                    ]));
+
+
+
+
+
 
             if ($exception->getStatusCode() == 403)
                 $errorPage  =   'errors.403';                
@@ -150,6 +172,9 @@ class Handler extends ExceptionHandler
 
         return parent::render($request, $exception);
     }
-    */
+
+
+
+
 
 }
