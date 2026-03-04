@@ -141,14 +141,13 @@
                         <i class="fa fa-hourglass-1"></i> <span  class="nav-label">timesheet</span> <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level collapse" aria-expanded='{{ \Str::is('timesheets.*', Route::currentRouteName()) ? 'true' : 'false' }}'>
-                        <li class="{{ Route::is('timesheets.manager-timesheet-list') ? 'current' : '' }}"><a href="{{ route('timesheets.manager-timesheet-list') }}"><i class="fa fa-calendar-check-o"></i>Manager timesheet list</a></li>
+                        <li class="{{ Route::is('timesheets.manager-timesheet-list') ? 'current' : '' }}"><a href="{{ route('timesheets.manager-timesheet-list') }}"><i class="fa fa-list-alt"></i>Manager timesheet list</a></li>
                         
                         <li class="{{ Route::is('timesheets.my-timesheet-list') ? 'current' : '' }}">
                             <a href="{{ route('timesheets.my-timesheet-list') }}">
-                                <i class="fa fa-calendar-check-o"></i>My timesheet list <small class="text-yellow-200 italic text-xs font-semibold">(Dev/PM)</small>
+                                <i class="fa fa-user-o"></i>My timesheet list <small class="text-yellow-200 italic text-xs font-semibold">(Dev/PM)</small>
                             </a>
                         </li>
-                        
 
                         <li class="{{ Route::is('timesheets.create') ? 'current' : '' }}"><a href="{{ route('timesheets.create') }}"><i class="fa fa-calendar-plus-o"></i>Create timesheets</a></li>
                         <li class="{{ Route::is('timesheets.view') ? 'current' : '' }}"><a href="{{ route('timesheets.view') }}"><i class="fa fa-calendar"></i>View timesheets</a></li>
