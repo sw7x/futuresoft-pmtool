@@ -296,6 +296,135 @@
                         <div class="hr-line-dashed"></div>
 
 
+
+
+
+
+                        <!-- Milestones Header -->
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h3 class="font-bold text-lg mb-0"><i class="fa fa-flag"></i> Milestones</h3>
+                            <button type="button" class="btn btn-primary btn-outline btn-xs" id="add-milestone-row">
+                                <i class="fa fa-plus"></i> Add Milestone
+                            </button>
+                        </div>
+
+                        <div id="milestones-container">
+                            <div id="no-milestones-msg" class="text-center py-4 bg-light border-dashed rounded mb-4">
+                                <p class="text-muted mb-0"><i class="fa fa-info-circle"></i> No milestones added yet. Click "Add Milestone" to begin.</p>
+                            </div>
+                        </div>
+
+                        <!-- Milestone Template (Hidden) -->
+                        <template id="milestone-template">
+                            <div class="milestone-row border-bottom mb-4 pb-3">
+                                <div class="text-right mb-2">
+                                    <button type="button" class="btn btn-danger btn-outline btn-xs remove-milestone-row">
+                                        <i class="fa fa-times"></i> Remove
+                                    </button>
+                                </div>
+                                <!-- Milestone Title -->
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Name</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="milestone_name[]" class="form-control" placeholder="Enter milestone name">
+                                    </div>
+                                </div>
+
+                                <!-- Milestone Description -->
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Description</label>
+                                    <div class="col-sm-8">
+                                        <textarea name="milestone_description[]" class="form-control" rows="3" placeholder="Briefly describe the milestone"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Designation -->
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Progress</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control select2-milestone" name="milestone_progress[]">
+                                            <option></option>
+                                            <option value="not_started">Not Started</option>
+                                            <option value="in_progress">In Progress</option>
+                                            <option value="completed">Completed</option>
+                                            <option value="blocked">Blocked</option>
+                                            <option value="cancelled">Cancelled</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Scheduled Timeline -->
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Scheduled Timeline</label>
+                                    <div class="col-sm-8">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                    <input type="datetime-local" class="form-control" name="milestone_scheduled_start[]">
+                                                </div>
+                                                <small class="text-muted">Start Date</small>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                    <input type="datetime-local" class="form-control" name="milestone_scheduled_end[]">
+                                                </div>
+                                                <small class="text-muted">End Date</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Actual Timeline -->
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Actual Timeline</label>
+                                    <div class="col-sm-8">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i class="fa fa-calendar-check-o"></i></span>
+                                                    <input type="datetime-local" class="form-control" name="milestone_actual_start[]">
+                                                </div>
+                                                <small class="text-muted">Start Date</small>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i class="fa fa-calendar-check-o"></i></span>
+                                                    <input type="datetime-local" class="form-control" name="milestone_actual_end[]">
+                                                </div>
+                                                <small class="text-muted">End Date</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                        
+
+
+
+                        <div class="hr-line-dashed"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <div class="form-group row">
                             <div class="col-sm-4 offset-sm-4">
                                 <button class="btn btn-primary btn-sm" type="submit">Save changes</button>
@@ -449,6 +578,40 @@
             placeholder: "Select project managed PM",
             allowClear: true,
             width: '100%'
+        });
+
+        
+
+
+
+        function initMilestoneSelect2(element) {
+            element.select2({
+                placeholder: "Select milestone progress",
+                allowClear: true,
+                width: '100%'
+            });
+        }
+
+        initMilestoneSelect2($(".select2-milestone"));
+
+        $('#add-milestone-row').click(function() {
+            $('#no-milestones-msg').hide();
+            
+            var template = document.querySelector('#milestone-template');
+            var clone = document.importNode(template.content, true);
+            var newRow = $(clone);
+
+            $('#milestones-container').append(newRow);
+            initMilestoneSelect2($('#milestones-container .milestone-row').last().find('.select2-milestone'));
+        });
+
+        $(document).on('click', '.remove-milestone-row', function() {
+            $(this).closest('.milestone-row').fadeOut(300, function() {
+                $(this).remove();
+                if ($('#milestones-container .milestone-row').length === 0) {
+                    $('#no-milestones-msg').fadeIn();
+                }
+            });
         });
 
 
