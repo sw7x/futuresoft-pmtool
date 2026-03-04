@@ -88,6 +88,25 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Cost Category(ajax) <span class="text-red-500 text-sm font-bold">*</span></label>
+                            <div class="col-sm-8">
+                                <select class="form-control m-b" required name="cost_category">
+                                    <option value="" disabled selected>Select Cost Category</option>
+                                    <option value="">Employee Cost</option>
+                                    <option value="">Infrastructure Costs</option>                                    
+                                    <option value="">Third-Party Services</option>                                    
+                                    <option value="">Other</option>                                    
+                                </select>
+                                @if ($errors->has('cost_category'))
+                                    <ul class="mt-1">
+                                        @foreach ($errors->get('cost_category') as $error)
+                                            <li class="text-red-600 text-xs font-bold">{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </div>
+                        </div>
 
 
 

@@ -20,6 +20,56 @@
         display: inline-flex;
         align-items: center;
     }
+
+
+    /* 2x2 Info Grid Styling */
+    .info-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 15px;
+    }
+    .info-badge {
+        display: flex;
+        align-items: center;
+        background: #f8f9fa;
+        padding: 12px 20px;
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+        /* Flex basis for 2x2 grid (minus gap) */
+        flex: 1 1 calc(33% - 15px);
+        min-width: 250px;
+        transition: all 0.2s ease;
+    }
+    .info-badge:hover {
+        background: #ffffff;
+        border-color: #cbd5e0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .info-badge i {
+        font-size: 26px; /* Bigger Icons */
+        margin-right: 18px;
+        color: #667eea;
+        width: 32px;
+        text-align: center;
+    }
+    .info-badge .info-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        color: #718096;
+        display: block;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        margin-bottom: 2px;
+    }
+    .info-badge .info-value {
+        font-size: 15px;
+        font-weight: 600;
+        color: #2d3748;
+    }
+
+
+
 </style>    
 @stop
 
@@ -53,6 +103,43 @@
         </div>
     </div>
 
+    <div class="ibox-content m-b-sm border-bottom">
+
+        <h2 class="m-0 font-bold text-dark">Summary</h2>
+
+
+        <div class="info-group">
+            <!-- Total Costs -->
+            <div class="info-badge">
+                <i class="fa fa-credit-card" style="color: #e53e3e;"></i>
+                <div>
+                    <span class="info-label">Total Costs</span>
+                    <span class="info-value">$12,450</span>
+                </div>
+            </div>
+
+            <!-- Total Income -->
+            <div class="info-badge">
+                <i class="fa fa-university" style="color: #38a169;"></i>
+                <div>
+                    <span class="info-label">Total Income</span>
+                    <span class="info-value">$18,000</span>
+                </div>
+            </div>
+
+            <!-- Profit -->
+            <div class="info-badge">
+                <i class="fa fa-line-chart" style="color: #667eea;"></i>
+                <div>
+                    <span class="info-label">Profit</span>
+                    <span class="info-value">$5,550</span>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
 
     <div class="row">
         <div class="col-lg-12">
@@ -78,6 +165,13 @@
                         --}}
                     </div>
 
+                    
+
+
+
+
+
+
                     <div class="table-responsive m-t-sm">
                         <?php
 
@@ -95,8 +189,8 @@
                                 <thead>
                                     <tr>
                                         <th>Date</th>
-                                        <th>Description</th>
                                         <th>Income/Cost</th>
+                                        <th>Description</th>                                        
                                         <th>Amount(Rs)</th>
                                         <th>Action</th>                                    
                                     </tr>
@@ -105,10 +199,12 @@
                                 <tbody>
 
                                 @for ($i = 0; $i < 13; $i++)
-                                    <tr>
+                                    <tr>                                        
+                                        <td class="font-semibold text-sm uppercase" style="{{ $pay[$i] == 'cost' ? 'color: red;' : ($pay[$i] == 'income' ? 'color: green;' : '') }}">
+                                            {{ $pay[$i] }}
+                                        </td>
                                         <td>{{$date[$i]}} - {{$i}}</td>
-                                        <td>{{$description[$i]}}</td>
-                                        <td>{{$pay[$i]}}</td>
+                                        <td>{{$description[$i]}}</td>                                        
                                         <td>{{$amount[$i]}}</td>
                                         <td class="text-right">
                                             <div class="btn-group">
