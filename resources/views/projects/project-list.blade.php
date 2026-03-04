@@ -42,26 +42,57 @@
                     <table id="projects-table" class="table table-striped table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Deadline</th>
+                                <th>ID</th>///
+                                <th>Project</th>///
+                                <th>Client</th>///
+                                <th>Locality</th>
                                 <th>Status</th>
-                                <th>Update</th>
-                                <th>Delete</th>
+                                <th>Delivery Date</th>
+                                <th>Progress</th>
+                                <th>Action</th>//
+
+
+
+
+
+
+
+
+
                             </tr>
                         </thead>
                         <tbody>
                             @for ($i = 0; $i < 30; $i++)
                                 <tr>
-                                    <td>PRJ-{{ $i }}</td>
+                                    <td>{{ $i }}</td>
                                     <td>project{{ $i }} tgtggg tgtgg</td>
-                                    <td>2018/01/{{ str_pad(($i % 30) + 1, 2, '0', STR_PAD_LEFT) }}</td>
-                                    <td>pending</td>
-                                    <td class="text-center">
-                                        <button class="btn btn-primary btn-xs" type="button">
-                                            <i class="fa fa-pencil"></i>
-                                        </button>
-                                    </td>
+                                    <td>ABC Corp</td>
+                                    <td>{{$i%2?'Local':'Foreign'}}</td>
+                                <td>
+                                    @if($i%2==0)
+                                        <i class="fa fa-check-circle text-lg text-navy"></i>
+                                    @else
+                                        <i class="fa fa-times text-lg text-danger"></i>
+                                    @endif
+
+                                </td>
+                                <td>2018/01/{{ str_pad(($i % 30) + 1, 2, '0', STR_PAD_LEFT) }}
+                                <td>
+                                    @if($i==0)
+                                        <span class="badge badge-secondary px-3 py-2 uppercase tracking-wider">Not Started</span>
+                                    @elseif($i==1)
+                                        <span class="badge badge-info px-3 py-2 uppercase tracking-wider">In Progress</span>
+                                    @elseif($i==2)
+                                        <span class="badge badge-primary px-3 py-2 uppercase tracking-wider">Completed</span>
+                                    @elseif($i==3)
+                                        <span class="badge badge-warning px-3 py-2 uppercase tracking-wider">Blocked</span>
+                                    @elseif($i==4)
+                                        <span class="badge badge-danger px-3 py-2 uppercase tracking-wider">Cancelled</span>
+                                    @else
+                                        <span class="badge badge-info px-3 py-2 uppercase tracking-wider">In Progress</span>
+                                        <span class="text-navy text-base font-bold"> - 72%</span>
+                                    @endif</td>
+                                
                                     
                                     <td class="text-right">
                                         <div class="btn-group">
