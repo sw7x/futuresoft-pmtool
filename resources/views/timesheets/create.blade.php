@@ -14,14 +14,15 @@
 
 
 
-
 @section('page-css')
     <style>
         .timesheetTable thead th {
             background-color: #1ab394;
-            /*
-            background-color: #f8fafc;
             color: #64748b;
+            position: relative;
+
+            /*
+            background-color: #f8fafc;            
             border-bottom: 2px solid #e2e8f0 !important;
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -93,11 +94,38 @@
             border-color: #e2e8f0;
         }
 
-        .delete-row-btn{
-            padding: 2px 10px;
+        .column-checkbox {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            cursor: pointer;
+            accent-color:red;
+            opacity: 0.85;
+            transition: all 0.2s ease;
+            outline: none;
+            border-radius: 2px;
+            z-index: 10;
+            width: 10px;
+            height: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
+        .column-checkbox:hover {
+            opacity: 1;
+            {{-- transform: scale(1.15); --}}
+        }
 
+        .day-input:disabled {
+            background-color: #f8fafc !important;
+            cursor: not-allowed;
+            color: #ccc;
+        }
+
+        .data-row td {
+            padding: 12px 8px !important;
+            vertical-align: middle !important;
+            position: relative;
+        }
     </style>
 @stop
 
@@ -146,11 +174,11 @@
                             <thead>
                                 <tr>
                                     <th class="text-center" style="width: 200px;">Task</th>
-                                    <th class="text-center" style="width: 120px;">Mon</th>
-                                    <th class="text-center" style="width: 120px;">Tue</th>
-                                    <th class="text-center" style="width: 120px;">Wed</th>
-                                    <th class="text-center" style="width: 120px;">Thu</th>
-                                    <th class="text-center" style="width: 120px;">Fri</th>
+                                    <th class="text-center" style="width: 120px;">Mon <input type="checkbox" class="column-checkbox" data-day="mon" title="Mark Monday as Off-Day"></th>
+                                    <th class="text-center" style="width: 120px;">Tue <input type="checkbox" class="column-checkbox" data-day="tue" title="Mark Tuesday as Off-Day"></th>
+                                    <th class="text-center" style="width: 120px;">Wed <input type="checkbox" class="column-checkbox" data-day="wed" title="Mark Wednesday as Off-Day"></th>
+                                    <th class="text-center" style="width: 120px;">Thu <input type="checkbox" class="column-checkbox" data-day="thu" title="Mark Thursday as Off-Day"></th>
+                                    <th class="text-center" style="width: 120px;">Fri <input type="checkbox" class="column-checkbox" data-day="fri" title="Mark Friday as Off-Day"></th>
                                     <th class="text-center" style="width: 120px;">Total</th>
                                     <th class="text-center" style="width: 60px;">Delete</th>
                                 </tr>
@@ -243,6 +271,7 @@
 
                         </table>
                     </div>
+
                     
                     <div class="mt-3">
                         <button type="button" id="add_row" class="btn btn-outline btn-primary btn-sm"><i class="fa fa-plus"></i> Add Row</button>
@@ -292,12 +321,36 @@
             $("#add_row").click(function(){
                 var newEntry = $('.entry-group').first().clone();
                 
-                // Reset values
-                newEntry.find('input').val('');
-                newEntry.find('.row-total').text('0');              
+                // Reset values and ensure enabled
+                newEntry.find('input[type="number"]').val('').prop('disabled', false);
+                newEntry.find('.row-total').text('0h 00m');              
                         
                 // Append before footer
                 $('#tab_logic tfoot').before(newEntry);
+
+                // Apply current disabled states from column checkboxes
+                $('.column-checkbox:checked').each(function() {
+                    var day = $(this).data('day');
+                    newEntry.find('input[name="' + day + '_m[]"]').val(0).prop('disabled', true);
+                });
+
+                calculateAllTotals();
+            });
+
+            // Column Disable Checkbox Logic
+            $(document).on('change', '.column-checkbox', function() {
+                var day = $(this).data('day');
+                var isChecked = $(this).is(':checked');
+                
+                var inputs = $('input[name="' + day + '_m[]"]');
+                
+                if (isChecked) {
+                    inputs.val(0).prop('disabled', true);
+                } else {
+                    inputs.prop('disabled', false);
+                }
+                
+                calculateAllTotals();
             });
 
             // Delete Row
