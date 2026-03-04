@@ -204,6 +204,7 @@ Route::group(['prefix'=>'timesheets','as'=>'timesheets.'], function(){
 
     Route::get('/create',[TimesheetController::class, 'createTimesheet'])->name('create');
     Route::get('/view',[TimesheetController::class, 'viewTimesheet'])->name('view');
+    Route::get('/approve',[TimesheetController::class, 'approveTimesheet'])->name('approve');
 });
 
 

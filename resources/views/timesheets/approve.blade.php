@@ -1,5 +1,5 @@
-@extends('layouts.master',['title' => 'Empty'])
-@section('title','View Timesheet')
+@extends('layouts.master',['title' => 'Approve Timesheet'])
+@section('title','Approve Timesheet')
 
 
 
@@ -53,6 +53,7 @@
             color: #6C757D;
         }
 
+
         /* 2x2 Info Grid Styling */
         .info-group {
             display: flex;
@@ -98,14 +99,18 @@
             font-weight: 600;
             color: #2d3748;
         }
+
+
     </style>
 @stop
 
 
 @section('content')
-    <div class="ibox-content m-b-sm border-bottom">        
-        <h2 class="m-0 font-bold text-dark">Timesheet Context</h2>
+    <div class="ibox-content m-b-sm border-bottom">
         
+        <h2 class="m-0 font-bold text-dark">Timesheet Context</h2>
+            
+
         <div class="info-group">
             <!-- Project Detail -->
             <div class="info-badge">
@@ -145,7 +150,6 @@
         </div>
     </div>
 
-
     <div class="row" id="_sortable-view">
         <div class="col-lg-12">
 
@@ -183,7 +187,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < 8; $i++)
+                            @for ($i = 0; $i < 9; $i++)
                             <tr id='addr{{ $i }}'>
                                 <td>PRJ1{{ $i }}</td>
                                 <td>Task{{ $i }}</td>
@@ -197,16 +201,6 @@
                                 <td class="text-center row-total-box">{{ $i * 50 }}min</td>
                             </tr>
                             @endfor
-                            <tr id='addr8'>
-                                <td>PRJ19</td>
-                                <td>Task9</td>
-                                <td class="text-center editable-cell">90min</td>
-                                <td class="text-center editable-cell">90min</td>
-                                <td class="text-center editable-cell">30min</td>
-                                <td class="text-center editable-cell edit" data-original-title="Voluptate autem perferendis saepe. Voluptas">0min</td>
-                                <td class="text-center editable-cell">90min</td>
-                                <td class="text-center row-total-box">390min</td>
-                            </tr>
                             <tr id='addr9'>
                                 <td>PRJ19</td>
                                 <td>Task9</td>
@@ -235,7 +229,13 @@
                                 <th class="text-center grand-total-cell">40h:20m</th>
                             </tr>
                         </tfoot>
-                    </table>                    
+                    </table>
+
+                    <div class="text-right">
+                        <button class="btn btn-primary btn-sm w-20">Approve</button>
+                        <button class="btn btn-danger btn-sm w-20">Decline</button>
+                    </div>
+                    
 
                 </div>
             </div>
@@ -245,7 +245,35 @@
 @stop
     
               
-
+@section('bootstrap-modals')
+    <!-- Edit Time Modal -->
+    <div class="modal fade" id="editTimeModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Time Entry</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Minutes</label>
+                        <input type="number" id="newTimeValue" class="form-control" placeholder="Enter minutes">
+                    </div>
+                    <div class="form-group">
+                        <label>Explanation</label>
+                        <textarea id="editExplanation" class="form-control" rows="3"  maxlength="200" placeholder="Why was this edited?"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-xs" id="saveTimeBtn">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@stop
 
 
 
@@ -258,6 +286,95 @@
 @section('javascript')
 <script>
         $(document).ready(function() {
+            var selectedCell = null;
+
+
+            console.log('111');
+
+            
+
+            // Handle cell click
+            $(document).on('click', '.editable-cell', function() {
+                selectedCell = $(this);
+                
+                // Extract current numeric value (e.g., "30min" -> 30)
+                // If it contains a strikethrough, get the second value
+                var currentHtml = selectedCell.html();
+                var currentValueStr = "";
+                
+                if (selectedCell.find('.line-through').length > 0) {
+                    // It has been edited, get the text after the span
+                    currentValueStr = selectedCell.contents().filter(function() {                        
+                        return this.nodeType === 3; // Text nodes
+                    }).text().trim();
+                } else {
+                    currentValueStr = selectedCell.text().trim();
+                }
+                
+                var currentVal = parseInt(currentValueStr) || 0;
+                $('#newTimeValue').val(currentVal);
+                
+                // Get existing explanation/tooltip
+                $('#editExplanation').val(selectedCell.attr('data-original-title') || "");
+                
+                $('#editTimeModal').modal('show');
+            });
+
+            // Save changes
+            $('#saveTimeBtn').click(function() {
+                var newValue = $('#newTimeValue').val();
+                var explanation = $('#editExplanation').val();
+                
+                if (newValue === "" || newValue === null) newValue = 0;
+                var newValueWithMin = newValue + 'min';
+                
+                var devSubmitValText = "";// devloper submit time value  of the data cell
+                var editedValText = "";   // manager edit devloper submit time value and put this value to the data cell 
+                
+                // Determine original vs current state
+                if (selectedCell.find('.line-through').length > 0) {
+                    devSubmitValText = selectedCell.find('.line-through').text().trim();
+                    editedValText = selectedCell.contents().filter(function() {
+                        return this.nodeType === 3;
+                    }).text().trim();
+                } else {
+                    devSubmitValText = selectedCell.text().trim();
+                    editedValText = devSubmitValText;
+                }
+
+                // 1. Update the HTML Visuals
+                if (newValueWithMin === devSubmitValText) {
+                    selectedCell.html(devSubmitValText);
+                    selectedCell.removeClass('edit');
+                } else {
+                    selectedCell.html('<span class="mr-2 line-through text-red">' + devSubmitValText + '</span>' + newValueWithMin);
+                    selectedCell.addClass('edit');
+                }
+
+                // 2. Handle the Tooltip (the Explanation)
+                selectedCell.attr('data-original-title', explanation); // Set title so tooltip can read it
+                selectedCell.tooltip('dispose'); // Remove any old tooltip instance
+
+                if (explanation && explanation.trim() !== "") {
+                    // Initialize the new tooltip immediately on this specific cell
+                    selectedCell.tooltip({
+                        placement: 'right'
+                    });
+                }
+                
+                $('#editTimeModal').modal('hide');
+            });
+
+            
+            // Reset modal on close
+            $('#editTimeModal').on('hidden.bs.modal', function () {
+                $('#newTimeValue').val('');
+                $('#editExplanation').val('');
+            });
+
+
+
+
             // Handle the legacy tooltips (initial load)
             $('#wTimesheetTable td.edit').tooltip({
                 placement: 'right'

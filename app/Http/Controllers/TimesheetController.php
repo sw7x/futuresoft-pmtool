@@ -28,5 +28,9 @@ class TimesheetController extends Controller
 
     public function viewTimesheet(){
         return view('timesheets.view');
+    }    
+
+    public function approveTimesheet(){
+        return view('timesheets.approve');
     }
 }

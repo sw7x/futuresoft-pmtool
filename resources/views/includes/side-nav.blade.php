@@ -150,6 +150,7 @@
 
                         <li class="{{ Route::is('timesheets.create') ? 'current' : '' }}"><a href="{{ route('timesheets.create') }}"><i class="fa fa-calendar-plus-o"></i>Create timesheets</a></li>
                         <li class="{{ Route::is('timesheets.view') ? 'current' : '' }}"><a href="{{ route('timesheets.view') }}"><i class="fa fa-calendar"></i>View timesheets</a></li>
+                        <li class="{{ Route::is('timesheets.approve') ? 'current' : '' }}"><a href="{{ route('timesheets.approve') }}"><i class="fa fa-check-square-o"></i>Approve timesheet</a></li>
                     </ul>
                 </li>
 
