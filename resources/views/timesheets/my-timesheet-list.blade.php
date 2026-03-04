@@ -1,5 +1,5 @@
-@extends('layouts.master',['title' => 'Empty'])
-@section('title','View Timesheet')
+@extends('layouts.master',['title' => 'My Timesheet List'])
+@section('title','My Timesheet List')
 
 
 
@@ -22,33 +22,7 @@
     
 
     <div class="ibox-content m-b-sm border-bottom">
-        <div class="row">                   
-
-            <div class="col-lg-3">
-                <label for="project-select" class="font-weight-bold mb-1 mr-2">Select Designation:</label>
-                <select class="select-project form-control select2" style="width: 100%;" data-placeholder="Select a Project">
-                    <option></option>
-                    <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
-                </select>
-            </div>
-
-            <div class="col-lg-3">
-                <label for="project-select" class="font-weight-bold mb-1 mr-2">Select employee:</label>
-                <select class="select-project form-control select2" style="width: 100%;" data-placeholder="Select a Project">
-                    <option></option>
-                    <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
-                </select>
-            </div>
+        <div class="row justify-content-end">               
 
             <div class="col-lg-4">
                 <label for="project-select" class="font-weight-bold mb-1 mr-2">Select Week:</label>
@@ -101,33 +75,45 @@
                     <table class="table table-bordered table-striped timesheetTable" id="wTimesheetTable">
                         <thead>
                         <tr >
-                            <th class="text-center">Employee</th>
-                            <th class="text-center">Designation</th>
-
                             <th class="text-center">Week</th>                            
                             <th class="text-center">Spend time</th>
 
                             <th class="text-center">Submit Date</th>
-                            <th class="text-center">Approved Date</th>
+                            <th class="text-center">Approval Status</th>
 
                             <th class="text-center">Action</th>                           
                         </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < 10; $i++)
+                            @for ($i = 0; $i < 9; $i++)
                             <tr id='addr0'>
-                                <td>Employee{{ $i }}</td>
-                                <td>Designation{{ $i }}</td>
                                 <td>2025/1/5 - 2025/1/12</td>
                                 <td>8 hours : 52 minutes</td>
 
                                 <td>2025/1/15</td>
-                                <td>2025/1/16</td>
+                                <td class="text-navy"><i class="fa fa-check-circle text-lg"></i> - <span class="text-xs font-semibold">2025/1/16</span></td>
                                 <td>
                                     <a href="" class="btn-blue btn _btn-xs">View</a>                                            
                                 </td>                               
                             </tr>
+
+
+
+
+
+
+
                             @endfor
+                            <tr id='addr0'>
+                                <td>2025/1/5 - 2025/1/12</td>
+                                <td>8 hours : 52 minutes</td>
+
+                                <td>2025/1/15</td>
+                                <td class="text-warning"><i class="fa fa-warning text-lg"></i> - <span class="text-xs font-semibold">Pending</span></td>
+                                <td>
+                                    <a href="" class="btn-blue btn _btn-xs">View</a>                                            
+                                </td>                               
+                            </tr>
                         </tbody>                       
                     </table>                
 

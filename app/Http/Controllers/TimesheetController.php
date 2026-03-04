@@ -8,18 +8,15 @@ use App\Http\Requests;
 
 class TimesheetController extends Controller
 {
-    public function pendingTimesheetList(){
-        return view('timesheets.pending-list');
-    }
-    public function approvedTimesheetList(){
-        return view('timesheets.approved-list');
+    
+
+    public function managerTimesheetList(){
+        return view('timesheets.manager-timesheet-list');
     }
 
-    public function myPendingTimesheetList(){
-        return view('timesheets.my-pending-list');
-    }
-    public function myApprovedTimesheetList(){
-        return view('timesheets.my-approved-list');
+    
+    public function myTimesheetList(){
+        return view('timesheets.my-timesheet-list');
     }
 
     public function createTimesheet(){
@@ -34,3 +31,10 @@ class TimesheetController extends Controller
         return view('timesheets.approve');
     }
 }
+
+
+
+
+
+
+

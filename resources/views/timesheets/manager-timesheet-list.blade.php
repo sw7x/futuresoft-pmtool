@@ -1,5 +1,6 @@
-@extends('layouts.master',['title' => 'Empty'])
-@section('title','View Timesheet')
+@extends('layouts.master',['title' => 'Manager Timesheet List'])
+@section('title','Manager Timesheet List')
+
 
 
 
@@ -96,8 +97,7 @@
                     
 
             <div class="ibox">
-                <div class="ibox-content">                        
-                
+                <div class="ibox-content">
 
                     <table class="table table-bordered table-striped timesheetTable" id="wTimesheetTable">
                         <thead>
@@ -109,12 +109,13 @@
                             <th class="text-center">Spend time</th>
 
                             <th class="text-center">Submit Date</th>
+                            <th class="text-center">Approval Status</th>
 
                             <th class="text-center">Action</th>                           
                         </tr>
                         </thead>
                         <tbody>
-                            @for ($i = 0; $i < 10; $i++)
+                            @for ($i = 0; $i < 8; $i++)
                             <tr id='addr0'>
                                 <td>Employee{{ $i }}</td>
                                 <td>Designation{{ $i }}</td>
@@ -122,51 +123,44 @@
                                 <td>8 hours : 52 minutes</td>
 
                                 <td>2025/1/15</td>
+                                <td class="text-navy"><i class="fa fa-check-circle text-lg"></i> - <span class="text-xs font-semibold">2025/1/16</span></td>
                                 <td>
-                                    {{-- <a href="" class="btn-primary btn _btn-xs">View</a>  --}}
-
-
-                                        <div class="btn-group">
-                                            <a href="" class="btn-blue btn btn-xs">View</a>
-                                            <a href="" class="btn-primary btn  btn-xs">Approve</a>
-                                        </div>
-
-
-
+                                    <a href="" class="btn-blue btn _btn-xs">View</a>                                            
                                 </td>                               
                             </tr>
                             @endfor
+                            <tr id='addr8'>
+                                <td>Employee8</td>
+                                <td>Designation8</td>
+                                <td>2025/1/5 - 2025/1/12</td>
+                                <td>8 hours : 52 minutes</td>
+
+                                <td>2025/1/15</td>
+                                <td class="text-navy"><i class="fa fa-check-circle text-lg"></i> - <span class="text-xs font-semibold">2025/1/16</span></td>
+                                <td>
+                                    <a href="" class="btn-blue btn _btn-xs">View</a>                                            
+                                </td>                               
+                            </tr>
+                            <tr id='addr9'>
+                                <td>Employee9</td>
+                                <td>Designation9</td>
+                                <td>2025/1/5 - 2025/1/12</td>
+                                <td>8 hours : 52 minutes</td>
+
+                                <td>2025/1/15</td>
+                                <td class="text-warning"><i class="fa fa-warning text-lg"></i> - <span class="text-xs font-semibold">Pending</span></td>
+                                <td>
+                                    <a href="" class="btn-blue btn _btn-xs">View</a>                                            
+                                </td>                               
+                            </tr>
                         </tbody>                       
-                    </table>
-
-
-
-
-
+                    </table>                
 
                 </div>
             </div>
         
         </div>
     </div>
-
-    
-
-
-
-       
-
-    
-
-
-
-
-
-                   
-
-                    
-
-
 @stop
 
 

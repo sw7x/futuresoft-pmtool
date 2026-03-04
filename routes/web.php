@@ -193,12 +193,8 @@ Route::group(['prefix'=>'reports','as'=>'reports.'], function(){
 
 /* timesheet */
 Route::group(['prefix'=>'timesheets','as'=>'timesheets.'], function(){
-    Route::get('/pending',[TimesheetController::class, 'pendingTimesheetList'])->name('pending-list');
-    Route::get('/approved',[TimesheetController::class, 'approvedTimesheetList'])->name('approved-list');
-
-
-    Route::get('/my-pending-list',[TimesheetController::class, 'myPendingTimesheetList'])->name('my-pending-list');
-    Route::get('/my-approved-list',[TimesheetController::class, 'myApprovedTimesheetList'])->name('my-approved-list');
+    Route::get('/manager-timesheet-list',[TimesheetController::class, 'managerTimesheetList'])->name('manager-timesheet-list');
+    Route::get('/my-timesheet-list',[TimesheetController::class, 'myTimesheetList'])->name('my-timesheet-list');
 
 
 
