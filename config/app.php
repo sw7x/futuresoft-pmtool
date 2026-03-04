@@ -184,7 +184,7 @@ return [
          * Modules Service Providers...
          */
         Modules\Reporting\Providers\ReportingProvider::class,
-        Modules\Designation\Providers\DesignationProvider::class,
+        //Modules\Designation\Providers\DesignationProvider::class,
 
 
     ],

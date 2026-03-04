@@ -31,14 +31,10 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/",
-            
-            "Modules\\": "modules/",
-            
-            "Modules\\Reporting\\": "modules/Reporting/src",
-            "Modules\\Reporting\\Database\\Seeders\\": "modules/Reporting/database/seeders",
-            "Modules\\Reporting\\Database\\Factories\\": "modules/Reporting/database/factories",
-            "Modules\\Reporting\\Tests\\": "modules/Reporting/tests"           
+            "Database\\Seeders\\": "database/seeders/",            
+            "Modules\\Reporting\\": "modules/reporting/src",
+            "Modules\\Reporting\\Database\\Seeders\\": "modules/reporting/database/seeders",
+            "Modules\\Reporting\\Database\\Factories\\": "modules/reporting/database/factories"
         },
         "files": [
             "app/Common/Helpers/string.php",
@@ -50,7 +46,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tests\\": "tests/",            
+            "Modules\\Reporting\\Tests\\": "modules/reporting/tests"
         }
     },
     "scripts": {
