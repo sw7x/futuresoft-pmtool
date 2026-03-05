@@ -49,6 +49,9 @@ class ProjectController extends Controller
 
     public function assignEmployees(){
         return view('projects.project-assign');
+    }    
+    public function viewTimeline(){
+        return view('projects.project-timeline');
     }
 
     

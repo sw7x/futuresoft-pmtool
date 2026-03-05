@@ -123,7 +123,8 @@ Route::group(['prefix'=>'projects','as'=>'projects.'], function(){
     //Route::get('create', [ProjectController::class,'create'])->name('create');
     Route::get('/', [ProjectController::class,'index'])->name('list');
     Route::get('/create', [ProjectController::class,'createProject'])->name('create');
-    Route::get('enroll-employees', [ProjectController::class,'assignEmployees'])->name('enroll-employees');
+    Route::get('/enroll-employees', [ProjectController::class,'assignEmployees'])->name('enroll-employees');
+    Route::get('/timeline', [ProjectController::class,'viewTimeline'])->name('timeline');
     
 
 
@@ -143,7 +144,7 @@ Route::group(['prefix'=>'projects','as'=>'projects.'], function(){
         Route::get('/{id}',[ClientController::class, 'singleClient'])->name('single');
     });
 
-Route::get('/{id}', [ProjectController::class,'singleProject'])->name('single');
+    Route::get('/{id}', [ProjectController::class,'singleProject'])->name('single');
 
 });
 

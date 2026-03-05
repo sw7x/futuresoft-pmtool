@@ -57,6 +57,7 @@
                         <li class="{{ Route::is('projects.invoices.single') ? 'current' : '' }}"><a href="{{ route('projects.invoices.single',5) }}"><i class="fa fa-file-text"></i>Single invoice</a></li>
 
                         <li class="{{ Route::is('projects.enroll-employees') ? 'current' : '' }}"><a href="{{ route('projects.enroll-employees') }}"><i class="fa fa-users"></i>Enroll developers</a></li>
+                        <li class="{{ Route::is('projects.timeline') ? 'current' : '' }}"><a href="{{ route('projects.timeline') }}"><i class="fa fa-calendar"></i>Project timeline</a></li>
 
                     </ul>
                 </li>            
