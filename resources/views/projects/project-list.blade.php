@@ -82,20 +82,21 @@
                                     @else
                                         <span class="badge badge-info px-2 py-1 uppercase tracking-wider">In Progress</span>
                                         <span class="text-navy text-base font-bold"> - 72%</span>
-                                    @endif</td>
+                                    @endif
+                                </td>
                                 
                                     
-                                    <td class="text-right">
-                                        <div class="btn-group">
-                                            <a href="" class="btn-white btn btn-xs">View</a>
-                                            <a href="" class="btn btn-blue btn-xs">Edit</a>
-                                            <a href="javascript:void(0);" class="remove-subject-btn btn-warning btn btn-xs">Remove</a>
-                                        </div>                                                
-                                        <form class="subject-remove" action="" method="POST">
-                                            @method('DELETE')
-                                            @csrf
-                                        </form>
-                                    </td>
+                                <td class="text-right">
+                                    <div class="btn-group">
+                                        <a href="" class="btn-white btn btn-xs">View</a>
+                                        <a href="" class="btn btn-blue btn-xs">Edit</a>
+                                        <a href="javascript:void(0);" class="remove-subject-btn btn-warning btn btn-xs">Remove</a>
+                                    </div>                                                
+                                    <form class="subject-remove" action="" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                    </form>
+                                </td>
 
                                 </tr>
                             @endfor
