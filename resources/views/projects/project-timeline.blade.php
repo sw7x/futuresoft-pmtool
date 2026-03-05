@@ -44,7 +44,7 @@
             font-size: 14px;
             font-weight: 500;
         }
-        .proj-info .value-text#proj-time-period {
+        .proj-info .value-text#proj-phase-time-period {
             color: #e53e3e;
             font-weight: 600;
         }
@@ -235,23 +235,32 @@
                         <div id="project-timeline"></div>
                     </div>
 
-                    <div id="proj-info2" class="proj-info">
+                    <div id="proj-info" class="proj-info">
                         <div class="proj-info-header">
                             <i class="fa fa-info-circle"></i>
                             <h4>Project Details</h4>
                             <button type="button" class="proj-info-close" title="Close">&times;</button>
                         </div>
                         <div class="info-row">
-                            <span class="label-text"><i class="fa fa-folder-open"></i> Project : </span>
-                            <span class="value-text" id="proj-title"></span>
+                            <span class="label-text"><i class="fa fa-folder-open"></i> Phase : </span>
+                            <span class="value-text" id="proj-phase"></span>
                         </div>
                         <div class="info-row">
-                            <span class="label-text"><i class="fa fa-align-left"></i> Content : </span>
-                            <span class="value-text" id="proj-content"></span>
+                            <span class="label-text"><i class="fa fa-align-left"></i> Description : </span>
+                            <span class="value-text" id="proj-phase-description"></span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label-text"><i class="fa fa-align-left"></i> Phase Type : </span>
+                            <span class="value-text" id="proj-phase-type">Actual</span>
                         </div>                 
                         <div class="info-row">
                             <span class="label-text"><i class="fa fa-calendar"></i> Time Period : </span>
-                            <span class="value-text" id="proj-time-period"></span>
+                            <span class="value-text" id="proj-phase-time-period"></span>
+                        </div>
+
+                        <div class="info-row">
+                            <span class="label-text"><i class="fa fa-calendar"></i> Progress : </span>
+                            <span class="value-text" id="proj-phase-progress">70% Completed</span>
                         </div>                    
                     </div>
 
@@ -264,54 +273,7 @@
 
 
 
-@section('bootstrap-modals')
-    <!-- Developer Projects Modal -->
-    <div class="modal fade" id="developerProjectsModal" tabindex="-1" role="dialog" aria-labelledby="developerProjectsModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                
-                <div class="modal-header border-bottom-0 pb-0">
-                    <h3 class="modal-title font-bold text-dark" id="developerProjectsModalLabel">
-                        <span id="modal-dev-name"></span>'s Projects
-                    </h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body pt-3">
-                    <hr class="mt-0 mb-4">
-                    
-                    <div class="border" id='timeline1-wrapper'>
-                        <div id="myTimeline1"></div>
-                    </div>
 
-
-                    <div id="proj-info1" class="proj-info">
-                        <div class="proj-info-header">
-                            <i class="fa fa-info-circle"></i>
-                            <h4>Project Details</h4>
-                            <button type="button" class="proj-info-close" title="Close">&times;</button>
-                        </div>
-                        <div class="info-row">
-                            <span class="label-text"><i class="fa fa-folder-open"></i> Project : </span>
-                            <span class="value-text" id="proj-title"></span>
-                        </div>
-                        <div class="info-row">
-                            <span class="label-text"><i class="fa fa-align-left"></i> Content : </span>
-                            <span class="value-text" id="proj-content"></span>
-                        </div>                 
-                        <div class="info-row">
-                            <span class="label-text"><i class="fa fa-calendar"></i> Time Period : </span>
-                            <span class="value-text" id="proj-time-period"></span>
-                        </div>                    
-                    </div>
-                    
-                </div>
-
-            </div>
-        </div>
-    </div>
-@stop
 
 
 
@@ -336,7 +298,7 @@
             row: 1,
             bgColor: "rgb(227, 52, 25)",
             color: "#FFFFFF",
-            label: "Estimated - Quam egetPellentesque amet egetPellentesque ut ultrices egetPellentesque Sed",
+            label: "Quam egetPellentesque amet egetPellentesque ut ultrices egetPellentesque Sed",
             content: "Ut. ut, sapien, tellus erat erat tellus in, aliquet. mauris. eu. est tellus at et sapien, erat dictum erat mauris. ut, et, et, eu. mauris. tellus et ut, et, erat ut. sapien lacus, at et sapien sapien dictum erat ut,."
         },
         {
@@ -347,7 +309,7 @@
             bgColor: "rgb(227, 52, 25)",
             color: "#FFFFFF",
             extend: {phase: "actual"},
-            label: "Actual - Done - Mauris ligula faucibus mi porttitor risus Mauris sed",
+            label: "Done - Mauris ligula faucibus mi porttitor risus Mauris sed",
             content: "Non ullamcorper nunc a, libero ullamcorper consectetur nunc nunc Etiam ullamcorper ex. mattis, felis. pharetra. accumsan volutpat felis. pharetra. volutpat ex. ullamcorper mattis, volutpat pharetra. ex. ullamcorper. accumsan dolor, ex. ullamcorper. tempus Etiam ex. volutpat volutpat felis. tempus felis. tempus."
         },
         {
@@ -355,9 +317,9 @@
             start: "2025-01-30 11:09",
             end: "2025-04-30 20:08",
             row: 3,
-            bgColor: "#FFC107",
+            bgColor: "#db8f1f",
             color: "#FFFFFF",
-            label: "Estimated - At tempor dictum bibendum mattis lectus mauris lorem",
+            label: "At tempor dictum bibendum mattis lectus mauris lorem",
             content: "Ullamcorper mattis quam. a, nisi hendrerit, amet rhoncus. arcu, amet mattis hendrerit, hendrerit, hendrerit, amet arcu, auctor, quam. amet a, posuere auctor, hendrerit, dictum mattis quam. posuere facilisi. hendrerit, rhoncus. amet auctor, hendrerit, a, dictum placerat rhoncus. auctor, facilisi. quam."
         },
         {
@@ -365,10 +327,10 @@
             start: "2025-02-15 11:09",
             end: "2025-06-30 20:08",
             row: 4,
-            bgColor: "#FFC107",
+            bgColor: "#db8f1f",
             color: "#FFFFFF",
             extend: {phase: "actual"},
-            label: "Actual - 72% Complted - Ut sociosqu consectetur elementum conubia arcu variusNullam conubia",
+            label: "Done - Ut sociosqu consectetur elementum conubia arcu variusNullam conubia",
             content: "Commodo Vestibulum sit at elit, posuere imperdiet elit, commodo ullamcorper ipsum sit Class imperdiet massa imperdiet, posuere ipsum massa molestie sit Vestibulum Vestibulum elit, molestie Class egestas massa elit, Phasellus Vestibulum imperdiet elit, sit imperdiet leo molestie commodo ullamcorper posuere."
         },
         {
@@ -376,9 +338,9 @@
             start: "2025-04-05 23:57",
             end: "2025-05-14 12:53",
             row: 5,
-            bgColor: "rgb(119, 227, 25)",
+            bgColor: "#5fb514",
             color: "#FFFFFF",
-            label: "Estimated - Himenaeos Suspendisse commodo sem himenaeos a Suspendisse nibh",
+            label: "Himenaeos Suspendisse commodo sem himenaeos a Suspendisse nibh",
             content: "Feugiat. eleifend euismod, feugiat feugiat turpis eleifend erat.Aenean feugiat. feugiat. lobortis inceptos erat.Aenean euismod, tellus, vehicula euismod, inceptos bibendum feugiat lobortis erat.Aenean auctor justo. feugiat. vehicula auctor eleifend vehicula feugiat justo. feugiat. bibendum euismod, porta bibendum inceptos feugiat. tellus, eleifend."
         },
         {
@@ -386,10 +348,10 @@
             start: "2025-03-15 21:52",
             end: "2025-05-20 17:58",
             row: 6,
-            bgColor: "rgb(119, 227, 25)",
+            bgColor: "#5fb514",
             color: "#FFFFFF",
             extend: {phase: "actual"},
-            label: "Actual - 5% Complted - In finibus magna ullamcorper facilisis ut finibus est",
+            label: "Done - In finibus magna ullamcorper facilisis ut finibus est",
             content: "Cras pulvinar risus. porttitor pretium facilisis. mattis litora pulvinar nibh.Nunc nibh.Nunc facilisis. litora pretium mattis sit Lorem risus. Cras pulvinar porttitor pretium Lorem Lorem Cras mattis Lorem mi. pretium magna, risus. porttitor pulvinar Lorem pulvinar mi. porttitor sit nibh.Nunc pretium."
         },
         {
@@ -399,7 +361,7 @@
             row: 7,
             bgColor: "#19a6e3",
             color: "#FFFFFF",
-            label: "Estimated - Justo arcu quis arcu lectus ex nisl ultrices",
+            label: "Justo arcu quis arcu lectus ex nisl ultrices",
             content: "Ut, lobortis tempus dapibus lobortis ut, lobortis adipiscing non bibendum purus ex. bibendum urna mauris bibendum laoreet purus mauris eu bibendum tempus eu lobortis lobortis dapibus mauris facilisi. bibendum facilisi. dapibus eu ex. urna dapibus mauris ut, adipiscing urna adipiscing."
         },
         {
@@ -410,7 +372,7 @@
             bgColor: "#19a6e3",
             color: "#FFFFFF",
             extend: {phase: "actual"},
-            label: "Actual - Pending - Cursus elit auctor Vestibulum lorem ornare lorem volutpat",
+            label: "Done - Pending - Cursus elit auctor Vestibulum lorem ornare lorem volutpat",
             content: "Taciti sollicitudin torquent torquent facilisi. torquent dapibus, sollicitudin viverra sollicitudin adipiscing Sed torquent erat imperdiet urna, interdum arcu urna, viverra erat adipiscing arcu taciti taciti torquent adipiscing interdum vulputate dapibus, torquent arcu eu. Sed imperdiet Sed Sed torquent taciti urna,."
         },
         {
@@ -420,7 +382,7 @@
             row: 9,
             bgColor: "#7419e3",
             color: "#FFFFFF",
-            label: "Estimated - Class maximus nunc pulvinar nunc maximus sagittis Vestibulum",
+            label: "Class maximus nunc pulvinar nunc maximus sagittis Vestibulum",
             content: "Dictum imperdiet dictum Class lobortis facilisis. Class himenaeos. dictum justo ullamcorper. felis. velit felis. velit lobortis In porttitor himenaeos. lobortis Class porta a porttitor imperdiet In velit a In lobortis sapien, In dictum lobortis ullamcorper. dictum a In In Class."
         },
         {
@@ -431,7 +393,7 @@
             bgColor: "#7419e3",
             color: "#FFFFFF",
             extend: {phase: "actual"},
-            label: "Actual - Complted - Dapibus sagittis volutpat Aliquam tincidunt Maecenas Maecenas Phasellus",
+            label: "Done - Dapibus sagittis volutpat Aliquam tincidunt Maecenas Maecenas Phasellus",
             content: "Magna magna orci Suspendisse justo, tortor porttitor orci Morbi magna tortor ullamcorper. Suspendisse Morbi diam ac, Suspendisse tortor facilisis taciti justo, taciti ac, facilisis diam dapibus, tortor facilisis ullamcorper. nunc Morbi diam magna porttitor nunc dapibus, porttitor ullamcorper. dapibus, justo,."
         },
         {
@@ -441,39 +403,39 @@
             row: 11,
             bgColor: "##795548",
             color: "#FFFFFF",
-            label: "Estimated - In laoreet nibhNunc diam ut hendrerit in ut",
+            label: "In laoreet nibhNunc diam ut hendrerit in ut",
             content: "Tellus est, ullamcorper urna, scelerisque nec dictum lorem. urna, massa congue sed. scelerisque ullamcorper est, tellus posuere, nec et pretium eu. est, ullamcorper massa ullamcorper pretium tellus posuere, pretium massa posuere, pretium dictum eu. est, posuere, lorem. est, nec et."
         },
         {
             id: 12,
             start: "2026-01-02 10:12",
-            end: "2026-02-28 07:17",
+            end: getLocalDateTime(),
             row: 12,
             bgColor: "##795548",
             color: "#FFFFFF",
             extend: {phase: "actual"},
-            label: "Actual - Complted - Est est ad nibhNunc egestas est at vel",
+            label: "72% Complted - Est est ad nibhNunc egestas est at vel",
             content: "Diam mauris turpis arcu, cursus. porta facilisis. rutrum arcu, consequat. cursus. turpis Maecenas cursus. fermentum rutrum cursus. tortor rhoncus. rutrum rhoncus. turpis posuere porta mauris rhoncus. posuere metus consequat cursus. mauris rutrum fermentum porta consequat diam rutrum posuere posuere mauris."
         },
         {
             id: 13,
-            start: "2026-02-27 02:49",
+            start: "2026-02-20 02:49",
             end: "2026-05-22 06:02",
             row: 13,
-            bgColor: "rgb(22 149 100)",
+            bgColor: "#6c757d",
             color: "#FFFFFF",
-            label: "Estimated - Scelerisque lobortis maximus sit est interdum sit Lorem",
+            label: "Scelerisque lobortis maximus sit est interdum sit Lorem",
             content: "Mauris, laoreet laoreet varius.Nullam litora In vel facilisis In laoreet Nulla in, mauris, mauris, litora facilisis facilisis tortor Nulla lacinia vel In litora mauris, varius.Nullam Nulla varius.Nullam amet, Nulla Nulla amet, amet, vel Aliquam vel lacinia facilisis varius.Nullam Nulla mauris,."
         },
         {
             id: 14,
-            start: "2026-03-20 14:11",
-            end: "2026-07-22 15:56",
+            start: "2026-03-01 14:11",
+            end: getLocalDateTime(),
             row: 14,
-            bgColor: "rgb(22 149 100)",
+            bgColor: "#6c757d",
             color: "#FFFFFF",
             extend: {phase: "actual"},
-            label: "Actual - Complted - Libero non eros per conubia eu inceptos libero",
+            label: "10% Complted Libero non eros per conubia eu inceptos libero",
             content: "Urna Etiam Sed hendrerit, Sed Vestibulum Vestibulum urna vestibulum Vestibulum eget, Vestibulum Phasellus hendrerit, posuere euismod, Vestibulum vestibulum aptent vitae nunc. sociosqu per tortor euismod, urna eget, nunc. aptent vitae Etiam tortor vitae aptent eget, vestibulum Etiam Sed euismod, Phasellus."
         }
     ];
@@ -606,8 +568,8 @@
         let $timelineContainer  = $("#project-timeline-wrapper");
         let timelineId          = "#project-timeline";
 
-        let increment = 1;
-        let lastId = 19;
+        //let increment = 1;
+        //let lastId = 19;
 
 
         $(document).on('click', '#timeline_generate', function() {
@@ -633,7 +595,7 @@
 
             page_timelineConfig.headline.title = 'Project Assignment Timeline' + shortString;
 
-            
+            /*
 
             let date = new Date('2025-08-07');
 
@@ -659,8 +621,10 @@
 
             increment++;
             lastId++;
+            */
+            page_timelineConfig.eventData = page_eventDataArr;
 
-            const timelineWidget  = $timelineContainer.find(timelineId).Timeline(page_timelineConfig);
+            const timelineWidget = $timelineContainer.find(timelineId).Timeline(page_timelineConfig);
 
 
             timelineWidget.Timeline('initialized', function(elm,opts,usrdata){
@@ -713,10 +677,10 @@
                     console.log(event.content);
                     console.log(event.label);
                     
-                    $('#proj-info2 #proj-title').html(event.label);
-                    $('#proj-info2 #proj-time-period').html(event.start + ' - ' + event.end);
-                    $('#proj-info2 #proj-content').html(event.content);
-                    $('#proj-info2').fadeIn(); // Show the box with a smooth fade
+                    $('#proj-info #proj-phase').html(event.label);
+                    $('#proj-info #proj-phase-time-period').html(event.start + ' - ' + event.end);
+                    $('#proj-info #proj-phase-description').html(event.content);
+                    $('#proj-info').fadeIn(); // Show the box with a smooth fade
                 });    
 
 
@@ -783,7 +747,7 @@
                     <div id="project-timeline"></div>
                 `);
 
-                $('#proj-info2').hide();
+                $('#proj-info').hide();
 
 
 
@@ -792,8 +756,8 @@
         });
 
 
-        $(document).on('click', '#proj-info2 .proj-info-close', function() {
-            $('#proj-info2').fadeOut();
+        $(document).on('click', '#proj-info .proj-info-close', function() {
+            $('#proj-info').fadeOut();
         });
 
 
@@ -815,10 +779,10 @@
             const event = events.find(evt => evt.uid === uid);
             
             if (event) {
-                $('#proj-info2 #proj-title').html(event.label);
-                $('#proj-info2 #proj-time-period').html(event.start + ' - ' + event.end);
-                $('#proj-info2 #proj-content').html(event.content);
-                $('#proj-info2').fadeIn();
+                $('#proj-info #proj-phase').html(event.label);
+                $('#proj-info #proj-phase-time-period').html(event.start + ' - ' + event.end);
+                $('#proj-info #proj-phase-description').html(event.content);
+                $('#proj-info').fadeIn();
             }
         });
         */
@@ -830,13 +794,10 @@
 
 
 
-
-
-
-////////////////////////////////////////////////////////////////////////////////
-
-
-
+function getLocalDateTime() {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+}
 
 </script>
 @stop
