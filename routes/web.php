@@ -13,6 +13,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TimesheetController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\DesignationController;
+use App\Http\Controllers\PermissionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -88,6 +89,13 @@ Route::get('/404', [PageController::class, 'page404'])->name('404');
 
 
 
+/* permissions */
+Route::group(['prefix'=>'permissions','as'=>'permissions.'], function(){
+    Route::get('/permissions', [PermissionController::class, 'loadPermissions'])->name('index');
+});
+
+
+
 
 /* users */
 Route::group(['prefix'=>'users','as'=>'users.'], function(){
@@ -100,7 +108,7 @@ Route::group(['prefix'=>'users','as'=>'users.'], function(){
 
     Route::get('/view-designations',[DesignationController::class,'viewDesignations'])->name('view-designations');
     Route::get('/assign-designations',[DesignationController::class,'assignDesignations'])->name('assign-designations');
-Route::get('/{id}',[UserController::class,'viewSingleUser'])->name('view-single');
+    Route::get('/{id}',[UserController::class,'viewSingleUser'])->name('view-single');
 });
 
 
@@ -118,7 +126,7 @@ Route::group(['prefix' => 'project','as' => 'project.'], function () {
 Route::group(['prefix'=>'projects','as'=>'projects.'], function(){
     //Route::post('login', [ProjectController::class,'login'])->name('login');
     //Route::post('create', [ProjectController::class,'create'])->name('create');
-    
+
 
     //Route::get('create', [ProjectController::class,'create'])->name('create');
     Route::get('/', [ProjectController::class,'index'])->name('list');
@@ -159,11 +167,9 @@ Route::group(['prefix'=>'projects','as'=>'projects.'], function(){
 
 
 
-
-
 /* threads */
 Route::group(['prefix'=>'threads','as'=>'threads.'], function(){
-    
+
     Route::get('/create',[ProjectController::class, 'createThread'])->name('create');
 
     Route::get('/projects',[ProjectController::class, 'projectThreadList'])->name('projects');

@@ -184,6 +184,7 @@
 
 
                 <li><a href="{{ route('auth.login') }}"><i class="fa fa-sign-in"></i> Login</a></li>
+                <li class="{{ Route::is('permissions.index') ? 'active current' : '' }}"><a href="{{ route('permissions.index') }}"><i class="fa fa-key"></i> Permissions</a></li>
                         
                 <li class="{{ Route::is('profile') ? 'active current' : '' }}">
                     <a href="{{ route('profile') }}">
