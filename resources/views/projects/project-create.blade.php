@@ -300,41 +300,41 @@
 
 
 
-                        <!-- Milestones Header -->
+                        <!-- Phases Header -->
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h3 class="font-bold text-lg mb-0"><i class="fa fa-flag"></i> Milestones</h3>
-                            <button type="button" class="btn btn-primary btn-outline btn-xs" id="add-milestone-row">
-                                <i class="fa fa-plus"></i> Add Milestone
+                            <h3 class="font-bold text-lg mb-0"><i class="fa fa-calendar"></i> Project Plan</h3>
+                            <button type="button" class="btn btn-primary btn-outline btn-xs" id="add-phase-row">
+                                <i class="fa fa-plus"></i> Add Phase
                             </button>
                         </div>
 
-                        <div id="milestones-container">
-                            <div id="no-milestones-msg" class="text-center py-4 bg-light border-dashed rounded mb-4">
-                                <p class="text-muted mb-0"><i class="fa fa-info-circle"></i> No milestones added yet. Click "Add Milestone" to begin.</p>
+                        <div id="phases-container">
+                            <div id="no-phases-msg" class="text-center py-4 bg-light border-dashed rounded mb-4">
+                                <p class="text-muted mb-0"><i class="fa fa-info-circle"></i> No phases added yet. Click "Add Phase" to begin.</p>
                             </div>
                         </div>
 
-                        <!-- Milestone Template (Hidden) -->
-                        <template id="milestone-template">
-                            <div class="milestone-row border-bottom mb-4 pb-3">
+                        <!-- Phase Template (Hidden) -->
+                        <template id="phase-template">
+                            <div class="phase-row border-bottom mb-4 pb-3">
                                 <div class="text-right mb-2">
-                                    <button type="button" class="btn btn-danger btn-outline btn-xs remove-milestone-row">
+                                    <button type="button" class="btn btn-danger btn-outline btn-xs remove-phase-row">
                                         <i class="fa fa-times"></i> Remove
                                     </button>
                                 </div>
-                                <!-- Milestone Title -->
+                                <!-- Phase Title -->
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Name</label>
                                     <div class="col-sm-8">
-                                        <input type="text" name="milestone_name[]" class="form-control" placeholder="Enter milestone name">
+                                        <input type="text" name="phase_name[]" class="form-control" placeholder="Enter phase name">
                                     </div>
                                 </div>
 
-                                <!-- Milestone Description -->
+                                <!-- Phase Description -->
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Description</label>
                                     <div class="col-sm-8">
-                                        <textarea name="milestone_description[]" class="form-control" rows="3" placeholder="Briefly describe the milestone"></textarea>
+                                        <textarea name="phase_description[]" class="form-control" rows="3" placeholder="Briefly describe the phase"></textarea>
                                     </div>
                                 </div>
 
@@ -342,7 +342,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Progress</label>
                                     <div class="col-sm-8">
-                                        <select class="form-control select2-milestone" name="milestone_progress[]">
+                                        <select class="form-control select2-phase" name="phase_progress[]">
                                             <option></option>
                                             <option value="not_started">Not Started</option>
                                             <option value="in_progress">In Progress</option>
@@ -361,14 +361,14 @@
                                             <div class="col-md-6">
                                                 <div class="input-group date">
                                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                    <input type="datetime-local" class="form-control" name="milestone_scheduled_start[]">
+                                                    <input type="datetime-local" class="form-control" name="phase_scheduled_start[]">
                                                 </div>
                                                 <small class="text-muted">Start Date</small>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input-group date">
                                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                    <input type="datetime-local" class="form-control" name="milestone_scheduled_end[]">
+                                                    <input type="datetime-local" class="form-control" name="phase_scheduled_end[]">
                                                 </div>
                                                 <small class="text-muted">End Date</small>
                                             </div>
@@ -384,14 +384,14 @@
                                             <div class="col-md-6">
                                                 <div class="input-group date">
                                                     <span class="input-group-addon"><i class="fa fa-calendar-check-o"></i></span>
-                                                    <input type="datetime-local" class="form-control" name="milestone_actual_start[]">
+                                                    <input type="datetime-local" class="form-control" name="phase_actual_start[]">
                                                 </div>
                                                 <small class="text-muted">Start Date</small>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input-group date">
                                                     <span class="input-group-addon"><i class="fa fa-calendar-check-o"></i></span>
-                                                    <input type="datetime-local" class="form-control" name="milestone_actual_end[]">
+                                                    <input type="datetime-local" class="form-control" name="phase_actual_end[]">
                                                 </div>
                                                 <small class="text-muted">End Date</small>
                                             </div>
@@ -584,32 +584,32 @@
 
 
 
-        function initMilestoneSelect2(element) {
+        function initPhaseSelect2(element) {
             element.select2({
-                placeholder: "Select milestone progress",
+                placeholder: "Select phase progress",
                 allowClear: true,
                 width: '100%'
             });
         }
 
-        initMilestoneSelect2($(".select2-milestone"));
+        initPhaseSelect2($(".select2-phase"));
 
-        $('#add-milestone-row').click(function() {
-            $('#no-milestones-msg').hide();
+        $('#add-phase-row').click(function() {
+            $('#no-phases-msg').hide();
             
-            var template = document.querySelector('#milestone-template');
+            var template = document.querySelector('#phase-template');
             var clone = document.importNode(template.content, true);
             var newRow = $(clone);
 
-            $('#milestones-container').append(newRow);
-            initMilestoneSelect2($('#milestones-container .milestone-row').last().find('.select2-milestone'));
+            $('#phases-container').append(newRow);
+            initPhaseSelect2($('#phases-container .phase-row').last().find('.select2-phase'));
         });
 
-        $(document).on('click', '.remove-milestone-row', function() {
-            $(this).closest('.milestone-row').fadeOut(300, function() {
+        $(document).on('click', '.remove-phase-row', function() {
+            $(this).closest('.phase-row').fadeOut(300, function() {
                 $(this).remove();
-                if ($('#milestones-container .milestone-row').length === 0) {
-                    $('#no-milestones-msg').fadeIn();
+                if ($('#phases-container .phase-row').length === 0) {
+                    $('#no-phases-msg').fadeIn();
                 }
             });
         });

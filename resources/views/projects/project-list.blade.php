@@ -42,23 +42,14 @@
                     <table id="projects-table" class="table table-striped table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>///
-                                <th>Project</th>///
-                                <th>Client</th>///
+                                <th>ID</th>
+                                <th>Project</th>
+                                <th>Client</th>
                                 <th>Locality</th>
                                 <th>Status</th>
                                 <th>Delivery Date</th>
                                 <th>Progress</th>
-                                <th>Action</th>//
-
-
-
-
-
-
-
-
-
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,17 +70,17 @@
                                 <td>2018/01/{{ str_pad(($i % 30) + 1, 2, '0', STR_PAD_LEFT) }}
                                 <td>
                                     @if($i==0)
-                                        <span class="badge badge-secondary px-3 py-2 uppercase tracking-wider">Not Started</span>
+                                        <span class="badge badge-secondary px-2 py-1 uppercase tracking-wider">Not Started</span>
                                     @elseif($i==1)
-                                        <span class="badge badge-info px-3 py-2 uppercase tracking-wider">In Progress</span>
+                                        <span class="badge badge-info px-2 py-1 uppercase tracking-wider">In Progress</span>
                                     @elseif($i==2)
-                                        <span class="badge badge-primary px-3 py-2 uppercase tracking-wider">Completed</span>
+                                        <span class="badge badge-primary px-2 py-1 uppercase tracking-wider">Completed</span>
                                     @elseif($i==3)
-                                        <span class="badge badge-warning px-3 py-2 uppercase tracking-wider">Blocked</span>
+                                        <span class="badge badge-warning px-2 py-1 uppercase tracking-wider">Blocked</span>
                                     @elseif($i==4)
-                                        <span class="badge badge-danger px-3 py-2 uppercase tracking-wider">Cancelled</span>
+                                        <span class="badge badge-danger px-2 py-1 uppercase tracking-wider">Cancelled</span>
                                     @else
-                                        <span class="badge badge-info px-3 py-2 uppercase tracking-wider">In Progress</span>
+                                        <span class="badge badge-info px-2 py-1 uppercase tracking-wider">In Progress</span>
                                         <span class="text-navy text-base font-bold"> - 72%</span>
                                     @endif</td>
                                 

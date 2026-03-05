@@ -68,6 +68,9 @@
         min-width: 250px;
         transition: all 0.2s ease;
     }
+    .info-badge.three-cols{
+        flex: 1 1 calc(33% - 15px);
+    }
     .info-badge:hover {
         background: #ffffff;
         border-color: #cbd5e0;
@@ -227,30 +230,39 @@
 
     @section('content')
     
-    <div class="ibox-content m-b-sm border-bottom">
-        
-        <h2 class="m-0 font-bold text-dark">Task Context</h2>
-            
-
+    <div class="ibox-content m-b-sm border-bottom">        
+        <h2 class="m-0 font-bold text-dark">Project Overview</h2>
         <div class="info-group">
-            <!-- Project Detail -->
-            <div class="info-badge">
-                <i class="fa fa-briefcase"></i>
-                <div>
-                    <span class="info-label">Project</span>
-                    <span class="info-value">FutureSoft ERP Update</span>
-                </div>
-            </div>
-
             <!-- Client Detail -->
-            <div class="info-badge">
+            <div class="info-badge three-cols">
                 <i class="fa fa-building-o"></i>
                 <div>
                     <span class="info-label">Client</span>
                     <span class="info-value">Global Solutions Inc.</span>
                 </div>
             </div>
+            <!-- Project Detail -->
+            <div class="info-badge three-cols">
+                <i class="fa fa-briefcase"></i>
+                <div>
+                    <span class="info-label">Project</span>
+                    <span class="info-value">FutureSoft ERP Update</span>
+                </div>
+            </div>
+            <!-- Parent Task Detail -->
+            <div class="info-badge three-cols">
+                <i class="fa fa-pencil-square-o"></i>
+                <div>
+                    <span class="info-label">Phase</span>
+                    <span class="info-value">Developing</span>
+                </div>
+            </div>            
+        </div>
+    </div>
 
+    <div class="ibox-content m-b-sm border-bottom">        
+        <h2 class="m-0 font-bold text-dark">Task Relationship</h2>
+        <div class="info-group">
             <!-- Parent Task Detail -->
             <div class="info-badge">
                 <i class="fa fa-level-up"></i>
@@ -259,7 +271,6 @@
                     <span class="info-value">Database Migration Module</span>
                 </div>
             </div>
-
             <!-- Project Status -->
             <div class="info-badge">
                 <i class="fa fa-bullseye" style="color: #38a169;"></i>

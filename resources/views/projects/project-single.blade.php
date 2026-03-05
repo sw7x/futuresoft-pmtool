@@ -46,7 +46,7 @@ if (!isset($project)) {
 
 <h3>3. Current Implementation Phase</h3>
 <p>We are currently in the <strong>Execution Phase (Q2)</strong>. The initial audit of the warehouse infrastructure was completed in Q1, identifying critical zones for sensor deployment. Current activities focus on the deployment of the central AI engine and the training of baseline models using historical logistics data.</p>
-<p>Recent milestones achieved:</p>
+<p>Recent phases achieved:</p>
 <ul>
     <li>Successful pilot of the autonomous routing system in the Northern corridor.</li>
     <li>Installation of smart tracking beacons in the main sorting facility.</li>
@@ -193,13 +193,13 @@ if (!isset($project)) {
             color: #a0aec0;
         }
 
-        /* ====Project Milestones Timeline==== */
-        .milestone-timeline {
+        /* ====Project phases Timeline==== */
+        .phase-timeline {
             position: relative;
             padding: 20px 0;
             margin-top: 10px;
         }
-        .milestone-timeline::before {
+        .phase-timeline::before {
             content: '';
             position: absolute;
             left: 9px;
@@ -208,15 +208,15 @@ if (!isset($project)) {
             width: 2px;
             background: #e2e8f0;
         }
-        .milestone-item {
+        .phase-item {
             position: relative;
             padding-left: 40px;
             margin-bottom: 30px;
         }
-        .milestone-item:last-child {
+        .phase-item:last-child {
             margin-bottom: 0;
         }
-        .milestone-marker {
+        .phase-marker {
             position: absolute;
             left: 0;
             top: 5px;
@@ -227,35 +227,35 @@ if (!isset($project)) {
             border: 4px solid #cbd5e0;
             z-index: 2;
         }
-        .milestone-card {
+        .phase-card {
             background: #fff;
             border: 1px solid #e2e8f0;
             border-radius: 8px;
             padding: 15px 20px;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        .milestone-card:hover {
+        .phase-card:hover {
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             border-color: #cbd5e0;
         }
-        .milestone-header {
+        .phase-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 8px;
         }
-        .milestone-name {
+        .phase-name {
             font-size: 1.05rem;
             font-weight: 700;
             color: #2d3748;
         }
-        .milestone-desc {
+        .phase-desc {
             font-size: 0.9rem;
             color: #718096;
             margin-bottom: 12px;
             line-height: 1.5;
         }
-        .milestone-dates {
+        .phase-dates {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
@@ -286,20 +286,20 @@ if (!isset($project)) {
         }
         
         /* Color Variations */
-        .milestone-blue .milestone-marker { border-color: #4299e1; }
-        .milestone-blue .milestone-name { color: #2b6cb0; }
+        .phase-blue .phase-marker { border-color: #4299e1; }
+        .phase-blue .phase-name { color: #2b6cb0; }
         
-        .milestone-green .milestone-marker { border-color: #48bb78; }
-        .milestone-green .milestone-name { color: #2f855a; }
+        .phase-green .phase-marker { border-color: #48bb78; }
+        .phase-green .phase-name { color: #2f855a; }
         
-        .milestone-orange .milestone-marker { border-color: #ed8936; }
-        .milestone-orange .milestone-name { color: #c05621; }
+        .phase-orange .phase-marker { border-color: #ed8936; }
+        .phase-orange .phase-name { color: #c05621; }
 
-        .milestone-red .milestone-marker { border-color: #f56565; }
-        .milestone-red .milestone-name { color: #c53030; }
+        .phase-red .phase-marker { border-color: #f56565; }
+        .phase-red .phase-name { color: #c53030; }
 
-        .milestone-purple .milestone-marker { border-color: #9f7aea; }
-        .milestone-purple .milestone-name { color: #6b46c1; }
+        .phase-purple .phase-marker { border-color: #9f7aea; }
+        .phase-purple .phase-name { color: #6b46c1; }
 
     </style>
 @stop
@@ -512,19 +512,19 @@ if (!isset($project)) {
 
             <div class="ibox-content m-b-sm border-bottom">
         
-                <h2 class="m-0 font-bold text-dark mb-3">Project Milestones</h2>            
+                <h2 class="m-0 font-bold text-dark mb-3">Project Plan</h2>            
 
-                <div class="milestone-timeline">
-                    <!-- Milestone 1 -->
-                    <div class="milestone-item milestone-blue">
-                        <div class="milestone-marker"></div>
-                        <div class="milestone-card">
-                            <div class="milestone-header">
-                                <span class="milestone-name">Requirement Analysis & Design</span>
+                <div class="phase-timeline">
+                    <!-- phase 1 -->
+                    <div class="phase-item phase-blue">
+                        <div class="phase-marker"></div>
+                        <div class="phase-card">
+                            <div class="phase-header">
+                                <span class="phase-name">Requirement Analysis & Design</span>
                                 <span class="badge badge-primary">Completed</span>
                             </div>
-                            <div class="milestone-desc">Defining the core system architecture, data flow diagrams, and finalizing user interface mockups with stakeholder approval.</div>
-                            <div class="milestone-dates">
+                            <div class="phase-desc">Defining the core system architecture, data flow diagrams, and finalizing user interface mockups with stakeholder approval.</div>
+                            <div class="phase-dates">
                                 <div class="date-box">
                                     <i class="fa fa-calendar-o"></i>
                                     <div>
@@ -543,16 +543,16 @@ if (!isset($project)) {
                         </div>
                     </div>
 
-                    <!-- Milestone 2 -->
-                    <div class="milestone-item milestone-green">
-                        <div class="milestone-marker"></div>
-                        <div class="milestone-card">
-                            <div class="milestone-header">
-                                <span class="milestone-name">Backend Infrastructure Setup</span>
+                    <!-- phase 2 -->
+                    <div class="phase-item phase-green">
+                        <div class="phase-marker"></div>
+                        <div class="phase-card">
+                            <div class="phase-header">
+                                <span class="phase-name">Backend Infrastructure Setup</span>
                                 <span class="badge badge-success">On Track</span>
                             </div>
-                            <div class="milestone-desc">Deployment of cloud servers, database schema migration, and implementation of core authentication microservices.</div>
-                            <div class="milestone-dates">
+                            <div class="phase-desc">Deployment of cloud servers, database schema migration, and implementation of core authentication microservices.</div>
+                            <div class="phase-dates">
                                 <div class="date-box">
                                     <i class="fa fa-calendar-o"></i>
                                     <div>
@@ -571,16 +571,16 @@ if (!isset($project)) {
                         </div>
                     </div>
 
-                    <!-- Milestone 3 -->
-                    <div class="milestone-item milestone-orange">
-                        <div class="milestone-marker"></div>
-                        <div class="milestone-card">
-                            <div class="milestone-header">
-                                <span class="milestone-name">Frontend Core Components</span>
+                    <!-- phase 3 -->
+                    <div class="phase-item phase-orange">
+                        <div class="phase-marker"></div>
+                        <div class="phase-card">
+                            <div class="phase-header">
+                                <span class="phase-name">Frontend Core Components</span>
                                 <span class="badge badge-warning">Delayed</span>
                             </div>
-                            <div class="milestone-desc">Building the dashboard widgets, interactive charts, and integrating the real-time notification system via WebSockets.</div>
-                            <div class="milestone-dates">
+                            <div class="phase-desc">Building the dashboard widgets, interactive charts, and integrating the real-time notification system via WebSockets.</div>
+                            <div class="phase-dates">
                                 <div class="date-box">
                                     <i class="fa fa-calendar-o"></i>
                                     <div>
@@ -599,16 +599,16 @@ if (!isset($project)) {
                         </div>
                     </div>
 
-                    <!-- Milestone 4 -->
-                    <div class="milestone-item milestone-purple">
-                        <div class="milestone-marker"></div>
-                        <div class="milestone-card">
-                            <div class="milestone-header">
-                                <span class="milestone-name">Beta Release & Bug Fixing</span>
+                    <!-- phase 4 -->
+                    <div class="phase-item phase-purple">
+                        <div class="phase-marker"></div>
+                        <div class="phase-card">
+                            <div class="phase-header">
+                                <span class="phase-name">Beta Release & Bug Fixing</span>
                                 <span class="badge badge-info">In Progress</span>
                             </div>
-                            <div class="milestone-desc">Rolling out the beta version to the internal team for regression testing and squashing identified UI/UX bugs.</div>
-                            <div class="milestone-dates">
+                            <div class="phase-desc">Rolling out the beta version to the internal team for regression testing and squashing identified UI/UX bugs.</div>
+                            <div class="phase-dates">
                                 <div class="date-box">
                                     <i class="fa fa-calendar-o"></i>
                                     <div>
@@ -627,16 +627,16 @@ if (!isset($project)) {
                         </div>
                     </div>
 
-                    <!-- Milestone 5 -->
-                    <div class="milestone-item milestone-red">
-                        <div class="milestone-marker"></div>
-                        <div class="milestone-card">
-                            <div class="milestone-header">
-                                <span class="milestone-name">External API Integration</span>
+                    <!-- phase 5 -->
+                    <div class="phase-item phase-red">
+                        <div class="phase-marker"></div>
+                        <div class="phase-card">
+                            <div class="phase-header">
+                                <span class="phase-name">External API Integration</span>
                                 <span class="badge badge-danger">Delayed</span>
                             </div>
-                            <div class="milestone-desc">Syncing with third-party payment gateways and shipping aggregators. Currently blocked by vendor documentation updates.</div>
-                            <div class="milestone-dates">
+                            <div class="phase-desc">Syncing with third-party payment gateways and shipping aggregators. Currently blocked by vendor documentation updates.</div>
+                            <div class="phase-dates">
                                 <div class="date-box">
                                     <i class="fa fa-calendar-o"></i>
                                     <div>
