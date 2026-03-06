@@ -476,6 +476,10 @@
                                     <span class="font-bold">2025/12/05</span><br>
                                     <small>(2.5 hours ago)</small>
                                 </div>
+                                <div class="">
+                                    <small>Efficiency: </small>
+                                    <span class="text-blue-500 font-bold text-base">72%</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -623,8 +627,16 @@
                             <div class="col-md-2 task-info border-l border-dotted border-gray-300">                                    
                                 <span class="badge badge-danger uppercase mb-1 py-2">Overdue</span>
                                 <div class="views-number text-danger">
-                                    <small>Deadline:</small> 2025/03/01<br>
-                                    <small class="font-bold text-danger">(Action Required)</small>
+                                    <div>
+                                        <small>Deadline:</small> 2025/03/01<br>
+                                        <small>(2.5 hours ago)</small>
+                                    </div>
+                                    
+                                    
+                                    <div class="">
+                                        <small>Efficiency: </small>
+                                        <span class="text-red-500 font-bold text-base">72%</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -709,8 +721,31 @@
             </div>
 
 
+            <div class="ibox">
+                <div class="ibox-content forum-container">
+
+                   <div>for single task: efficiency = (est/spend)*50%</div>
+                   <div>for delayed single task: 0%</div>
+
+                   <hr>
+                   <br><br>
+                   <div>for total tasks: efficiency = (overall est/overall spend)*50%</div>
+                   <br><br>
 
 
+                   <div>est 10 , spend 5</div>
+                   <div>est 20 , spend 15</div>
+                   <div>est 30 , spend 20</div>
+                   <div>est 50 , spend 60 - delayed</div><br>
+
+                   <div>total tasks: efficiency = (110/100)*50% = 65%</div><br><br>
+                   <div>when delayed reduce precentage = (50%/number of tasks)*delayed task count = (50%/4) = 12.5%</div>
+                   <div>total efficiency(when there is delay) = 65% - 12.5% = 42.5%</div>
+
+
+
+                </div>
+            </div>
 
 
 
