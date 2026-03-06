@@ -191,6 +191,11 @@ Route::group(['prefix'=>'reports','as'=>'reports.'], function(){
     Route::get('/designation-timings-by-project',[ReportController::class, 'DesignationTimingsByProject'])->name('designation-timings-by-project');
     Route::get('/project-timings-by-employee',[ReportController::class, 'ProjectTimingsByEmployee'])->name('project-timings-by-employee');
     Route::get('/employee-timings-by-project',[ReportController::class, 'EmployeeTimingsByProject'])->name('employee-timings-by-project');
+    
+
+
+    Route::get('/dev-workload',[ReportController::class, 'devWorkloadReport'])->name('dev-workload');
+    Route::get('/pm-workload',[ReportController::class, 'pmWorkloadReport'])->name('pm-workload');
 
 
 

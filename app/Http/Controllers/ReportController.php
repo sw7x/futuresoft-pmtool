@@ -23,4 +23,12 @@ class ReportController extends Controller
     public function EmployeeTimingsByProject(){
         return view('reports.employee-timings-by-project');
     }
+
+    public function devWorkloadReport(){
+        return view('reports.dev-workload');
+    }
+
+    public function pmWorkloadReport(){
+        return view('reports.pm-workload');
+    }
 }

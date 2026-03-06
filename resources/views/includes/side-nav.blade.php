@@ -134,6 +134,14 @@
                             </a>
                         </li>
 
+                        <li class="{{ Route::is('reports.dev-workload') ? 'current' : '' }}">
+                            <a class="_text-xs" href="{{ route('reports.dev-workload') }}"><i class="fa fa-user-secret"></i> Developer workload</a>
+                        </li>
+
+                        <li class="{{ Route::is('reports.pm-workload') ? 'current' : '' }}">
+                            <a class="_text-xs" href="{{ route('reports.pm-workload') }}"><i class="fa fa-user-md"></i> PM workload</a>
+                        </li>
+
                     </ul>
                 </li>
 
