@@ -63,6 +63,10 @@
     
     .forum-thread-labels .label-project {
         background-color: #1ab394; /* Primary/Greenish color */
+    }    
+
+    .forum-thread-labels .label-client {
+        background-color: #212529ba;
     }
 
     .forum-thread-labels .label-task {
@@ -96,14 +100,19 @@
                 <div class="ibox-content forum-post-container">
                     <div class="_forum-post-info">
                         <div class="forum-thread-labels">
+                            <span class="label label-client ">Client : MOS furniture</span>
                             <span class="label label-project">Project : MOS furniture iss print</span>
                         </div>
+                        
                         <h1 class="text-navy">General discussion</h1>
                         <span class="text-muted">
                             <span class="mr-2"><i class="fa fa-user"></i> Heshan Daminda</span>
                             <span class=""><i class="fa fa-clock-o"></i>  Today at 10:58 AM</span>
                         </span>
-                        <h4>Announcements</h4>  
+                        <h3>Announcements</h3>
+                        <div class="mt-3 _text-muted">
+                            <span class="">Project Progress : In Progress</span>
+                        </div>                          
                     </div>
                 </div>
             </div>        
@@ -129,6 +138,10 @@
                             <br/><br/>
                             - Mike Smith
                             CEO, Zender Inc.
+                            <div class="text-right mt-2">
+                                <button class="btn btn-white btn-xs"><i class="fa fa-reply"></i> Reply</button>
+                                <button class="btn btn-white btn-xs"><i class="fa fa-quote-left"></i> Quote</button>
+                            </div>
                         </div>
                     </div>
                     <div class="media">
@@ -146,6 +159,10 @@
                             <br/><br/>
                             - Alex Kunter
                             Designer, Kurtner Company
+                            <div class="text-right mt-2">
+                                <button class="btn btn-white btn-xs"><i class="fa fa-reply"></i> Reply</button>
+                                <button class="btn btn-white btn-xs"><i class="fa fa-quote-left"></i> Quote</button>
+                            </div>
                         </div>
                     </div>
                     <div class="media">
@@ -163,6 +180,10 @@
                             <br/><br/>
                             - Monica Jackson
                             UX developer
+                            <div class="text-right mt-2">
+                                <button class="btn btn-white btn-xs"><i class="fa fa-reply"></i> Reply</button>
+                                <button class="btn btn-white btn-xs"><i class="fa fa-quote-left"></i> Quote</button>
+                            </div>
                         </div>
                     </div>
                     <div class="media">
@@ -180,7 +201,6 @@
                             <br/><br/>
                             - John Ken
                             UX/UI developer
-
                             <div class="media">
                                 <div class="media-body">
                                     <a class="_forum-avatar text-navy text-sm" href="#">User said: <i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i></a>
@@ -194,8 +214,7 @@
 
                                     Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
                                     <br/><br/>
-                                    - Adam Smith
-                                    CEO
+                                    - Adam Smith CEO                                    
                                 </div>
                             </div>
                             
@@ -209,10 +228,16 @@
                                     <br/><br/>
                                     Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words
                                     <br/><br/>
-                                    - Sandra Jackson
-                                    UI developer
+                                    - Sandra Jackson UI developer
+                                    
                                 </div>
-                            </div>                        
+                            </div>
+                                                    
+                            <div class="text-right mt-2">
+                                <button class="btn btn-white btn-xs"><i class="fa fa-reply"></i> Reply</button>
+                                <button class="btn btn-white btn-xs"><i class="fa fa-quote-left"></i> Quote</button>
+                            </div>
+
                         </div>
                     </div>
 

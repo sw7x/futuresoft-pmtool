@@ -60,7 +60,10 @@
         border-radius: 3px;
         color: #fff;
     }
-    
+    .forum-thread-labels .label-client {
+        background-color: #212529ba;
+    }
+
     .forum-thread-labels .label-project {
         background-color: #1ab394; /* Primary/Greenish color */
     }
@@ -96,6 +99,7 @@
                 <div class="ibox-content forum-post-container">
                     <div class="_forum-post-info">
                         <div class="forum-thread-labels">
+                            <span class="label label-client ">Client : MOS furniture</span>
                             <span class="label label-project">Project : MOS furniture iss print</span>
                             <span class="label label-task">Task Name : TASK123 - impliment ui changes</span>
                         </div>
@@ -104,7 +108,10 @@
                             <span class="mr-2"><i class="fa fa-user"></i> Heshan Daminda</span>
                             <span class=""><i class="fa fa-clock-o"></i>  Today at 10:58 AM</span>
                         </span>
-                        <h4>General discussion</h4>                    
+                        <h3>Announcements</h3>
+                        <div class="mt-3 _text-muted">
+                            <span class="">Task Progress : In Progress</span>
+                        </div>                    
                     </div>
                 </div>
             </div>        
@@ -130,6 +137,11 @@
                             <br/><br/>
                             - Mike Smith
                             CEO, Zender Inc.
+
+                            <div class="text-right mt-2">
+                                <button class="btn btn-white btn-xs"><i class="fa fa-reply"></i> Reply</button>
+                                <button class="btn btn-white btn-xs"><i class="fa fa-quote-left"></i> Quote</button>
+                            </div>
                         </div>
                     </div>
                     <div class="media">
@@ -147,6 +159,10 @@
                             <br/><br/>
                             - Alex Kunter
                             Designer, Kurtner Company
+                            <div class="text-right mt-2">
+                                <button class="btn btn-white btn-xs"><i class="fa fa-reply"></i> Reply</button>
+                                <button class="btn btn-white btn-xs"><i class="fa fa-quote-left"></i> Quote</button>
+                            </div>
                         </div>
                     </div>
                     <div class="media">
@@ -164,6 +180,10 @@
                             <br/><br/>
                             - Monica Jackson
                             UX developer
+                            <div class="text-right mt-2">
+                                <button class="btn btn-white btn-xs"><i class="fa fa-reply"></i> Reply</button>
+                                <button class="btn btn-white btn-xs"><i class="fa fa-quote-left"></i> Quote</button>
+                            </div>
                         </div>
                     </div>
                     <div class="media">
@@ -200,8 +220,7 @@
                                 </div>
                             </div>
                             
-                            <div class="media">
-                                
+                            <div class="media">                                
                                 <div class="media-body">
                                     <a class="_forum-avatar text-navy text-sm" href="#">User ABC said: <i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i></a>
 
@@ -213,6 +232,10 @@
                                     - Sandra Jackson
                                     UI developer
                                 </div>
+                            </div>
+                            <div class="text-right mt-2">
+                                <button class="btn btn-white btn-xs"><i class="fa fa-reply"></i> Reply</button>
+                                <button class="btn btn-white btn-xs"><i class="fa fa-quote-left"></i> Quote</button>
                             </div>                        
                         </div>
                     </div>
