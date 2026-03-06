@@ -729,7 +729,7 @@
 
                    <hr>
                    <br><br>
-                   <div>for total tasks: efficiency = (overall est/overall spend)*50%</div>
+                   <div>for total tasks: efficiency = {task(1) effciency + task(2) effciency + task(3) effciency + ... + task(n) effciency}/n</div>
                    <br><br>
 
 
@@ -738,9 +738,14 @@
                    <div>est 30 , spend 20</div>
                    <div>est 50 , spend 60 - delayed</div><br>
 
-                   <div>total tasks: efficiency = (110/100)*50% = 65%</div><br><br>
-                   <div>when delayed reduce precentage = (50%/number of tasks)*delayed task count = (50%/4) = 12.5%</div>
-                   <div>total efficiency(when there is delay) = 65% - 12.5% = 42.5%</div>
+
+
+
+
+<div>total efficiency(when there is delay) ={(10/5)*50% + (20/10)*50% + (30/20)*50% + 0*50% }/4 = </div><br>
+<div>total efficiency(when there is delay) ={100% + 66% + 75% + 0% }/4 = 60.25%</div>
+
+
 
 
 
