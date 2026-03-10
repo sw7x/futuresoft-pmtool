@@ -5,8 +5,9 @@
 
 
 @section('css-files')
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/ui-lightness/jquery-ui.css" />
-<link rel="stylesheet" href="{{ asset('plugins/jstree/dist/themes/default/style.min.css')}}" />    
+    <link rel="stylesheet" href="{{ asset('plugins/jquery-ui/jquery-ui.min.css')}}" />
+    <link rel="stylesheet" href="{{ asset('plugins/jstree/dist/themes/default/style.min.css')}}" />    
+    <link rel="stylesheet" href="{{ asset('css/plugins/sweetalert/sweetalert.css')}}" />    
 @stop
 
 
@@ -203,11 +204,9 @@
 
 
 @section('script-files')
-    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{{ asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
     <script src="{{ asset('plugins/jstree/dist/jstree.js')}}"></script>
-
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+    <script src="{{ asset('js/plugins/sweetalert/sweetalert.min.js')}}"></script>
 @stop
 
 

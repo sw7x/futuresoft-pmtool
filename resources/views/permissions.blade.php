@@ -5,8 +5,9 @@
 
 
 @section('css-files')
-    <link href="{{asset('css/plugins/iCheck/custom.css')}}" rel="stylesheet">
-    <link href="{{asset('css/plugins/jsTree/style.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('plugins/jquery-ui/jquery-ui.min.css')}}" />
+    <link rel="stylesheet" href="{{ asset('plugins/jstree/dist/themes/default/style.min.css')}}" />    
+    <link rel="stylesheet" href="{{ asset('css/plugins/sweetalert/sweetalert.css')}}" />    
 @stop
 
 
@@ -14,13 +15,27 @@
 
 @section('page-css')
     <style>
+
+        /* For all jsTree nodes */
+        #task_tree_jstree .jstree-node .jstree-anchor {
+            max-width: calc(100% - 20px);
+            /* max-width: 450px;  Set your desired max width */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        /* To show long text in jsTree with ellipsis (...)*/
+        #task_tree_jstree  ul.jstree-children{
+            display: block;
+        }
         
     </style>
 @stop
 
 
 @section('content')
-
     <div class="row" id="_sortable-view">
         <div class="col-lg-12">
 
@@ -54,136 +69,609 @@
                             <button class="btn btn-primary btn-block">Load</button>    
                         </div>
                     </div>
-                
-                
-                    <form method="POST" action="#" class="form-horizontal" id="permissions-form">
-                        @csrf
+
+
+
+                    when create permisiion for one user role it will created for all user roles with deny permission
+
+                    <div class="row">
                         
-                        <h2 class="mb-4 font-bold text-muted">Permissions Tree</h2>
-                        
-                        <div id="jstree_permissions" class="m-t-md">
-                            <ul>
-                                <li data-jstree='{"opened":true}' id="project_manage">Project Management (Master)
-                                    <ul>
-                                        <li id="project_create">Create Project</li>
-                                        <li id="project_view">View Projects</li>
-                                        <li id="project_edit">Edit Project</li>
-                                        <li id="project_delete">Delete Project</li>
-                                        <li id="project_assign_pm">Assign PM</li>
-                                        <li id="project_assign_dev">Assign Dev's</li>
-                                        <li id="project_view_plan">View Project Plan</li>
-                                        <li id="project_view_timeline">View Project Timeline</li>
-                                        <li id="project_thread">Project Thread
-                                            <ul>
-                                                <li id="project_thread_create">Create</li>
-                                                <li id="project_thread_post">Post</li>
-                                                <li id="project_thread_delete">Delete</li>
-                                                <li id="project_thread_view">View</li>
-                                                <li id="project_thread_edit">Edit</li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li data-jstree='{"opened":false}' id="task_manage">Task Management (Master)
-                                    <ul>
-                                        <li id="task_create">Create Task</li>
-                                        <li id="task_view">View Tasks</li>
-                                        <li id="task_edit">Edit Task</li>
-                                        <li id="task_delete">Delete Task</li>
-                                        <li id="task_assign_dev">Assign Dev's</li>
-                                        <li id="task_thread">Task Thread
-                                            <ul>
-                                                <li id="task_thread_create">Create</li>
-                                                <li id="task_thread_post">Post</li>
-                                                <li id="task_thread_delete">Delete</li>
-                                                <li id="task_thread_view">View</li>
-                                                <li id="task_thread_edit">Edit</li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                
+                        <div class="col-md-7">
+                            <div class="card mb-3 h-100">
 
-                                <li data-jstree='{"opened":false}' id="user_manage">User Management (Master)
-                                    <ul>
-                                        <li id="user_create">Add Users</li>
-                                        <li id="user_view">View Users</li>
-                                        <li id="user_edit">Edit Users</li>
-                                        <li id="user_delete">Delete Users</li>
-                                    </ul>
-                                </li>
-                                <li data-jstree='{"opened":false}' id="system_standalone">System Settings (Standalone)
-                                    <ul>
-                                        <li id="view_logs">Access System Logs</li>
-                                        <li id="manage_backups">Manage Backups</li>
-                                        <li id="view_analytics">Access Analytics</li>
-                                        <li id="settings_manage">Global Settings</li>
-                                    </ul>
-                                </li>
-                                <li data-jstree='{"opened":false}' id="change_password">Change Password</li>
-                                <li data-jstree='{"opened":false}' id="view_permissions">View Permissions</li>
-                                <li data-jstree='{"opened":false}' id="edit_profile">Edit Profile</li>
-                                <li data-jstree='{"opened":false}' id="view_dashboard">View Dashboard</li>
-                            </ul>
-                        </div>
+                                <div class="card-header bg-primary text-white">
+                                    <h4 class="card-title m-0 font-semibold">
+                                        <i class="fa fa-sitemap mr-2"></i> Permissions Tree
+                                    </h4>
+                                </div>
 
-                        <!-- Hidden container for selected permissions to be submitted -->
-                        <div id="selected_permissions_container"></div>
+                                <div id="" class="card-body box-container border-bottom overflow-hidden px-2">
+                                    <div id="jstree_permissions" class=""></div>
+                                    <!-- Hidden container for selected permissions to be submitted
+                                    <div id="selected_permissions_container"></div> 
+                                    -->
+                                </div>                                
 
-                        <div class="hr-line-dashed mt-4"></div>
 
-                        <div class="form-group row">
-                            <div class="col-sm-12">
-                                <button class="btn btn-primary" type="submit">Update Permissions</button>
-                                <a href="#" class="btn btn-white">Cancel</a>
+                                <div class="card-footer bg-white border-top-0">
+                                    <div class="p-0">
+                                        <button type="button" class="text-left btn bg-blue-200 _btn-primary btn-block mb-2 shadow-sm" id="btnCreateParent">
+                                            <i class="fa fa-plus-circle mr-2"></i> Create main
+                                        </button>
+                                        <button type="button" class="text-left btn btn-info btn-block mb-2 shadow-sm" id="btnCreateSub">
+                                            <i class="fa fa-code-fork mr-2"></i> Create sub
+                                        </button>
+                                        <button type="button" class="text-left btn btn-danger btn-md btn-block shadow-sm" id="btnDelete">
+                                            <i class="fa fa-trash mr-2"></i> Delete
+                                        </button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-                    </form>
+      
+
+                        <div class="col-md-5">
+                            <div class="card mb-3 h-100">
+                                <div class="card-header bg-primary text-white">
+                                    <h4 class="card-title m-0 font-semibold">
+                                        <i class="fa fa-address-card-o mr-2"></i> Permission Details
+                                    </h4>
+                                </div>
+
+                                <div id="permission-display" class="p-2 card-body box-container">
+                                    <div class="mb-4">
+                                        <label class="text-muted small font-bold d-block mb-1 uppercase tracking-wider">Permission Name</label>
+                                        <div class="bg-gray-100 p-2 rounded border">
+                                            <code id="perm_name" class="text-primary font-bold">view projects</code>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="text-muted small font-bold d-block mb-1 uppercase tracking-wider">Identifier Key</label>
+                                        <div class="bg-gray-100 p-2 rounded border">
+                                            <code id="perm_key" class="text-primary font-bold text-lg">VIEW_PROJECTS</code>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="text-muted small font-bold d-block mb-1 uppercase tracking-wider">Current Access</label>
+                                        <div class="bg-gray-100 p-2 rounded border">
+                                            <code id="perm_access" class="text-info font-bold text-lg">Allow</code>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <label class="text-muted small font-bold d-block mb-1 uppercase tracking-wider">Description</label>
+                                        <p id="display-desc" class="text-muted font-italic border-left pl-3 py-1">Select a permission to view its details.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="card-footer bg-white border-top"> 
+                                    <div class="">
+                                        <button type="button" id="task-update-btn" class="btn btn-block btn-primary flex-fill shadow-sm font-semibold">
+                                            <i class="fa fa-save mr-1"></i> Update Permissions
+                                        </button>
+                                        <button type="button" class="reset btn btn-block btn-danger flex-fill shadow-sm font-semibold">
+                                            <i class="fa fa-refresh mr-1"></i> Reset
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>                           
+                        </div>  
+
+                    </div>
+                        
                 </div>
             </div>
         
         </div>
     </div>
+@stop
 
 
+@section('bootstrap-modals')
+    <!-- Permission Details Modal -->
+    <div class="modal fade" id="permission-create-modal" tabindex="-1" role="dialog" aria-labelledby="permission-create-modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h3 class="modal-title" id="permission-create-modalLabel">
+                        <i class="fa fa-plus-circle mr-2"></i> Create Permission
+                    </h3>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="modal-permission-create-form" action="">
+                        
+                        <div class="form-group role-info-div">
+                            <label>Designated Role</label>
+                            <input type="text" class="form-control modal-role-name" value="" disabled style="background-color: #f8f9fa; font-weight: bold; border-left: 4px solid #1ab394;">
+                        </div>
 
+                        <div class="form-group parent-info-div">
+                            <label for="modal-parent-permission-name">Parent Permission</label>
+                            <input type="text" class="form-control parent-permission-name" id="modal-parent-permission-name" value="" disabled>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="modal-permission-name">Permission Name</label>
+                            <input type="text" class="form-control" id="modal-permission-name" data-source="">
+                        </div>
 
+                        <div class="form-group">
+                            <label class="text-muted small font-bold d-block mb-1 uppercase tracking-wider">Identifier Key</label>
+                            <div class="bg-gray-100 p-2 rounded border">
+                                <code id="modal-permission-key" class="text-primary font-bold text-lg"></code>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="modal-permission-status">Access</label>
+                            <select class="form-control" id="modal-permission-access">
+                                <option value="true">Allow</option>
+                                <option value="false">Deny</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="modal-permission-create-btn" class="btn btn-primary">
+                        <i class="fa fa-save mr-1"></i> Create
+                    </button>
+                    <button type="button" id="btnResetModal" class="btn btn-warning">
+                        <i class="fa fa-refresh mr-1"></i> Reset
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
 
 
 
 
+
+
+
+
 @section('script-files')
-    <script src="{{asset('js/plugins/iCheck/icheck.min.js')}}"></script>
-    <script src="{{asset('js/plugins/jsTree/jstree.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+    <script src="{{ asset('plugins/jstree/dist/jstree.js')}}"></script>
+    <script src="{{ asset('js/plugins/sweetalert/sweetalert.min.js')}}"></script>
 @stop
 
 
 @section('javascript')
 <script>
     $(document).ready(function () {
+    
+        // --- Constants & Selectors ---
+        const $tree = $("#jstree_permissions");
+        const $displayForm = $("#permission-display");//---------------
+        const $modal = $("#permission-create-modal");
+        const $modalForm = $("#modal-permission-create-form");
+        
+        
+        // --- Initial Data ---      
+        const data = [
+            // Root Level - Project Management (Root)
+            { "id": "root1", "parent": "#", "text": "Project Management", "type": "root", "state": { "checked": true,"opened": true }, "li_attr": { "class": "root", "data-key": "PROJECT_MANAGEMENT", "data-access": true } },
+            
+                // Project Management Children (Branch level)
+                { "id": "root1-branch1", "parent": "root1", "text": "Create Project", "type": "branch", "li_attr": { "class": "branch", "data-key": "CREATE_PROJECT", "data-access": false } },
+                { "id": "root1-branch2", "parent": "root1", "text": "View Projects", "type": "branch", "li_attr": { "class": "branch", "data-key": "VIEW_PROJECTS", "data-access": true } },
+                { "id": "root1-branch3", "parent": "root1", "text": "Edit Project", "type": "branch", "li_attr": { "class": "branch", "data-key": "EDIT_PROJECT", "data-access": true } },
+                { "id": "root1-branch4", "parent": "root1", "text": "Delete Project", "type": "branch", "li_attr": { "class": "branch", "data-key": "DELETE_PROJECT", "data-access": true } },
+                { "id": "root1-branch5", "parent": "root1", "text": "Assign PM", "type": "branch", "li_attr": { "class": "branch", "data-key": "ASSIGN_PM", "data-access": true } },
+                { "id": "root1-branch6", "parent": "root1", "text": "Assign Dev's", "type": "branch", "li_attr": { "class": "branch", "data-key": "ASSIGN_DEV'S", "data-access": true } },
+                { "id": "root1-branch7", "parent": "root1", "text": "View Project Plan", "type": "branch", "li_attr": { "class": "branch", "data-key": "VIEW_PROJECT_PLAN", "data-access": true } },
+                { "id": "root1-branch8", "parent": "root1", "text": "View Project Timeline", "type": "branch", "li_attr": { "class": "branch", "data-key": "VIEW_PROJECT_TIMELINE", "data-access": true } },
+                
+                // Project Thread (Branch level)
+                { "id": "root1-branch9", "parent": "root1", "text": "Project Thread", "type": "branch", "li_attr": { "class": "branch", "data-key": "PROJECT_THREAD", "data-access": true } },
+                
+                    // Project Thread Children (Twig level)
+                    { "id": "root1-branch9-twig1", "parent": "root1-branch9", "text": "Create", "type": "twig", "li_attr": { "class": "twig", "data-key": "CREATE", "data-access": true } },
+                    { "id": "root1-branch9-twig2", "parent": "root1-branch9", "text": "Post", "type": "twig", "li_attr": { "class": "twig", "data-key": "POST", "data-access": true } },
+                    { "id": "root1-branch9-twig3", "parent": "root1-branch9", "text": "Delete", "type": "twig", "li_attr": { "class": "twig", "data-key": "DELETE", "data-access": true } },
+                    { "id": "root1-branch9-twig4", "parent": "root1-branch9", "text": "View", "type": "twig", "li_attr": { "class": "twig", "data-key": "VIEW", "data-access": true } },
+                    { "id": "root1-branch9-twig5", "parent": "root1-branch9", "text": "Edit", "type": "twig", "li_attr": { "class": "twig", "data-key": "EDIT", "data-access": true } },
+
+            // Root Level - Task Management (Root)
+            { "id": "root2", "parent": "#", "text": "Task Management", "type": "root", "li_attr": { "class": "root", "data-key": "TASK_MANAGEMENT", "data-access": true } },
+            
+                // Task Management Children (Branch level)
+                { "id": "root2-branch1", "parent": "root2", "text": "Create Task", "type": "branch", "li_attr": { "class": "branch", "data-key": "CREATE_TASK", "data-access": true } },
+                { "id": "root2-branch2", "parent": "root2", "text": "View Tasks", "type": "branch", "li_attr": { "class": "branch", "data-key": "VIEW_TASKS", "data-access": true } },
+                { "id": "root2-branch3", "parent": "root2", "text": "Edit Task", "type": "branch", "li_attr": { "class": "branch", "data-key": "EDIT_TASK", "data-access": true } },
+                { "id": "root2-branch4", "parent": "root2", "text": "Delete Task", "type": "branch", "li_attr": { "class": "branch", "data-key": "DELETE_TASK", "data-access": true } },
+                { "id": "root2-branch5", "parent": "root2", "text": "Assign Dev's", "type": "branch", "li_attr": { "class": "branch", "data-key": "ASSIGN_DEV'S", "data-access": true } },
+                
+                // Task Thread (Branch level)
+                { "id": "root2-branch6", "parent": "root2", "text": "Task Thread", "type": "branch", "li_attr": { "class": "branch", "data-key": "TASK_THREAD", "data-access": true } },
+                
+                    // Task Thread Children (Twig level)
+                    { "id": "root2-branch6-twig1", "parent": "root2-branch6", "text": "Create", "type": "twig", "li_attr": { "class": "twig", "data-key": "CREATE", "data-access": true } },
+                    
+                    // Task Thread Post (Twig level with children)
+                    { "id": "root2-branch6-twig2", "parent": "root2-branch6", "text": "Post", "type": "twig", "li_attr": { "class": "twig", "data-key": "POST", "data-access": true } },
+                    
+                        // Task Thread Post Children (Leaf level)
+                        { "id": "root2-branch6-twig2-leaf1", "parent": "root2-branch6-twig2", "text": "Post Messages", "type": "leaf", "li_attr": { "class": "leaf", "data-key": "POST_MESSAGES", "data-access": true } },
+                        { "id": "root2-branch6-twig2-leaf2", "parent": "root2-branch6-twig2", "text": "Reply", "type": "leaf", "li_attr": { "class": "leaf", "data-key": "REPLY", "data-access": true } },
+                        { "id": "root2-branch6-twig2-leaf3", "parent": "root2-branch6-twig2", "text": "Quote", "type": "leaf", "li_attr": { "class": "leaf", "data-key": "QUOTE", "data-access": true } },
+                        
+                    // More Task Thread Children (twig level)
+                    { "id": "root2-branch6-twig3", "parent": "root2-branch6", "text": "Delete", "type": "twig", "li_attr": { "class": "twig", "data-key": "DELETE", "data-access": true } },
+                    { "id": "root2-branch6-twig4", "parent": "root2-branch6", "text": "View", "type": "twig", "li_attr": { "class": "twig", "data-key": "VIEW", "data-access": true } },
+                    { "id": "root2-branch6-twig5", "parent": "root2-branch6", "text": "Edit", "type": "twig", "li_attr": { "class": "twig", "data-key": "EDIT", "data-access": true } },
+
+            // Root Level - User Management (Root)
+            { "id": "root3", "parent": "#", "text": "User Management", "type": "root", "li_attr": { "class": "root", "data-key": "USER_MANAGEMENT", "data-access": true } },
+                // User Management Children (Branch level)
+                { "id": "root3-branch1", "parent": "root3", "text": "Add Users", "type": "branch", "li_attr": { "class": "branch", "data-key": "ADD_USERS", "data-access": true } },
+                { "id": "root3-branch2", "parent": "root3", "text": "View Users", "type": "branch", "li_attr": { "class": "branch", "data-key": "VIEW_USERS", "data-access": true } },
+                { "id": "root3-branch3", "parent": "root3", "text": "Edit Users", "type": "branch", "li_attr": { "class": "branch", "data-key": "EDIT_USERS", "data-access": true } },
+                { "id": "root3-branch4", "parent": "root3", "text": "Delete Users", "type": "branch", "li_attr": { "class": "branch", "data-key": "DELETE_USERS", "data-access": true } },
+
+            // Root Level - System Settings (Root)
+            { "id": "root4", "parent": "#", "text": "System Settings", "type": "root", "li_attr": { "class": "root", "data-key": "SYSTEM_SETTINGS", "data-access": true } },
+                // System Settings Children (Branch level)
+                { "id": "root4-branch1", "parent": "root4", "text": "Access System Logs", "type": "branch", "li_attr": { "class": "branch", "data-key": "ACCESS_SYSTEM_LOGS", "data-access": true } },
+                { "id": "root4-branch2", "parent": "root4", "text": "Manage Backups", "type": "branch", "li_attr": { "class": "branch", "data-key": "MANAGE_BACKUPS", "data-access": true } },
+                { "id": "root4-branch3", "parent": "root4", "text": "Access Analytics", "type": "branch", "li_attr": { "class": "branch", "data-key": "ACCESS_ANALYTICS", "data-access": true } },
+                { "id": "root4-branch4", "parent": "root4", "text": "Global Settings", "type": "branch", "li_attr": { "class": "branch", "data-key": "GLOBAL_SETTINGS", "data-access": true } },
+
+            // Root Level - Individual Items 
+            { "id": "root5", "parent": "#", "text": "Change Password", "type": "root", "li_attr": { "class": "root", "data-key": "CHANGE_PASSWORD", "data-access": true } },
+            { "id": "root6", "parent": "#", "text": "View Permissions", "type": "root", "li_attr": { "class": "root", "data-key": "VIEW_PERMISSIONS", "data-access": true } },
+            { "id": "root7", "parent": "#", "text": "Edit Profile", "type": "root", "li_attr": { "class": "root", "data-key": "EDIT_PROFILE", "data-access": true } },
+            { "id": "root8", "parent": "#", "text": "View Dashboard", "type": "root", "li_attr": { "class": "root", "data-key": "VIEW_DASHBOARD", "data-access": true } }
+        ];
+
+
+
         // Initialize jsTree
-        $('#jstree_permissions').jstree({
+        $tree.jstree({
             'core' : {
-                'check_callback' : true
+                "check_callback": true,
+                "data": data,
+                "themes": { "stripes": true },
+                "force_text": false,
+                "allow_reselect": true
             },
             'plugins' : [ 'checkbox', 'types' ],
             'checkbox': {
-                'keep_selected_style': false,
+                
+                'keep_selected_style': true,
                 'three_state': true, // This enables the master/sub hierarchy logic
-                'cascade': 'up+down'
+                'cascade': 'up+down',
+                        
+                'whole_node': false, // Prevents clicking on node text from toggling checkbox
+                'tie_selection': false // Prevents checkbox from affecting node selection
             },
             'types' : {
-                'default' : {
-                    'icon' : 'fa fa-folder text-primary'
-                },
-                'file' : {
-                    'icon' : 'fa fa-file text-success'
-                }
+                'root': {'icon': 'fa fa-database text-success'},
+                'branch': {'icon': 'fa fa-folder text-info'},
+                'twig': {'icon': 'fa fa-file text-warning'},
+                'leaf': {'icon': 'fa fa-key text-danger'}
+            }
+        }).on('ready.jstree', function() {
+            console.log("Tree ready");
+        }).on('select_node.jstree', function(event, data) {        
+            console.log(data.node.text);
+            populateForm(data.node);
+        });
+
+        
+        /**
+         * Fills the update form with selected node data
+         */
+        function populateForm(node) {
+            const id = node.id;
+            const $li = $("#" + id);
+
+            const key       = $li.data('key') || '';
+            const status    = $li.data('access') === false ? 'Deny' : 'Allow';
+            const addStatusCls      = $li.data('access') === false ? 'text-danger' : 'text-info';
+            const removeStatusCls   = $li.data('access') === false ? 'text-info' : 'text-danger';
+
+            $displayForm.find('#perm_name').text(node.text);
+            $displayForm.find('#perm_key').text(key);
+
+            $displayForm.find('#perm_access').addClass(addStatusCls).removeClass(removeStatusCls);
+            $displayForm.find('#perm_access').text(status);
+
+            $tree.jstree("open_node", $li);
+        }
+
+        
+
+        /**
+         * Generates a unique ID for new nodes
+         */
+        function generateNodeId(parentId, type) {
+            const ref = $tree.jstree(true);
+            const children = parentId === '#' ? ref.get_node('#').children : ref.get_node(parentId).children;
+            
+            if (type === 'root') {
+                const numbers = children.map(id => parseInt(id.substring(4)) || 0);
+                const biggest = numbers.length > 0 ? Math.max(...numbers) : 0;
+                return "root" + (biggest + 1);
+
+            } else if (type === 'branch') {
+                const numbers = children.map(id => (id.includes('-branch') ? parseInt(id.split('-branch')[1]) : 0));
+                const biggest = numbers.length > 0 ? Math.max(...numbers) : 0;
+                return parentId + "-branch" + (biggest + 1);
+
+            } else if (type === 'twig') {
+                const numbers = children.map(id => (id.includes('-twig') ? parseInt(id.split('-twig')[1]) : 0));
+                const biggest = numbers.length > 0 ? Math.max(...numbers) : 0;
+                return parentId + "-twig" + (biggest + 1);
+
+            } else if (type === 'leaf') {
+                const numbers = children.map(id => (id.includes('-leaf') ? parseInt(id.split('-leaf')[1]) : 0));
+                const biggest = numbers.length > 0 ? Math.max(...numbers) : 0;
+                return parentId + "-leaf" + (biggest + 1);
+
+            }else{
+                
+                return swal("Oops", "Invalid node type", "error");
+            }
+            
+        }
+
+
+        /**
+         * Checks if a permission name is unique within its context
+         */
+        function isNameUnique(name, parentId) {
+            const ref = $tree.jstree(true);
+            const siblings = (parentId === '#') 
+                ? ref.get_json('#', { flat: true }).filter(n => n.parent === '#' && n.type === 'root')
+                : ref.get_node(parentId).children.map(id => ref.get_node(id));
+
+            const names = siblings.map(node => (node.text || '').toLowerCase());
+            return !names.includes(name.toLowerCase());
+        }
+
+        window.create_parent = function(name, key = '', access = true) {
+            if (!name) return swal("Oops", "Permission cannot be empty", "error");
+            if (!isNameUnique(name, '#')) return swal("Oops", "Main permission already exists", "error");
+
+            const ref = $tree.jstree(true);
+            const newId = generateNodeId('#', 'root');
+            const sel = ref.create_node('#', {
+                "id": newId, "text": name, "type": "root",
+                "li_attr": { "class": "root", "data-key": key, "data-access": access }
+            }, "last");
+
+            if (sel) {
+                ref.deselect_all();
+                ref.select_node(sel);
+                ref.edit(sel);
+            }
+        };
+
+        window.create_sub = function(name, key = '', access = true) {
+            if (!name) return swal("Oops", "Permission(sub) cannot be empty", "error");
+
+            const ref = $tree.jstree(true);
+            const selParent = ref.get_selected();
+            if (!selParent.length) return swal("Oops", "Please select a parent permission", "error");
+
+            const parentId = selParent[0];
+            if (!isNameUnique(name, parentId)) return swal("Oops", "Permission already exists under this parent", "error");
+
+            
+            const selectedNode  = ref.get_node(parentId);
+            const nodeType      = selectedNode.type; // "root" for your example
+
+
+            if(nodeType == 'root'){
+                childNodeType = 'branch'
+            }else if(nodeType == 'branch'){
+                childNodeType = 'twig'
+            }else if(nodeType == 'twig'){
+                childNodeType = 'leaf'
+            }else{
+                //in here nodeType cannot be 'leaf'  because it is checking before
+                return swal("Oops", "Invalid node type", "error");
+            }
+
+            const newId = generateNodeId(parentId, childNodeType);
+
+            const sel = ref.create_node(parentId, {
+                "id": newId, "text": name, "type": childNodeType,
+                "li_attr": { "class": "child", "data-key": key, "data-access": access }
+            }, "last");
+
+            if (sel) {
+                ref.deselect_all();
+                ref.select_node(sel);
+                ref.open_node(parentId);
+                ref.edit(sel);
+            }
+        };
+
+
+
+
+
+
+
+        // --- Event Listeners ---
+
+        // Delete Node
+        $("#btnDelete").on("click", function() {
+            const ref = $tree.jstree(true);
+            const sel = ref.get_selected();
+            if (!sel.length) return;
+
+            const node = ref.get_node(sel[0]);
+            const childCount = node.children.length;
+
+            if (childCount > 0) {
+                swal({
+                    title: "Warning",
+                    text: `Permission has ${childCount} child permission(s). Delete everything?`,
+                    icon: "warning",
+                    buttons: ["Abort", "Delete All"],
+                    dangerMode: true,
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        ref.delete_node(sel);
+                        swal("Deleted!", "Permission and its children removed.", "success");
+                        
+                        $displayForm.find('#perm_name').text('');
+                        $displayForm.find('#perm_key').text('');
+                        $displayForm.find('#perm_access').text('');
+                    }
+                });
+            } else {
+                ref.delete_node(sel);
+                
+                $displayForm.find('#perm_name').text('');
+                $displayForm.find('#perm_key').text('');
+                $displayForm.find('#perm_access').text('');
             }
         });
 
+        
+
+        
+
+        // Reset Modal Form Helper
+        function resetModalForm() {
+            console.log($modalForm);
+            $modalForm.find('input[type="text"], textarea, select').not('.parent-permission-name').val('');
+            $modalForm.find('select').val('true');        
+        }
+
+        // Reset Modal Form Listener
+        $(document).on("click", "#btnResetModal", function() {
+            //$modalForm[0].reset();
+            resetModalForm();
+            $('#modal-permission-key').text(''); // Clear the key display
+        });
+
+        // Auto-generate Identifier Key from Permission Name
+        $(document).on('input', '#modal-permission-name', function() {
+            const name = $(this).val();
+            const key = name.toUpperCase().replace(/\s+/g, '_');
+            $('#modal-permission-key').text(key);
+        });
+
+
+
+        // Modal: Open Create Main
+        $(document).on("click", "#btnCreateParent", function() {
+            resetModalForm();
+
+            // Get selected role info
+            const roleName = $('#role_select option:selected').text();
+            const roleVal = $('#role_select').val();
+            if (roleVal) {
+                $('.modal-role-name').val(roleName);
+            } else {
+                $('.modal-role-name').val('N/A (No Role Selected)');
+            }
+
+            $('#modal-permission-key').text('');
+            $modalForm.find('#modal-permission-name').removeData('source').removeAttr('data-source');
+            $modal.find('.parent-permission-name').val('');
+
+            $modal.find('.parent-info-div').hide();
+            $modal.modal('show');
+        });
+
+        
+        // Modal: Open Create Sub
+        $(document).on("click", "#btnCreateSub", function() {
+            const ref = $tree.jstree(true);
+            const sel = ref.get_selected();
+
+            if (!sel.length) return swal("Oops", "Please select a parent permission first", "info");
+
+            const node = ref.get_node(sel[0]);
+            const depth = $('#' + node.id + ' > a').attr('aria-level');
+            if (depth > 3) return swal("Oops", "Nesting limit is 4 levels", "warning");
+
+
+            let parentsArr = [...node.parents].reverse().slice(1);            
+            let breadcrumTxt ='';
+
+            // Iterate with forEach
+            parentsArr.forEach((item, index) => {
+                let parentName = ref.get_node(item).text
+                breadcrumTxt = index == 0 ? parentName : `${breadcrumTxt} ➤ ${parentName}`                
+            });               
+
+            let parentHierarchy = parentsArr.length == 0 ? node.text : `${breadcrumTxt} ➤ ${node.text}`;
+
+            resetModalForm();
+
+            // Get selected role info
+            const roleName = $('#role_select option:selected').text();
+            const roleVal = $('#role_select').val();
+            if (roleVal) {
+                $('.modal-role-name').val(roleName);
+            } else {
+                $('.modal-role-name').val('N/A (No Role Selected)');
+            }
+
+            $('#modal-permission-key').text('');
+            $modal.find('#modal-permission-name').attr('data-source', node.id).data('source', node.id);
+            $modal.find('.parent-permission-name').val(parentHierarchy);
+            $modal.find('.parent-info-div').show();
+            $modal.modal('show');
+        });
+
+        
+
+
+
+        // Modal: Confirm Create
+        $(document).on("click", "#modal-permission-create-btn", function() {
+            const name      = $('#modal-permission-name').val();
+            const key       = $('#modal-permission-key').text();
+            const access    = $('#modal-permission-access').val();
+            const parentId  = $('#modal-permission-name').data('source');
+
+            if (typeof parentId === 'undefined') {
+                create_parent(name, key, access);
+            } else {
+                create_sub(name, key, access);
+            }
+
+            $modal.modal('hide');
+        });
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        
+
+
+
+        //later - TODO
         // Form Submission Logic
         $('#permissions-form').submit(function(e) {
             // Get selected IDs from jsTree
@@ -205,7 +693,8 @@
 
             // Form will continue to submit with these values
         });
-    });</script>
+    });
+</script>
 @stop
 
 
