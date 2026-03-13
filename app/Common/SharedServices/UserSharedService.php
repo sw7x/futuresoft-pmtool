@@ -10,32 +10,29 @@ use App\Models\Role as RoleModel;
 class UserSharedService
 {  
 
-    private array $allRoles   = [
-        RoleModel::ADMIN, 
-        RoleModel::OWNER, 
-        RoleModel::MANAGER, 
-        RoleModel::PROJECT_MANAGER, 
-        RoleModel::DEVELOPER
-    ];
-    
+    private array $allRoles = [];
+
+    public function __construct()
+    {
+        // Properties must be initialized in the constructor for dynamic values
+        $this->allRoles = RoleModel::getRoleOptions();
+    }
 
     public function getRoleByUser(?UserModel $userRec) : ?string {
-        $userRoles  = optional($userRec)->roles();
+        $userRoles  = optional($userRec)->roles; 
         $roleArr    = optional($userRoles)->first();
         $userRole   = optional($roleArr)->slug;
         return $userRole;
     }
     
-    public function isHaveValidRole(UserModel $userRec) : bool {
+    public function isHaveValidRole(?UserModel $userRec) : bool {
         $userRole   = $this->getRoleByUser($userRec);
         return in_array($userRole, $this->allRoles);
     }
     
     public function getUserInfoArr(?UserModel $userRec) : array {
-        $userArr = (is_null($userRec)) ? [] : $userRec->toArray();
-        return $userArr;
+        return $userRec ? $userRec->toArray() : [];
     }  
-    
     
     public function hasRole(?UserModel $userRec, string $role) : bool {
         $userRole   = $this->getRoleByUser($userRec);
@@ -47,8 +44,4 @@ class UserSharedService
         return in_array($userRole, $roleArr);
     }
 
-
-    
-
-}
-
+}    
