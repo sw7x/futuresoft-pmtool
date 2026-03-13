@@ -91,7 +91,12 @@ Route::get('/404', [PageController::class, 'page404'])->name('404');
 
 /* permissions */
 Route::group(['prefix'=>'permissions','as'=>'permissions.'], function(){
-    Route::get('/permissions', [PermissionController::class, 'loadPermissions'])->name('index');
+    Route::get('/', [PermissionController::class, 'loadPermissions'])->name('index');
+    Route::post('/', [PermissionController::class, 'storePermission'])->name('store');
+    Route::delete('/{id}', [PermissionController::class, 'deletePermission'])->name('destroy');
+
+
+    Route::post('/update', [PermissionController::class, 'updatePermissions'])->name('update');
 });
 
 

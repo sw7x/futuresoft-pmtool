@@ -31,4 +31,36 @@ class Role extends Model
         });*/
     }
 
+
+    // Relationship with permissions
+    public function permissions()
+    {
+        return $this->hasMany(Permission::class, 'role_id');
+    }
+
+
+
+
+
+
+
+
+    /**
+     * Get all roles with only id, name, and slug
+     */
+    public static function getAllRoleInfo()
+    {
+        return self::select('id', 'name', 'slug')
+            ->get()
+            ->toArray();
+    }
+    
+    /**
+     * Get all roles as key-value pairs for dropdowns
+     */
+    public static function getRoleOptions()
+    {
+        return self::pluck('name', 'id')->toArray();
+    }
+
 }

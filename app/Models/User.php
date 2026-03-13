@@ -180,4 +180,20 @@ class User extends CartalystUser
         return $array;
     }
 
+
+
+    public function getAllUserRoles(){
+        $roles = Sentinel::getRoleRepository()->get();
+        //dd($roles);
+        $userRoles = null;
+        $userRoles = $roles->filter(function ($value, $key){
+            //var_dump ($value);
+            return $this->inRole($value->name);
+
+        })->values()->all();
+        //dd($userRoles);
+        return $userRoles;
+
+    }
+
 }
