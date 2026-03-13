@@ -2,16 +2,12 @@
 @section('title','Permissions')
 
 
-
-
 @section('css-files')
     <link rel="stylesheet" href="{{ asset('plugins/jquery-ui/jquery-ui.min.css')}}" />
     <link rel="stylesheet" href="{{ asset('plugins/jstree/dist/themes/default/style.min.css')}}" />    
     <link rel="stylesheet" href="{{ asset('css/plugins/sweetalert/sweetalert.css')}}" />    
     <link rel="stylesheet" href="{{ asset('css/plugins/select2/select2.min.css')}}" />
 @stop
-
-
 
 
 @section('page-css')
@@ -32,16 +28,8 @@
         }
 
 
-
-
         .node-highlight-uncheck > a {
             transition: all 0.4s ease;
-            /*
-            background-color: rgba(255, 193, 7, 0.3) !important;
-            border-radius: 4px;
-            color: #ff9800 !important;
-            font-weight: bold !important;
-            */
             background-color: #F44336 !important;
             border-radius: 4px;
             color: #ffffff !important;
@@ -91,8 +79,6 @@
                             <button class="btn btn-primary btn-block" id='btn_load_permissions'>Load</button>    
                         </div>
                     </div>
-
-                    <span class="line-through">when create permisiion for one user role it will created for all user roles with deny permission</span>
 
                     <div class="row">
 
@@ -203,7 +189,7 @@
     </div>
 
     @php
-        echo '<pre>' . json_encode($permissions, JSON_PRETTY_PRINT) . '</pre>';
+        //echo '<pre>' . json_encode($permissions, JSON_PRETTY_PRINT) . '</pre>';
     @endphp
 
 @stop
@@ -306,89 +292,7 @@
             let initialCheckedNodes = []; // store initial state
             let isChkProgrammatic = false; // ← flag
             
-            // --- Initial Data ---      
-            const data = [
-                // Root Level - Project Management (Root)
-                { "id": "root1", "parent": "#", "text": "1Project Management", "type": "root", "state": { "undetermined": true ,"opened": true }, "li_attr": { "class": "root", "data-key": "PROJECT_MANAGEMENT", "data-access": false } },
-
-                    // Project Management Children (Branch level)
-                    { "id": "root1-branch1", "parent": "root1", "text": "Create Project", "type": "branch", "state": { "checked": false }, "li_attr": { "class": "branch", "data-key": "CREATE_PROJECT", "data-access": false } },
-                    { "id": "root1-branch2", "parent": "root1", "text": "View Projects", "type": "branch", "state": { "checked": true }, "li_attr": { "class": "branch", "data-key": "VIEW_PROJECTS", "data-access": true } },
-                    { "id": "root1-branch3", "parent": "root1", "text": "Edit Project", "type": "branch", "li_attr": { "class": "branch", "data-key": "EDIT_PROJECT", "data-access": true } },
-                    { "id": "root1-branch4", "parent": "root1", "text": "Delete Project", "type": "branch", "li_attr": { "class": "branch", "data-key": "DELETE_PROJECT", "data-access": true } },
-                    { "id": "root1-branch5", "parent": "root1", "text": "Assign PM", "type": "branch", "li_attr": { "class": "branch", "data-key": "ASSIGN_PM", "data-access": true } },
-                    { "id": "root1-branch6", "parent": "root1", "text": "Assign Dev's", "type": "branch", "li_attr": { "class": "branch", "data-key": "ASSIGN_DEV'S", "data-access": true } },
-                    { "id": "root1-branch7", "parent": "root1", "text": "View Project Plan", "type": "branch", "li_attr": { "class": "branch", "data-key": "VIEW_PROJECT_PLAN", "data-access": true } },
-                    { "id": "root1-branch8", "parent": "root1", "text": "View Project Timeline", "type": "branch", "li_attr": { "class": "branch", "data-key": "VIEW_PROJECT_TIMELINE", "data-access": true } },
-                    
-                    // Project Thread (Branch level)
-                    { "id": "root1-branch9", "parent": "root1", "text": "Project Thread", "type": "branch", "li_attr": { "class": "branch", "data-key": "PROJECT_THREAD", "data-access": true } },
-                    
-                        // Project Thread Children (Twig level)
-                        { "id": "root1-branch9-twig1", "parent": "root1-branch9", "text": "Create", "type": "twig", "li_attr": { "class": "twig", "data-key": "CREATE", "data-access": true } },
-                        { "id": "root1-branch9-twig2", "parent": "root1-branch9", "text": "Post", "type": "twig", "li_attr": { "class": "twig", "data-key": "POST", "data-access": true } },
-                        { "id": "root1-branch9-twig3", "parent": "root1-branch9", "text": "Delete", "type": "twig", "li_attr": { "class": "twig", "data-key": "DELETE", "data-access": true } },
-                        { "id": "root1-branch9-twig4", "parent": "root1-branch9", "text": "View", "type": "twig", "li_attr": { "class": "twig", "data-key": "VIEW", "data-access": true } },
-                        { "id": "root1-branch9-twig5", "parent": "root1-branch9", "text": "Edit", "type": "twig", "li_attr": { "class": "twig", "data-key": "EDIT", "data-access": true } },
-
-                // Root Level - Task Management (Root)
-                { "id": "root2", "parent": "#", "text": "Task Management", "type": "root", "li_attr": { "class": "root", "data-key": "TASK_MANAGEMENT", "data-access": true } },
-
-                    // Task Management Children (Branch level)
-                    { "id": "root2-branch1", "parent": "root2", "text": "Create Task", "type": "branch", "li_attr": { "class": "branch", "data-key": "CREATE_TASK", "data-access": true } },
-                    { "id": "root2-branch2", "parent": "root2", "text": "View Tasks", "type": "branch", "li_attr": { "class": "branch", "data-key": "VIEW_TASKS", "data-access": true } },
-                    { "id": "root2-branch3", "parent": "root2", "text": "Edit Task", "type": "branch", "li_attr": { "class": "branch", "data-key": "EDIT_TASK", "data-access": true } },
-                    { "id": "root2-branch4", "parent": "root2", "text": "Delete Task", "type": "branch", "li_attr": { "class": "branch", "data-key": "DELETE_TASK", "data-access": true } },
-                    { "id": "root2-branch5", "parent": "root2", "text": "Assign Dev's", "type": "branch", "li_attr": { "class": "branch", "data-key": "ASSIGN_DEV'S", "data-access": true } },
-                    
-                    // Task Thread (Branch level)
-                    { "id": "root2-branch6", "parent": "root2", "text": "Task Thread", "type": "branch", "li_attr": { "class": "branch", "data-key": "TASK_THREAD", "data-access": true } },
-                    
-                        // Task Thread Children (Twig level)
-                        { "id": "root2-branch6-twig1", "parent": "root2-branch6", "text": "Create", "type": "twig", "li_attr": { "class": "twig", "data-key": "CREATE", "data-access": true } },
-
-                        // Task Thread Post (Twig level with children)
-                        { "id": "root2-branch6-twig2", "parent": "root2-branch6", "text": "Post", "type": "twig", "li_attr": { "class": "twig", "data-key": "POST", "data-access": true } },
-
-                            // Task Thread Post Children (Leaf level)
-                            { "id": "root2-branch6-twig2-leaf1", "parent": "root2-branch6-twig2", "text": "Post Messages", "type": "leaf", "li_attr": { "class": "leaf", "data-key": "POST_MESSAGES", "data-access": true } },
-                            { "id": "root2-branch6-twig2-leaf2", "parent": "root2-branch6-twig2", "text": "Reply", "type": "leaf", "li_attr": { "class": "leaf", "data-key": "REPLY", "data-access": true } },
-                            { "id": "root2-branch6-twig2-leaf3", "parent": "root2-branch6-twig2", "text": "Quote", "type": "leaf", "li_attr": { "class": "leaf", "data-key": "QUOTE", "data-access": true } },
-
-                        // More Task Thread Children (twig level)
-                        { "id": "root2-branch6-twig3", "parent": "root2-branch6", "text": "Delete", "type": "twig", "li_attr": { "class": "twig", "data-key": "DELETE", "data-access": true } },
-                        { "id": "root2-branch6-twig4", "parent": "root2-branch6", "text": "View", "type": "twig", "li_attr": { "class": "twig", "data-key": "VIEW", "data-access": true } },
-                        { "id": "root2-branch6-twig5", "parent": "root2-branch6", "text": "Edit", "type": "twig", "li_attr": { "class": "twig", "data-key": "EDIT", "data-access": true } },
-
-                // Root Level - User Management (Root)
-                { "id": "root3", "parent": "#", "text": "User Management", "type": "root", "li_attr": { "class": "root", "data-key": "USER_MANAGEMENT", "data-access": true } },
-                
-                    // User Management Children (Branch level)
-                    { "id": "root3-branch1", "parent": "root3", "text": "Add Users", "type": "branch", "li_attr": { "class": "branch", "data-key": "ADD_USERS", "data-access": true } },
-                    { "id": "root3-branch2", "parent": "root3", "text": "View Users", "type": "branch", "li_attr": { "class": "branch", "data-key": "VIEW_USERS", "data-access": true } },
-                    { "id": "root3-branch3", "parent": "root3", "text": "Edit Users", "type": "branch", "li_attr": { "class": "branch", "data-key": "EDIT_USERS", "data-access": true } },
-                    { "id": "root3-branch4", "parent": "root3", "text": "Delete Users", "type": "branch", "li_attr": { "class": "branch", "data-key": "DELETE_USERS", "data-access": true } },
-
-                // Root Level - System Settings (Root)
-                { "id": "root4", "parent": "#", "text": "System Settings", "type": "root", "li_attr": { "class": "root", "data-key": "SYSTEM_SETTINGS", "data-access": true } },
-                    
-                    // System Settings Children (Branch level)
-                    { "id": "root4-branch1", "parent": "root4", "text": "Access System Logs", "type": "branch", "li_attr": { "class": "branch", "data-key": "ACCESS_SYSTEM_LOGS", "data-access": true } },
-                    { "id": "root4-branch2", "parent": "root4", "text": "Manage Backups", "type": "branch", "li_attr": { "class": "branch", "data-key": "MANAGE_BACKUPS", "data-access": true } },
-                    { "id": "root4-branch3", "parent": "root4", "text": "Access Analytics", "type": "branch", "li_attr": { "class": "branch", "data-key": "ACCESS_ANALYTICS", "data-access": true } },
-                    { "id": "root4-branch4", "parent": "root4", "text": "Global Settings", "type": "branch", "li_attr": { "class": "branch", "data-key": "GLOBAL_SETTINGS", "data-access": true } },
-
-                // Root Level - Individual Items 
-                { "id": "root5", "parent": "#", "text": "Change Password", "type": "root", "li_attr": { "class": "root", "data-key": "CHANGE_PASSWORD", "data-access": true } },
-                { "id": "root6", "parent": "#", "text": "View Permissions", "type": "root", "li_attr": { "class": "root", "data-key": "VIEW_PERMISSIONS", "data-access": true } },
-                { "id": "root7", "parent": "#", "text": "Edit Profile", "type": "root", "state": { "checked": true }, "li_attr": { "class": "root", "data-key": "EDIT_PROFILE", "data-access": true } },
-                { "id": "root8", "parent": "#", "text": "View Dashboard", "type": "root", "state": { "checked": false }, "li_attr": { "class": "root", "data-key": "VIEW_DASHBOARD", "data-access": true } }
-            ];
-
             
-
-
-
             // Initialize jsTree
             $tree.jstree({
                 'core' : {
@@ -1060,8 +964,6 @@
 
             
 
-
-
             // Modal: Confirm Create
             $(document).on("click", "#modal-permission-create-btn", function() {
                 const name      = $('#modal-permission-name').val();
@@ -1131,12 +1033,13 @@
                     .map(function(node) { return node.id; })
                     .filter(function(id) { return nowCheckedNodes.indexOf(id) === -1; });
 
-                                        
+                //get db rec ids of user unchecked permission nodes (after page load)                         
                 const dbUncheckIds  = initialCheckedNodes.filter(item => !nowCheckedNodes.includes(item));
                 let updateDenyDbRecs = dbUncheckIds.map(function(id) {         
                     return ref.get_node(id).li_attr['data-db_rec_id']                
                 });
-                
+
+                //get db rec ids of user checked permission nodes (after page load)                        
                 const dbCheckIds    = initialUnCheckedNodes.filter(item => !nowUnCheckedNodes.includes(item));
                 let updateAllowDbRecs = dbCheckIds.map(function(id) {         
                     return ref.get_node(id).li_attr['data-db_rec_id']                

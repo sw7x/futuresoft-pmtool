@@ -5,20 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests;
 use App\Models\Permission as PermissionModel;
 use App\Models\role as RoleModel;
 use Sentinel;
 use App\Common\Utils\AlertDataUtil;
 use App\Exceptions\CustomException;
 use App\Common\SharedServices\RoleSharedService;
-            //return redirect()->route('view-cart')->with(AlertDataUtil::success('Successfully applied coupon code'));
-
-            //return redirect()->route('view-cart')->with(AlertDataUtil::error($e->getMessage()));
 
 
-class PermissionController extends Controller
-{
+class PermissionController extends Controller{
+    
     public function loadPermissions(Request $request){
     
         // Get the role_id from the request
@@ -38,12 +34,7 @@ class PermissionController extends Controller
     }   
 
 
-
-
-
-    public function storePermission(Request $request)
-    {
-        //dd($request->all());
+    public function storePermission(Request $request){
         
         // Validation rules
         $validator = Validator::make($request->all(), [
@@ -61,7 +52,6 @@ class PermissionController extends Controller
             return redirect()->route('permissions.index',['role' => $roleName])
                              ->with(AlertDataUtil::error('Validation Failed:', ['message2' => $errorList]));
         }
-
         
 
         // Extract and convert data
@@ -93,13 +83,12 @@ class PermissionController extends Controller
             return redirect()->route('permissions.index',['role' => $roleName])->with(AlertDataUtil::error('Error: ' . $e->getMessage()));
         }
     }
-//$roleName = RoleSharedService::getRoleNameById($role_id);
-    public function deletePermission(Request $request, int $id)
-    {
+
+    public function deletePermission(Request $request, int $id){
+        
         try {
-            if (!filter_var($id, FILTER_VALIDATE_INT)) {
-                throw new CustomException('Invalid id');
-            }
+            if (!filter_var($id, FILTER_VALIDATE_INT))
+                throw new CustomException('Invalid id');            
 
             $validator = Validator::make($request->all(), [
                 'role_id'   => 'required|integer|exists:roles,id',
@@ -118,7 +107,6 @@ class PermissionController extends Controller
             $dbRecIds   = collect($data)->pluck('db_rec_id')->toArray();
             $dbRecIds[] = $id; // Include the parent ID itself
             $dbRecIds   = array_unique($dbRecIds);
-
         
             DB::beginTransaction();
             PermissionModel::whereIn('id', $dbRecIds)->delete();
@@ -138,8 +126,9 @@ class PermissionController extends Controller
         }
     }
 
-    public function updatePermissions(Request $request)
-    {
+
+    public function updatePermissions(Request $request){
+        
         try {
             // Get data from request and ensure they are integer arrays
             $denyDbRecs  = $request->input('denyDbRecs') ? array_map('intval', (array)$request->input('denyDbRecs')) : [];
@@ -160,7 +149,6 @@ class PermissionController extends Controller
             }
 
             DB::commit();
-
             return redirect()->route('permissions.index', ['role' => $roleName])
                              ->with(AlertDataUtil::success('Permissions updated successfully.'));
 
