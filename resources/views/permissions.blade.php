@@ -315,10 +315,17 @@
                     'tie_selection': false // Prevents checkbox from affecting node selection
                 },
                 'types' : {
+                    /*
                     'root':     {'icon': 'fa fa-database text-success'},
                     'branch':   {'icon': 'fa fa-folder text-info'},
                     'twig':     {'icon': 'fa fa-file text-warning'},
                     'leaf':     {'icon': 'fa fa-key text-danger'}
+                    */
+
+                    'root':     {'icon': 'fa fa-key text-danger border-1 border-red-400 mr-1'},
+                    'branch':   {'icon': 'fa fa-key text-warning border-1 border-yellow-400 mr-1'},
+                    'twig':     {'icon': 'fa fa-key text-success border-1 border-blue-400 mr-1'},
+                    'leaf':     {'icon': 'fa fa-key text-info border-1 border-green-400 mr-1'}
                 }
             }).on('ready.jstree', function() {
                 console.log("Tree ready");
