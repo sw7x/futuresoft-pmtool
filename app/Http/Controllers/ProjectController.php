@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Permissions\Traits\PermissionCheck;
 use App\Models\Permission as PermissionModel;
-use App\Permissions\Abilities\TaskDbAbilities;
+use App\Permissions\Abilities\DbAbilities\TaskDbAbilities;
 
 /*
 use App\Permissions\Abilities\AuthAbilities;
 use Illuminate\Support\Facades\Cache;
 use Sentinel;
 use Illuminate\Support\Facades\Gate;
+use App\Models\Role as RoleModel;
 */
 
 
@@ -27,6 +28,7 @@ class ProjectController extends Controller
 
 
     public function index(){
+        //dd(RoleModel::getAllRoleNames());
         //dd(Sentinel::getUser()->getFirstRoleName());
         //$this->hasPermission(AuthAbilities::get('CHANGE_PASSWORD'));
         return view('projects.project-list');

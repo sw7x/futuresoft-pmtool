@@ -1,10 +1,10 @@
 <?php 
 
-namespace App\Permissions\Abilities;
+namespace App\Permissions\Abilities\DbAbilities;
 
-use App\Permissions\Abilities\Contracts\DbAbilities;
+use App\Permissions\Abilities\DbAbilities\BaseDbAbilitiesResolver;
 
-class TaskDbAbilities extends DbAbilities
+class TaskDbAbilities extends BaseDbAbilitiesResolver
 {
     // Abilities map - keys are the "constant names" users call statically
     protected const ABILITIES = [

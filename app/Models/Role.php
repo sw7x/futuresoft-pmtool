@@ -39,12 +39,6 @@ class Role extends Model
     }
 
 
-
-
-
-
-
-
     /**
      * Get all roles with only id, name, and slug
      */

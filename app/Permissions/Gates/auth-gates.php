@@ -1,6 +1,9 @@
 <?php
 
-use App\Permissions\Abilities\AuthAbilities;
+use App\Permissions\Abilities\StaticAbilities\AuthAbilities;
+
+
+
 use Illuminate\Support\Facades\Gate as GateFacade;
 use App\Models\User as UserModel;
 use Illuminate\Auth\Access\Response;

@@ -1,8 +1,8 @@
 <?php 
 
-namespace App\Permissions\Abilities\Contracts;
+namespace App\Permissions\Abilities\StaticAbilities;
 
-class StaticAbilities
+class BaseStaticAbilitiesResolver
 {
     public static function get(string $ability): string
     {

@@ -1,12 +1,12 @@
 <?php 
 
-namespace App\Permissions\Abilities\Contracts;
+namespace App\Permissions\Abilities\DbAbilities;
 
 use Sentinel;
 use App\Permissions\Abilities\RoleAbilityResolver;
 
 
-abstract class DbAbilities
+abstract class BaseDbAbilitiesResolver
 {
     // Abilities map - override in child classes
     protected const ABILITIES = [];
