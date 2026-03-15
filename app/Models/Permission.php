@@ -7,7 +7,11 @@ use App\Models\Role;
 
 class Permission extends Model
 {
+    
     use HasFactory;
+
+    // Cache key constant (should match the one in your trait)
+    const CACHE_KEY = 'db_permissions_for_gates';
 
     protected $fillable = [
         'name',
@@ -25,6 +29,21 @@ class Permission extends Model
         'status' => 'boolean',
         'access' => 'string'
     ];
+    
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Clear cache when permission is created, updated, or deleted
+        static::saved(function () {
+            Cache::forget(self::CACHE_KEY);
+        });
+
+        static::deleted(function () {
+            Cache::forget(self::CACHE_KEY);
+        });
+    }
 
     public function parent()
     {
@@ -62,6 +81,20 @@ class Permission extends Model
                 'data-access'       => $this->access === 'allow',
                 'data-db_rec_id'    => $this->id,                
             ],
+            'role' => $this->role->name,
+        ];
+    }
+
+
+
+    public function toBasicArray()
+    {
+        return [
+            'name'      => $this->name,
+            'key'       => $this->key,
+            'access'    => $this->access === 'allow',
+            'role'      => $this->role->name ?? null,
+            'status'    => $this->status
         ];
     }
 

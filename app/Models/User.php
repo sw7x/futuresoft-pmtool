@@ -154,6 +154,37 @@ class User extends CartalystUser
     }
 
 
+
+    public function getFirstRole()
+    {
+        $role = $this->roles->first();
+        
+        if ($role) {
+            return (object)[
+                'id' => $role->id,
+                'name' => $role->name,
+                'slug' => $role->slug,
+                'permissions' => $role->permissions
+            ];
+        }
+        
+        return null;
+    }
+
+    public function getFirstRoleName()
+    {
+        $role = $this->roles->first();
+        return $role ? $role->name : null;
+
+    }
+
+    public function getFirstRoleSlug()
+    {
+        $role = $this->roles->first();
+        return $role ? $role->slug : null;
+    }
+
+
     public function getIsActivatedAttribute(){
         return $this->isactivated();
     }

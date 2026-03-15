@@ -2,49 +2,68 @@
 
 namespace App\Http\Controllers;
 
-use App\Project;
 use Illuminate\Http\Request;
+use App\Permissions\Traits\PermissionCheck;
+use App\Models\Permission as PermissionModel;
+use App\Permissions\Abilities\DbAbilities;
 
-use App\Http\Requests;
+/*
+use App\Permissions\Abilities\AuthAbilities;
+use Illuminate\Support\Facades\Cache;
+use Sentinel;
+use Illuminate\Support\Facades\Gate;
+*/
 
-use App\Domain\Services\ProjectCreator;
-use Illuminate\Support\Facades\Validator;
-use Auth;
-use phpDocumentor\Reflection\DocBlock\Tags\Var_;
-use Session;
-use DB;
-
-use Illuminate\Database\Eloquent\Model;
-use App\User;
 
 class ProjectController extends Controller
 {
 
-
-   /************************************************/
-    private $projectCreator;
+    use PermissionCheck;
 
     public function __construct()
     {
 
-       // $this->projectCreator = new ProjectCreator();
     }
 
 
-
-
     public function index(){
+        //dd(Sentinel::getUser()->getFirstRoleName());
+        //$this->hasPermission(AuthAbilities::get('CHANGE_PASSWORD'));
         return view('projects.project-list');
     }    
 
+
     public function createProject(){
+
+        $this->hasPermission(DbAbilities::get('EDIT_PROFILE'));
         return view('projects.project-create');
-    }    
+
+        /*
+        //dump(AuthAbilities::get('CHANGE_PASSWORD'));dd();
+        $value = Cache::get('db_permissions_for_gates');
+        dd($value);
+
+
+        $gates = Gate::abilities();
+        dd($gates);
+
+
+        Cache::forget('db_permissions_for_gates');
+
+
+        dump(DbAbilities::get('cPHP'));
+        dump(DbAbilities::forRole('manager')->gPHP());
+        dump(DbAbilities::get('sEDIT', 'manager'));
+        dump(DbAbilities::get('PHP'));
+        dd('_');
+        */
+
+    }   
+
 
     public function singleProject($id){
         return view('projects.project-single');
     }
-
 
 
     public function assignEmployees(){
@@ -53,8 +72,6 @@ class ProjectController extends Controller
     public function viewTimeline(){
         return view('projects.project-timeline');
     }
-
-    
 
     public function thread($id){
         //dd($id);
