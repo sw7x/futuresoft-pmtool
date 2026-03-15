@@ -63,4 +63,19 @@ class Role extends Model
         return self::pluck('name', 'id')->toArray();
     }
 
+    /**
+     * Get all role names in a simple flat array
+     */
+    public static function getAllRoleNames()
+    {
+        return self::pluck('name')->toArray();
+    }
+
+    /**
+     * Get all role slugs in a simple flat array (often matches the constants)
+     */
+    public static function getAllRoleSlugs()
+    {
+        return self::pluck('slug')->toArray();
+    }
 }
