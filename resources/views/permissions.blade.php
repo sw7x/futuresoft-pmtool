@@ -93,7 +93,7 @@
 
                                 <div id="" class="card-body box-container border-bottom overflow-hidden px-2">
                                     <div id="jstree_permissions" class=""></div>
-                                        <!-- Hidden container for selected permissions to be submitted
+                                    <!-- Hidden container for selected permissions to be submitted
                                         <div id="selected_permissions_container"></div> 
                                     -->
                                 </div>
@@ -137,29 +137,22 @@
                                     <div class="mb-4">
                                         <label class="text-muted small font-bold d-block mb-1 uppercase tracking-wider">Permission Name</label>
                                         <div class="bg-gray-100 p-2 rounded border">
-                                            <code id="perm_name" class="text-primary font-bold">view projects</code>
+                                            <code id="perm_name" class="text-primary font-bold"></code>
                                         </div>
                                     </div>
 
                                     <div class="mb-4">
                                         <label class="text-muted small font-bold d-block mb-1 uppercase tracking-wider">Identifier Key</label>
                                         <div class="bg-gray-100 p-2 rounded border">
-                                            <code id="perm_key" class="text-primary font-bold text-lg">VIEW_PROJECTS</code>
+                                            <code id="perm_key" class="text-primary font-bold text-lg"></code>
                                         </div>
                                     </div>
 
                                     <div class="mb-4">
                                         <label class="text-muted small font-bold d-block mb-1 uppercase tracking-wider">Current Access</label>
                                         <div class="bg-gray-100 p-2 rounded border">
-                                            <code id="perm_access" class="text-info font-bold text-lg">Allow</code>
+                                            <code id="perm_access" class="text-info font-bold text-lg"></code>
                                         </div>
-
-                                            {{-- 
-                                            <div class="bg-gray-100 p-2 rounded border">
-                                                <code id="display-id" class="text-danger font-bold text-lg">Deny</code>
-                                            </div> 
-                                            --}}
-
                                     </div>
 
                                     <div class="mb-2">
@@ -174,11 +167,9 @@
                                             <i class="fa fa-save mr-1"></i> Update Permissions
                                         </button>                                    
                                     </div>
-                                </div>                                 
-
-
+                                </div>                                
                             </div>                           
-                        </div>  
+                        </div>
 
                     </div>            
                         
@@ -627,9 +618,6 @@
             });
 
 
-
-
-
             /**
              * Fills the update form with selected node data
              */
@@ -650,7 +638,6 @@
 
                 $tree.jstree("open_node", $li);
             }
-
 
 
             /**
@@ -711,8 +698,7 @@
                     "id": newId, "text": name, "type": "root",
                     "li_attr": { "class": "root", "data-key": key, "data-access": access }
                 }, "last");
-                
-                             
+                                             
                 if (sel) {
                     ref.deselect_all();
                     ref.select_node(sel);
@@ -820,11 +806,6 @@
             };
 
 
-
-
-
-
-
             // Delete Node
             $("#btnDelete").on("click", function() {
                 const ref = $tree.jstree(true);
@@ -905,7 +886,6 @@
             });
 
 
-
             // Modal: Open Create Main
             $(document).on("click", "#btnCreateParent", function() {
                 resetModalForm();
@@ -970,7 +950,6 @@
             });
 
             
-
             // Modal: Confirm Create
             $(document).on("click", "#modal-permission-create-btn", function() {
                 const name      = $('#modal-permission-name').val();
@@ -985,7 +964,6 @@
                 }
                 $modal.modal('hide');
             });
-
 
 
             $(document).on("click", "#permission-reset-btn", function() {
@@ -1017,7 +995,6 @@
                     }
                 });
             });
-
 
 
             $(document).on("click", "#permission-update-btn", function() {

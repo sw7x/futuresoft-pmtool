@@ -151,29 +151,22 @@
                                     <div class="mb-4">
                                         <label class="text-muted small font-bold d-block mb-1 uppercase tracking-wider">Permission Name</label>
                                         <div class="bg-gray-100 p-2 rounded border">
-                                            <code id="perm_name" class="text-primary font-bold">view projects</code>
+                                            <code id="perm_name" class="text-primary font-bold"></code>
                                         </div>
                                     </div>
 
                                     <div class="mb-4">
                                         <label class="text-muted small font-bold d-block mb-1 uppercase tracking-wider">Identifier Key</label>
                                         <div class="bg-gray-100 p-2 rounded border">
-                                            <code id="perm_key" class="text-primary font-bold text-lg">VIEW_PROJECTS</code>
+                                            <code id="perm_key" class="text-primary font-bold text-lg"></code>
                                         </div>
                                     </div>
 
                                     <div class="mb-4">
                                         <label class="text-muted small font-bold d-block mb-1 uppercase tracking-wider">Current Access</label>
                                         <div class="bg-gray-100 p-2 rounded border">
-                                            <code id="perm_access" class="text-info font-bold text-lg">Allow</code>
+                                            <code id="perm_access" class="text-info font-bold text-lg"></code>
                                         </div>
-
-                                            {{-- 
-                                            <div class="bg-gray-100 p-2 rounded border">
-                                                <code id="display-id" class="text-danger font-bold text-lg">Deny</code>
-                                            </div> 
-                                            --}}
-
                                     </div>
 
                                     <div class="mb-2">

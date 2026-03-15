@@ -47,12 +47,15 @@ class Permission extends Model
     {
         return [
             'db_rec_id'         => $this->id,
-            'db_parent_rec_id'  => $this->parent_id ?? null, // Add this line
-            'id'                => $this->tree_id,/////
-            'parent'            => $this->parent_tree_id,/////////
-            'text'              => $this->name .' - '.$this->id.' - '.$this->access,
-            'type'              => $this->type,/////////////////
-            'state'             => ["checked" => $this->access === 'allow'], /////// Using the new accessor
+            'db_parent_rec_id'  => $this->parent_id ?? null,
+            'id'                => $this->tree_id,
+            'parent'            => $this->parent_tree_id,
+            
+            'text'              => $this->name,
+            //'text'              => $this->name .' - '.$this->id.' - '.$this->access,
+            
+            'type'              => $this->type,
+            'state'             => ["checked" => $this->access === 'allow'],
             'li_attr'           => [
                 'class'             => $this->type,
                 'data-key'          => $this->key,
@@ -157,7 +160,6 @@ class Permission extends Model
         return implode('-', $parts);
     }
 
-    /////////////////
     
 
 
