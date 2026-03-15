@@ -1,23 +1,15 @@
 <?php 
 
-namespace App\Permissions\Abilities;
+namespace App\Permissions\Abilities\Contracts;
 
 use Sentinel;
+use App\Permissions\Abilities\RoleAbilityResolver;
 
-class DbAbilities
+
+abstract class DbAbilities
 {
-    // Abilities map - keys are the "constant names" users call statically
-    protected const ABILITIES = [
-        'PHP'           => '{{rolename}}_PHP',
-        'EDIT'          => '{{rolename}}_EDIT',
-        'VIEW'          => '{{rolename}}_VIEW',
-        'DELETE'        => '{{rolename}}_DELETE',
-        'CREATE'        => '{{rolename}}_CREATE',
-        'ADMIN'         => '{{rolename}}_ADMIN',
-        'PUBLISH'       => '{{rolename}}_PUBLISH',
-        'APPROVE'       => '{{rolename}}_APPROVE',
-        'EDIT_PROFILE'  => '{{rolename}}_EDIT_PROFILE',
-    ];
+    // Abilities map - override in child classes
+    protected const ABILITIES = [];
 
     /**
      * Get the current authenticated user's role name (uppercased).
@@ -27,8 +19,7 @@ class DbAbilities
     protected static function getCurrentRoleName(): ?string
     {
         if (!Sentinel::check()) {
-            logger()->warning('DbAbilities: ability resolved while user is not logged in');
-            //throw new \RuntimeException('No authenticated user');
+            logger()->warning(class_basename(static::class) . ': ability resolved while user is not logged in');
             return null;
         }
 
@@ -36,7 +27,7 @@ class DbAbilities
         $roleName = $user->getFirstRoleName();
 
         if (empty($roleName)) {
-            logger()->warning('DbAbilities: authenticated user has no role assigned', [
+            logger()->warning(class_basename(static::class) . ': authenticated user has no role assigned', [
                 'user_id' => $user->id,
             ]);
             return null;
@@ -46,22 +37,16 @@ class DbAbilities
     }
 
     /**
-     * Magic static call — resolves DbAbilities::PHP(), DbAbilities::EDIT(), etc.
-     *
-     * Usage:
-     *   DbAbilities::PHP()          → 'ADMIN_PHP'          (role auto-detected)
-     *   DbAbilities::PHP('editor')  → 'EDITOR_PHP'         (role explicitly passed)
-     *   DbAbilities::FOOBAR()       → 'UNKNOWN_ABILITY'    (invalid ability key)
-     *   DbAbilities::PHP() (guest)  → 'UNAUTHENTICATED_ABILITY' (not logged in)
-     *   DbAbilities::PHP() (no role)→ 'UNASSIGNED_ABILITY' (logged in, no role)
+     * Magic static call — resolves capabilities dynamically.
      */
     public static function __callStatic(string $name, array $arguments): string
     {
         $key = strtoupper($name);
+        $shortName = class_basename(static::class);
 
         // Invalid ability key
         if (!array_key_exists($key, static::ABILITIES)) {
-            logger()->warning("DbAbilities: undefined ability '{$name}' called");
+            logger()->warning("{$shortName}: undefined ability '{$name}' called");
             return '___UNKNOWN_ABILITY___';
         }
 
@@ -82,13 +67,8 @@ class DbAbilities
         return str_replace('{{rolename}}', $roleName, static::ABILITIES[$key]);
     }
 
-
     /**
      * Explicit helper — useful when IDE static analysis struggles with __callStatic.
-     *
-     * Usage:
-     *   DbAbilities::get('PHP')            → 'ADMIN_PHP'
-     *   DbAbilities::get('EDIT', 'manager') → 'MANAGER_EDIT'
      */
     public static function get(string $ability, ?string $roleName = null): string
     {
@@ -97,18 +77,14 @@ class DbAbilities
 
     /**
      * Return a builder locked to a specific role.
-     *
-     * Usage:
-     *   DbAbilities::forRole('manager')->PHP   → 'MANAGER_PHP'
-     *   DbAbilities::forRole('editor')->EDIT   → 'EDITOR_EDIT'
      */
-    public static function forRole(string $roleName): DbAbilityBuilder
+    public static function forRole(string $roleName): RoleAbilityResolver
     {
-        return new DbAbilityBuilder(strtoupper($roleName));
+        return new RoleAbilityResolver(strtoupper($roleName), static::class);
     }
 
     /**
-     * Expose the raw abilities map so DbAbilityBuilder can reuse it.
+     * Expose the raw abilities map so RoleAbilityResolver can reuse it.
      *
      * @return array<string, string>
      */
@@ -117,6 +93,7 @@ class DbAbilities
         return static::ABILITIES;
     }
 }
+
 
 
 /*

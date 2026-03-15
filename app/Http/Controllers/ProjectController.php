@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Permissions\Traits\PermissionCheck;
 use App\Models\Permission as PermissionModel;
-use App\Permissions\Abilities\DbAbilities;
+use App\Permissions\Abilities\TaskDbAbilities;
 
 /*
 use App\Permissions\Abilities\AuthAbilities;
@@ -35,7 +35,7 @@ class ProjectController extends Controller
 
     public function createProject(){
 
-        $this->hasPermission(DbAbilities::get('EDIT_PROFILE'));
+        $this->hasPermission(TaskDbAbilities::get('EDIT_PROFILE'));
         return view('projects.project-create');
 
         /*
