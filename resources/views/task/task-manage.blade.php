@@ -114,7 +114,14 @@
 
             <div class="ibox">
                 <div class="ibox-content">                        
-                    <br>
+                    
+                    
+                    <div class="text-base">
+                    TODO - show task progress in task tree - pending, submited, delayed-pending, delayed-submited
+                    </div><br>
+
+
+
                     <div class="row">
                         <div class="col-md-5 pl-1 pr-0">
                             <div class="card mb-3 h-100">
@@ -625,7 +632,14 @@ $(function() {
     ];
     //const data = [];
 
-    
+    /* TODO
+    show task progress in task tree
+    pending
+    submited
+    delayed-pending
+    delayed-submited
+    */
+
     // --- Tree Initialization ---
     $tree.jstree({
         "core": {
@@ -636,8 +650,11 @@ $(function() {
             "allow_reselect": true
         },
         "types": {
-            "child": { "icon": "fa fa-file-o" },
-            "parent": { "icon": "fa fa-folder-o" }
+            "child": { "icon": "fa fa-file" },
+            "parent": { "icon": "fa fa-folder" }
+
+           
+
         },
         "plugins": ["unique", "types"],
         "unique": {

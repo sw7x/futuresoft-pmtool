@@ -35,7 +35,7 @@
         .proj-info .label-text {
             font-weight: 700;
             color: #718096;
-            min-width: 130px;
+            min-width: 180px;
             font-size: 12px;
             text-transform: uppercase;
         }
@@ -261,6 +261,11 @@
                         <div class="info-row">
                             <span class="label-text"><i class="fa fa-calendar"></i> Progress : </span>
                             <span class="value-text" id="proj-phase-progress">70% Completed</span>
+                        </div>
+
+                        <div class="info-row">
+                            <span class="label-text"><i class="fa fa-calendar"></i>EST to complete: </span>
+                            <span class="value-text" id="proj-phase-progress">20h 50Mmins</span>
                         </div>                    
                     </div>
 
