@@ -4,7 +4,7 @@ namespace Modules\TaskManagement\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Modules\Timesheet\Database\Factories\TimesheetFactory;
+use Modules\TaskManagement\Database\Factories\TaskFactory;
 
 class Task extends Model
 {
@@ -15,7 +15,7 @@ class Task extends Model
     */
     protected static function newFactory()
     {
-        return TimesheetFactory::new();
+        return TaskFactory::new();
     }
 }
 
