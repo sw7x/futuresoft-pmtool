@@ -17,7 +17,19 @@
         "moneyphp/money": "^3.3",
         "ramsey/uuid": "^4.2",
         "staudenmeir/belongs-to-through": "^2.11",
-        "staudenmeir/eloquent-has-many-deep": "^1.14"
+        "staudenmeir/eloquent-has-many-deep": "^1.14",
+
+
+        "futuresoft/reporting-module": "*",
+        "futuresoft/leave-module": "*",
+        "futuresoft/timesheet-module": "*",
+        "futuresoft/messaging-module": "*",
+        "futuresoft/designation-module": "*",
+        "futuresoft/user-management-module": "*",
+        "futuresoft/resource-allocation-module": "*",
+        "futuresoft/task-management-module": "*",
+        "futuresoft/project-progress-tracking-module": "*",
+        "futuresoft/project-module": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -31,10 +43,7 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/",            
-            "Modules\\Reporting\\": "modules/reporting/src",
-            "Modules\\Reporting\\Database\\Seeders\\": "modules/reporting/database/seeders",
-            "Modules\\Reporting\\Database\\Factories\\": "modules/reporting/database/factories"
+            "Database\\Seeders\\": "database/seeders/"   
         },
         "files": [
             "app/Common/Helpers/string.php",
@@ -76,5 +85,47 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./modules/leave"
+        },
+        {
+            "type": "path",
+            "url": "./modules/reporting"
+        },
+        {
+            "type": "path",
+            "url": "./modules/timesheet"
+        },
+        {
+            "type": "path",
+            "url": "./modules/messaging"
+        },
+        {
+            "type": "path",
+            "url": "./modules/designation"
+        },
+        {
+            "type": "path",
+            "url": "./modules/user-management"
+        },
+        {
+            "type": "path",
+            "url": "./modules/resource-allocation"
+        },
+        {
+            "type": "path",
+            "url": "./modules/task-management"
+        },
+        {
+            "type": "path",
+            "url": "./modules/project-progress-tracking"
+        },
+        {
+            "type": "path",
+            "url": "./modules/project"
+        }
+    ]
 }

@@ -18,14 +18,16 @@ class DatabaseSeeder extends Seeder
         /*
         * seeders for modules
         */
-        $this->call(\Modules\Designation\Database\Seeders\DatabaseSeeder::class);
+        //$this->call(\Modules\Designation\Database\Seeders\DatabaseSeeder::class);
         $this->call(\Modules\Reporting\Database\Seeders\DatabaseSeeder::class);
+        
         $this->call(RoleSeeder::class);
 
         $this->call(DefaultAccountsSeeder::class);
         
-
         $this->call(UserSeeder::class);
+        
+        $this->call(PermissionsTableSeeder::class);
 
 
 

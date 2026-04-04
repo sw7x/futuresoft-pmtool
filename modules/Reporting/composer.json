@@ -1,0 +1,24 @@
+{
+    "name": "futuresoft/reporting-module",
+    "description": "This laravel module handles reports of futuresoft PVT LTD",
+    "type": "laravel-module",
+    "autoload": {
+        "psr-4": {
+            "Modules\\Reporting\\": "src/",
+            "Modules\\Reporting\\Database\\Seeders\\": "database/seeders/",
+            "Modules\\Reporting\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Reporting\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Reporting\\Providers\\ReportingServiceProvider"
+            ]
+        }
+    }
+}

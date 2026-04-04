@@ -1,0 +1,24 @@
+{
+    "name": "futuresoft/timesheet-module",
+    "description": "This laravel module handles timesheet management in futuresoft PVT LTD",
+    "type": "laravel-module",
+    "autoload": {
+        "psr-4": {
+            "Modules\\Timesheet\\": "src/",
+            "Modules\\Timesheet\\Database\\Seeders\\": "database/seeders/",
+            "Modules\\Timesheet\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Timesheet\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Timesheet\\Providers\\TimesheetServiceProvider"
+            ]
+        }
+    }
+}

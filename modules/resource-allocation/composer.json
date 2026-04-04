@@ -1,0 +1,24 @@
+{
+    "name": "futuresoft/resource-allocation-module",
+    "description": "This Laravel module assigns developers and project managers to projects and tasks within Futuresoft PVT LTD",
+    "type": "laravel-module",
+    "autoload": {
+        "psr-4": {
+            "Modules\\ResourceAllocation\\": "src/",
+            "Modules\\ResourceAllocation\\Database\\Seeders\\": "database/seeders/",
+            "Modules\\ResourceAllocation\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\ResourceAllocation\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\ResourceAllocation\\Providers\\ResourceAllocationServiceProvider"
+            ]
+        }
+    }
+}

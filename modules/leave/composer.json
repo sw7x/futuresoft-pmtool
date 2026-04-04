@@ -1,0 +1,24 @@
+{
+    "name": "futuresoft/leave-module",
+    "description": "This laravel module handles leaves of employees in futuresoft PVT LTD",
+    "type": "laravel-module",
+    "autoload": {
+        "psr-4": {
+            "Modules\\Leave\\": "src/",
+            "Modules\\Leave\\Database\\Seeders\\": "database/seeders/",
+            "Modules\\Leave\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Leave\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Leave\\Providers\\LeaveServiceProvider"
+            ]
+        }
+    }
+}

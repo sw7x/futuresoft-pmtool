@@ -183,8 +183,9 @@ return [
         /*
          * Modules Service Providers...
          */
-        Modules\Reporting\Providers\ReportingProvider::class,
-        //Modules\Designation\Providers\DesignationProvider::class,
+        //Modules\Reporting\Providers\ReportingServiceProvider::class,
+            //Modules\Designation\Providers\DesignationProvider::class,
+        //Modules\Leave\Providers\LeaveServiceProvider::class,
 
 
     ],

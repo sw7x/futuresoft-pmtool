@@ -1,0 +1,24 @@
+{
+    "name": "futuresoft/project-module",
+    "description": "This Laravel module manages project profiles, planning documents, client records, and invoice tracking for futuresoft PVT LTD",
+    "type": "laravel-module",
+    "autoload": {
+        "psr-4": {
+            "Modules\\Project\\": "src/",
+            "Modules\\Project\\Database\\Seeders\\": "database/seeders/",
+            "Modules\\Project\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Project\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Project\\Providers\\ProjectServiceProvider"
+            ]
+        }
+    }
+}
