@@ -1,124 +1,228 @@
 <?php
-
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-//use Illuminate\Support\Facades\Schema;
-//use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Artisan;
-
-
 
 class MigrateInOrder extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'migrate:in-order';
+    protected $signature = 'migrate:in-order 
+                            {--fresh : Drop all tables and re-run migrations}
+                            {--seed : Run seeders after migration}
+                            {--force : Force run in production}
+                            {--module= : Run specific module only}
+                            {--rollback : Rollback ALL migrations (uses migrate:reset per path)}
+                            {--step= : Rollback a specific number of steps instead of all}';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Execute the migrations in the order specified in the file app/Console/Comands/MigrateInOrder.php \n Drop all the table in db before execute the command.';
+    protected $description = 'Run core and all module migrations in order';
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    // Define module execution order (dependency-based)
+    protected array $moduleOrder = [
+        'reporting',
+        'leave',
+        // add more modules here in dependency order
+    ];
+
+    // Files inside database/migrations to run at the very end
+    protected array $coreLastMigrations = [
+        'database/migrations/9999_12_30_000001_add_foreign_key_constraints_to_all_tables.php',
+    ];
+
+    public function handle(): int
     {
-        parent::__construct();
+        if ($this->option('rollback')) {
+            return $this->handleRollback();
+        }
+
+        if ($this->option('fresh')) {
+            return $this->handleFresh();
+        }
+
+        return $this->handleMigrate();
     }
 
-    
+    // -------------------------------------------------------
+    // Migrate
+    // -------------------------------------------------------
+    protected function handleMigrate(): int
+    {
+        // 1. Core migrations (excluding last migrations)
+        $this->runMigration('Core', 'database/migrations', $this->coreLastMigrations);
+
+        // 2. Specific module or all modules
+        if ($module = $this->option('module')) {
+            $this->runMigration($module, "modules/{$module}/database/migrations");
+        } else {
+            foreach ($this->moduleOrder as $module) {
+                $this->runMigration($module, "modules/{$module}/database/migrations");
+            }
+        }
+
+        // 3. Run foreign key constraints migration last
+        $this->runLastMigrations();
+
+        // 4. Seed if requested
+        if ($this->option('seed')) {
+            $this->runSeeder();
+        }
+
+        $this->info('');
+        $this->info('✅ All migrations completed successfully.');
+        return self::SUCCESS;
+    }
+
+    // -------------------------------------------------------
+    // Fresh
+    // -------------------------------------------------------
+    protected function handleFresh(): int
+    {
+        if (!$this->option('force') && app()->isProduction()) {
+            $this->error('Use --force flag in production!');
+            return self::FAILURE;
+        }
+
+        $this->warn('⚠️  Dropping all tables and re-running migrations...');
+        $this->call('db:wipe', ['--force' => true]);
+
+        return $this->handleMigrate();
+    }
+
+    // -------------------------------------------------------
+    // Rollback
+    // -------------------------------------------------------
+    protected function handleRollback(): int
+    {
+        $steps = $this->option('step'); // null if not provided
+        $useReset = is_null($steps);   // no --step = rollback ALL
+
+        if ($useReset) {
+            $this->warn('⏪ Rolling back ALL migrations (migrate:reset per path)...');
+        } else {
+            $this->warn("⏪ Rolling back migrations (steps: {$steps})...");
+        }
+
+        // Rollback order is reverse of migration order:
+        // 1. Foreign key constraints first (was last to migrate)
+        foreach (array_reverse($this->coreLastMigrations) as $migrationPath) {
+            if (!File::exists(base_path($migrationPath))) continue;
+
+            $this->warn('  ↩ Rolling back: ' . basename($migrationPath));
+            $this->rollbackPath($migrationPath, $useReset, $steps);
+        }
+
+        // 2. Modules in reverse order
+        foreach (array_reverse($this->moduleOrder) as $module) {
+            $path = "modules/{$module}/database/migrations";
+            if (!File::isDirectory(base_path($path))) continue;
+
+            $this->warn("  ↩ Rolling back: {$module}");
+            $this->rollbackPath($path, $useReset, $steps);
+        }
+
+        // 3. Core last (was first to migrate)
+        $this->warn('  ↩ Rolling back: Core');
+        $this->rollbackPath('database/migrations', $useReset, $steps);
+
+        $this->info('');
+        $this->info('✅ Rollback completed.');
+        return self::SUCCESS;
+    }
 
     /**
-     * Execute the console command.
-     *
-     * @return int
+     * Rollback a specific path using reset (all) or rollback (steps).
      */
-    public function handle()
+    protected function rollbackPath(string $relativePath, bool $useReset, $steps=null): void
     {
-        
-        // Reset previous migrations if needed
-        //$this->call('migrate:reset', ['--force' => true]);
-        //$this->info('✅ All tables dropped. Now migrating in order...');
+        if ($useReset) {
+            // migrate:reset rolls back ALL migrations in the path regardless of batches
+            $this->callSilently('migrate:reset', [
+                '--path'  => $relativePath,
+                '--force' => true,
+            ]);
+        } else {
+            $this->callSilently('migrate:rollback', [
+                '--path'  => $relativePath,
+                '--step'  => (int) $steps,
+                '--force' => true,
+            ]);
+        }
+    }
 
-        
-        /** Specify the names of the migrations files in the order you want to loaded
-        *   $migrations =[ 
-        *       'xxxx_xx_xx_000000_create_nameTable_table.php',
-        *   ];
-        */
-        $migrations = [
-            //'database/migrations/2014_10_12_000000_create_users_table.php',                   
-            //'database/migrations/2014_10_12_100000_create_password_resets_table.php',         
-            //'database/migrations/2019_08_19_000000_create_failed_jobs_table.php',             
-            //'database/migrations/2019_12_14_000001_create_personal_access_tokens_table.php',  
-            //'database/migrations/2025_05_24_043557_create_store_table.php',
-            
-            'modules/Reporting/database/migrations/reports_table.php',
-            
-            'modules/Reporting/database/migrations/2025_05_23_072558_create_reports_table.php',
-            
-            'database/migrations/2025_05_24_043538_create_product_table.php',
-        ];
+    // -------------------------------------------------------
+    // Helpers
+    // -------------------------------------------------------
+    protected function runMigration(string $label, string $relativePath, array $exclude = []): void
+    {
+        $fullPath = base_path($relativePath);
 
-        $migrationPaths = collect($migrations)
-            ->map(function ($file) {
-                if (!File::exists($file)) {
-                    $this->error("❌ Migration file not found: $file");
-                    $this->line('');
-                    return null;
-                }
+        if (!File::isDirectory($fullPath)) {
+            $this->warn("  ⚠ Skipped [{$label}]: path not found → {$relativePath}");
+            return;
+        }
 
-                return $file;
-            })
-            ->filter(fn($path) => File::exists($path))
+        $excludeBasenames = collect($exclude)
+            ->map(fn($e) => basename($e))
             ->toArray();
 
-        /*$output =  $this->call('migrate', [
-            '--path' => $migrationPaths,
-            '--force' => true
-        ]);*/
+        $files = collect(File::files($fullPath))
+            ->filter(fn($file) => !in_array($file->getFilename(), $excludeBasenames))
+            ->values();
 
-        $output = Artisan::call('migrate', [
-            '--path' => $migrationPaths,
-            '--force' => true,
-        ]);
-
-        $result = Artisan::output();
-        //dump('===['.$result.']===');    
-
-        // Count how many times 'Migrated:' appears
-        $migratedCount = substr_count($result, 'Migrated:');
-        //dump($migratedCount);
-
-        if (str_contains($result, 'Nothing to migrate')) {
-            
-            $this->line('<info>'.$result.'</info>');        
-        } else {            
-            
-            $formattedResult = str_replace(
-                ['Migrating:', 'Migrated:'],
-                ['<comment>Migrating:</comment>', '<info>Migrated:</info>'],
-                $result
-            );
-
-            $this->line($formattedResult);
-
-            if($migratedCount > 1){
-                $this->info('✅ Migrations executed as one batch.');
-            }
-            
+        if ($files->isEmpty()) {
+            $this->warn("  ⚠ Skipped [{$label}]: no migration files found");
+            return;
         }
-        
-        return 0;
+
+        $this->info("  🔄 Migrating: {$label}");
+
+        foreach ($files as $file) {
+            $this->call('migrate', [
+                '--path'  => $relativePath . '/' . $file->getFilename(),
+                '--force' => true,
+            ]);
+        }
     }
+
+    protected function runLastMigrations(): void
+    {
+        foreach ($this->coreLastMigrations as $migrationPath) {
+            if (!File::exists(base_path($migrationPath))) {
+                $this->warn("  ⚠ Skipped [Last]: file not found → {$migrationPath}");
+                continue;
+            }
+
+            $filename = basename($migrationPath);
+            $this->info("  🔗 Running last migration: {$filename}");
+
+            $this->call('migrate', [
+                '--path'  => $migrationPath,
+                '--force' => true,
+            ]);
+        }
+    }
+
+    protected function runSeeder(): void
+    {
+        $this->info('');
+        $this->info('🌱 Running seeders...');
+        $this->call('db:seed', ['--force' => true]);
+    }
+
+    // Auto-discover modules not listed in moduleOrder
+    protected function discoverModules(): array
+    {
+        $modulesPath = base_path('modules');
+
+        if (!File::isDirectory($modulesPath)) return [];
+
+        return collect(File::directories($modulesPath))
+            ->map(fn($path) => basename($path))
+            ->filter(fn($module) => !in_array($module, $this->moduleOrder))
+            ->values()
+            ->toArray();
+    }
+
+
 }
+
+
