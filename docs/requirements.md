@@ -1,4 +1,4 @@
-# **Requirements for FutureSoft Pvt Ltd Project Management System**
+# **Requirements of the FutureSoft Pvt Ltd Project Management System**
 
 ## **1. User Roles and Access Levels**
 
