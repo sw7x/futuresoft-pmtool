@@ -142,11 +142,11 @@ The system shall support the following user roles:
 
 ## **4.1 Functional Requirements**
 
-4.1.1 Users (PM, Dev) shall submit monthly timesheets.
-4.1.2 Managers and Owners shall approve timesheets.
-4.1.3 The system shall allow viewing historical timesheets.
-4.1.4 The system shall support filtering by month.
-4.1.5 The system shall allow marking leave days in timesheets.
+4.1.1 Users (PM, Dev) shall submit monthly timesheets.  
+4.1.2 Managers and Owners shall approve timesheets.  
+4.1.3 The system shall allow viewing historical timesheets.  
+4.1.4 The system shall support filtering by month.  
+4.1.5 The system shall allow marking leave days in timesheets.  
 
 ---
 
