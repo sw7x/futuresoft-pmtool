@@ -67,7 +67,7 @@ In this guide, we use Single Class Diagram Approach approach
 >
 >> Markdown is often used to format readme files, for writing messages in online discussion forums, and to create rich text using a plain text editor.  
 
-**[View requirements page](./docs/req.md)**
+**[View requirements page](./docs/requirements.md)**
 
 ***
 
