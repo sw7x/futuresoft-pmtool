@@ -56,7 +56,7 @@ Objective of this guide is Design the system using Object-Oriented Analysis and 
 for that we consider two possible approaches:
 
 1. Single Class Diagram Approach – Create one comprehensive class diagram for the entire system and divide it into modules.
-2. Package-Wise Class Diagrams Approach – Create separate class diagrams for each module
+2. Module-Wise Class Diagrams Approach – Create separate class diagrams for each module
 
 In this guide, we use Single Class Diagram Approach approach
 
@@ -98,7 +98,7 @@ When draw class diagram
 
 ***
 
-## Packages
+## modules
 To develop the project management system for FutureSoft Pvt Ltd, we first gathered key stakeholders to understand their needs. 
 Based on the requirements, we defined core system tasks and organized the functionality into structured modules for clarity and 
 maintainability. 
