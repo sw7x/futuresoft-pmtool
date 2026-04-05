@@ -293,14 +293,20 @@ This ensures that all migrations are executed in the proper sequence, avoiding d
 
 ## How to Seed Data
 
-To run database seeders in the correct order:
+To seed the database correctly, especially when there are dependencies between tables and modules, follow these steps:
 
-1. Go to the following file:
+1. Navigate to the following file:
    `<project_root>\database\seeders\DatabaseSeeder.php`
 
-2. Add your seeder classes inside this file in the **desired execution order**.
+2. Register your seeder classes inside this file in the **exact order they should be executed**.
 
-This ensures that seed data is inserted correctly, especially when there are dependencies between tables.
+3. In addition to core seeders, you can also include seeder classes from different modules.
+   When doing this, make sure to organize them carefully so that:
+
+   * Seeders that create foundational data (e.g., roles, users, base configurations) run first.
+   * Seeders that depend on other data (e.g., relationships, mappings) run afterward.
+
+By explicitly controlling the order in `DatabaseSeeder.php`, you ensure that all required data is inserted without conflicts or missing dependencies.
 
 ---
 
@@ -310,3 +316,17 @@ This ensures that seed data is inserted correctly, especially when there are dep
 ### TODO 
 ------er detailed page  
 -----class diagram detaild - attr, methods 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
