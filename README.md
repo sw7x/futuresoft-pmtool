@@ -6,22 +6,28 @@
 - [Requirements](#requirements)
 - [ER diagram](#er-diagram)
 - [Overall class diagram](#overall-class-diagram)  
-- [Packages](#packages)
-	- [Project management package](#project-management-package)
-	- [Task management package](#task-management-package)
-	- [Project progress tracking package](#project-progress-tracking-package)
-	- [Timesheet management package](#timesheet-management-package)
-	- [User management package](#user-management-package)
-	- [Designation management package](#designation-management-package)
-	- [Communication package](#communication-package)
-	- [Reporting package](#reporting-package)
-	- [Leave management package](#leave-management-package)
-	- [Resource allocation package](#resource-allocation-package)
+- [Modules](#modules)
+	- [Project management module](#project-management-module)
+	- [Task management module](#task-management-module)
+	- [Project progress tracking module](#project-progress-tracking-module)
+	- [Timesheet management module](#timesheet-management-module)
+	- [User management module](#user-management-module)
+	- [Designation management module](#designation-management-module)
+	- [Communication module](#communication-module)
+	- [Reporting module](#reporting-module)
+	- [Leave management module](#leave-management-module)
+	- [Resource allocation module](#resource-allocation-module)
+- [Creating & Integrating a Laravel Module](#creating--integrating-a-laravel-module)
+    - [Part 1 — Creating a Module](#part-1--creating-a-module)
+    - [Part 2 — Integrating the Module into the Project](#part-2--integrating-the-module-into-the-project)
+    - [summary](#summary)
+- [How to Run Migrations #how-to-run-migrations](#how-to-run-migrations)
+- [How to Seed Data #how-to-seed-data](#how-to-seed-data)
 
 
 ## Introduction
 This web application is custom project management software system for FutureSoft Pvt 
-Ltd.system will be structured into logically organized packages using Object-Oriented Analysis and Design (OOAD) 
+Ltd.system will be structured into logically organized modules using Object-Oriented Analysis and Design (OOAD) 
 principles
 
 ***
@@ -46,11 +52,11 @@ The system will support four user roles within the company:
 ***
 
 ## Objective
-Objective of this guide is Design the system using Object-Oriented Analysis and Design (OOAD) principles, and organize it into packages.
+Objective of this guide is Design the system using Object-Oriented Analysis and Design (OOAD) principles, and organize it into modules.
 for that we consider two possible approaches:
 
-1. Single Class Diagram Approach – Create one comprehensive class diagram for the entire system and divide it into packages.
-2. Package-Wise Class Diagrams Approach – Create separate class diagrams for each package
+1. Single Class Diagram Approach – Create one comprehensive class diagram for the entire system and divide it into modules.
+2. Package-Wise Class Diagrams Approach – Create separate class diagrams for each module
 
 In this guide, we use Single Class Diagram Approach approach
 
@@ -97,7 +103,7 @@ To develop the project management system for FutureSoft Pvt Ltd, we first gather
 Based on the requirements, we defined core system tasks and organized the functionality into structured modules for clarity and 
 maintainability. 
 
-### Project management package 
+### Project management module 
 | Authorized | Description |
 | --- | --- |
 | Owner | Create project profile with Client information and Project Plan |
@@ -123,7 +129,7 @@ maintainability.
 
 ***
 
-### Task management package
+### Task management module
 | Authorized | Description |
 | --- | --- |
 | Assigned PM | Divide project into sub tasks that consist of maximum two levels. |
@@ -135,7 +141,7 @@ maintainability.
 
 ***
 
-### Project progress tracking package
+### Project progress tracking module
 | Authorized | Description |
 | --- | --- |
 | | The project is split into different phases, and the progress is measured by the percentage of each phase that has been completed |
@@ -153,7 +159,7 @@ maintainability.
 
 ***
 
-### Timesheet management package
+### Timesheet management module
 | Authorized | Description |
 | --- | --- |
 | PM, Dev | submit time sheets by monthly basis |
@@ -163,7 +169,7 @@ maintainability.
 
 ***
 
-### User management package	 
+### User management module	 
 | Authorized | Description |
 | --- | --- |
 | | managing user account |
@@ -186,7 +192,7 @@ maintainability.
 
 ***
 
-### Designation management package 
+### Designation management module 
 | Authorized | Description |
 | --- | --- |
 | Owner | Manage designation hierarchy |
@@ -198,7 +204,7 @@ maintainability.
 
 ***
 
-### Communication package
+### Communication module
 | Authorized | Description |
 | --- | --- |
 | | Users shall be able pass private messages to other users(Able to upload files with private messages) |
@@ -211,7 +217,7 @@ maintainability.
 
 ***
 
-### Reporting package
+### Reporting module
 | Authorized | Description |
 | --- | --- |
 | PM, Manager, Owner | view developer project assignment time periods with project time frame |
@@ -235,7 +241,7 @@ maintainability.
 
 ***
 
-### Leave management package
+### Leave management module
 | Authorized | Description |
 | --- | --- |
 | | PM,Dev can apply leave |
@@ -250,7 +256,7 @@ maintainability.
 
 ***
 
-### Resource allocation package 
+### Resource allocation module 
 | Authorized | Description |
 | --- | --- |
 | Owner, Manager| Assign PM for a project |
