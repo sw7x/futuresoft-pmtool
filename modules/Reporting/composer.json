@@ -1,7 +1,7 @@
 {
     "name": "futuresoft/reporting-module",
     "description": "This laravel module handles reports of futuresoft PVT LTD",
-    "type": "laravel-module",
+    "type": "library",
     "autoload": {
         "psr-4": {
             "Modules\\Reporting\\": "src/",

@@ -29,7 +29,8 @@
         "futuresoft/resource-allocation-module": "*",
         "futuresoft/task-management-module": "*",
         "futuresoft/project-progress-tracking-module": "*",
-        "futuresoft/project-module": "*"
+        "futuresoft/project-module": "*",
+        "futuresoft/car-module": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -89,43 +90,7 @@
     "repositories": [
         {
             "type": "path",
-            "url": "./modules/leave"
-        },
-        {
-            "type": "path",
-            "url": "./modules/reporting"
-        },
-        {
-            "type": "path",
-            "url": "./modules/timesheet"
-        },
-        {
-            "type": "path",
-            "url": "./modules/messaging"
-        },
-        {
-            "type": "path",
-            "url": "./modules/designation"
-        },
-        {
-            "type": "path",
-            "url": "./modules/user-management"
-        },
-        {
-            "type": "path",
-            "url": "./modules/resource-allocation"
-        },
-        {
-            "type": "path",
-            "url": "./modules/task-management"
-        },
-        {
-            "type": "path",
-            "url": "./modules/project-progress-tracking"
-        },
-        {
-            "type": "path",
-            "url": "./modules/project"
+            "url": "./modules/*"
         }
     ]
 }

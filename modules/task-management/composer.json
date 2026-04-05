@@ -1,7 +1,7 @@
 {
     "name": "futuresoft/task-management-module",
     "description": "This laravel module handles task management in futuresoft PVT LTD",
-    "type": "laravel-module",
+    "type": "library",
     "autoload": {
         "psr-4": {
             "Modules\\TaskManagement\\": "src/",

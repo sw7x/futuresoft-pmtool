@@ -1,7 +1,7 @@
 {
     "name": "futuresoft/leave-module",
     "description": "This laravel module handles leaves of employees in futuresoft PVT LTD",
-    "type": "laravel-module",
+    "type": "library",
     "autoload": {
         "psr-4": {
             "Modules\\Leave\\": "src/",

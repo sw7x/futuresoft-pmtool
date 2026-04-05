@@ -294,8 +294,8 @@ modules/
     │   ├── Models/
     │   ├── Controllers/
     │   ├── Services/
-    │   ├── Requests/
-    │   └── routes/
+    │   └── Requests/
+    │── routes/
     │       ├── web.php
     │       └── api.php
     ├── database/
@@ -365,7 +365,7 @@ class ProjectServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../../config/project.php', 'project'
+            __DIR__ . '/../../config/config.php', 'project'
         );
     }
 
@@ -375,6 +375,16 @@ class ProjectServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
         $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'project');
+
+
+        // to publish files inside into PROJECT_ROOT/public folder 
+        // run - php artisan vendor:publish --tag=project-assets --force
+        $this->publishes([
+            __DIR__.'/../../resources/js'       => public_path('modules/project/js'),
+            __DIR__.'/../../resources/css'      => public_path('modules/project/css'),            
+            __DIR__.'/../../resources/images'   => public_path('modules/project/images'),            
+        ], 'project-assets');
+
     }
 }
 ```
@@ -419,7 +429,7 @@ Two things need to be added — a `repositories` entry so Composer knows where t
     "repositories": [
         {
             "type": "path",
-            "url": "./modules/*"
+            "url": "./modules/project"
         }
     ],
     "require": {

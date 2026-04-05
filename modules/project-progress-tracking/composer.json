@@ -1,7 +1,7 @@
 {
     "name": "futuresoft/project-progress-tracking-module",
     "description": "This laravel module track progress of the projects in futuresoft PVT LTD",
-    "type": "laravel-module",
+    "type": "library",
     "autoload": {
         "psr-4": {
             "Modules\\ProjectProgressTracking\\": "src/",

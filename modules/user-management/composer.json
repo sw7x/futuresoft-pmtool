@@ -1,7 +1,7 @@
 {
     "name": "futuresoft/user-management-module",
     "description": "This laravel module handles user management in futuresoft PVT LTD",
-    "type": "laravel-module",
+    "type": "library",
     "autoload": {
         "psr-4": {
             "Modules\\UserManagement\\": "src/",

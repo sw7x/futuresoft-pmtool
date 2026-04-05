@@ -1,7 +1,7 @@
 {
     "name": "futuresoft/messaging-module",
     "description": "This laravel module handles sending and reciving messages among the users in futuresoft PVT LTD",
-    "type": "laravel-module",
+    "type": "library",
     "autoload": {
         "psr-4": {
             "Modules\\Messaging\\": "src/",

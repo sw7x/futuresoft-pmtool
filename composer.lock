@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0a74292b93340ede1bb9ab6410ba0c0a",
+    "content-hash": "cb72168519d25c4dcdbc7ef15fb31c2f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -992,14 +992,47 @@
             "time": "2022-02-23T14:25:13+00:00"
         },
         {
+            "name": "futuresoft/car-module",
+            "version": "dev-develop",
+            "dist": {
+                "type": "path",
+                "url": "./modules/car",
+                "reference": "b25754837fb0e95eae33488bf2601bb21fa316af"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Modules\\Car\\Providers\\CarServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Modules\\Car\\": "src/",
+                    "Modules\\Car\\Database\\Seeders\\": "database/seeders/",
+                    "Modules\\Car\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Modules\\Car\\Tests\\": "tests/"
+                }
+            },
+            "description": "This laravel module handles timesheet management in futuresoft PVT LTD",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
             "name": "futuresoft/designation-module",
             "version": "dev-develop",
             "dist": {
                 "type": "path",
                 "url": "./modules/designation",
-                "reference": "d1cf8f0b1e5dd05d2be1c2e14d06ff8f70a7779e"
+                "reference": "a4445d36956c88fb9d155677de7a81f5c60d1c1f"
             },
-            "type": "laravel-module",
+            "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
@@ -1030,9 +1063,9 @@
             "dist": {
                 "type": "path",
                 "url": "./modules/leave",
-                "reference": "8dd0359d95a74d4fd409d6463b01715cd9a15a0d"
+                "reference": "fd0e709b28b04573b3df0353f3cb99db2cab0898"
             },
-            "type": "laravel-module",
+            "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
@@ -1063,9 +1096,9 @@
             "dist": {
                 "type": "path",
                 "url": "./modules/messaging",
-                "reference": "a16a6c03a8ea65590028311376f42043f633fcb9"
+                "reference": "07b485a717e8a3aff32689cdee0fbb65f9a9653c"
             },
-            "type": "laravel-module",
+            "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
@@ -1096,9 +1129,9 @@
             "dist": {
                 "type": "path",
                 "url": "./modules/project",
-                "reference": "132e0ac3b17d921106e751ea0ce60f42bd404770"
+                "reference": "3aca9a131f5d71c2371ad9a5a06ebe5ae829bc51"
             },
-            "type": "laravel-module",
+            "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
@@ -1129,9 +1162,9 @@
             "dist": {
                 "type": "path",
                 "url": "./modules/project-progress-tracking",
-                "reference": "90c8d6fb62d32cdfd67578f1eaa61677d145c653"
+                "reference": "753ddea8213c5e7d3c10627b478a846c456053ce"
             },
-            "type": "laravel-module",
+            "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
@@ -1162,9 +1195,9 @@
             "dist": {
                 "type": "path",
                 "url": "./modules/reporting",
-                "reference": "aff627441ed38c49979589dcd96057530f47e031"
+                "reference": "9b57885ad45209253d9e17bae376df9dbdb1708d"
             },
-            "type": "laravel-module",
+            "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
@@ -1195,9 +1228,9 @@
             "dist": {
                 "type": "path",
                 "url": "./modules/resource-allocation",
-                "reference": "244ad220cc09a096d0172e2a4b4dcb6251d7c240"
+                "reference": "30a7fbb914928d9c413d8cf98360fb24124080f4"
             },
-            "type": "laravel-module",
+            "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
@@ -1228,9 +1261,9 @@
             "dist": {
                 "type": "path",
                 "url": "./modules/task-management",
-                "reference": "4cb619aecf331de586d55de3f1e29c4045f8cfd7"
+                "reference": "842143d7254091a7596beeb699950d0120078168"
             },
-            "type": "laravel-module",
+            "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
@@ -1261,9 +1294,9 @@
             "dist": {
                 "type": "path",
                 "url": "./modules/timesheet",
-                "reference": "36ab51af0bbe74e2864d9c05eed83a8456e7d52d"
+                "reference": "c04fc7d01855d22aacfbc5920b8b46569bbade19"
             },
-            "type": "laravel-module",
+            "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
@@ -1294,9 +1327,9 @@
             "dist": {
                 "type": "path",
                 "url": "./modules/user-management",
-                "reference": "b59747aa0c7d94e17da3cd46134bfe20578e334c"
+                "reference": "b123e71a9f412017ee64d32246fd15a3bb591259"
             },
-            "type": "laravel-module",
+            "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
