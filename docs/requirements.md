@@ -57,7 +57,6 @@ The system shall support the following user roles:
 #### **Project Costing**
 
 2.1.12 The system shall allow adding cost factors.  
-
 2.1.13 The system shall calculate employee cost:  
 
 > Employee Cost = Hourly Rate × Time Spent  
@@ -70,9 +69,7 @@ The system shall support the following user roles:
 #### **Project Progress Tracking**
 
 2.1.18 The system shall divide projects into phases.  
-
 2.1.19 The system shall calculate phase completion percentage:  
-
 > Completion % = (Completed Tasks / Total Tasks) × 100  
 
 2.1.20 The system shall display progress per phase.  
