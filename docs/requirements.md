@@ -1,6 +1,6 @@
-## **Requirements for FutureSoft Pvt Ltd Project Management System**
+# **Requirements for FutureSoft Pvt Ltd Project Management System**
 
-# **1. User Roles and Access Levels**
+## **1. User Roles and Access Levels**
 
 ### **1.1 User Roles**
 
@@ -24,11 +24,11 @@ The system shall support the following user roles:
 
 ---
 
-# **2. Project Management**
+## **2. Project Management**
 
-## **2.1 Functional Requirements**
+### **2.1 Functional Requirements**
 
-### **Project Profile Management**
+#### **Project Profile Management**
 
 2.1.1 The system shall allow the Owner to create a project profile with client information and project plan.  
 2.1.2 The system shall allow the Owner to add and update project details.  
@@ -37,7 +37,7 @@ The system shall support the following user roles:
 2.1.5 The system shall allow the Owner to manage (update/delete) project profiles.  
 2.1.6 The system shall allow authorized users to view project profiles.  
 
-### **Project Status Management**
+#### **Project Status Management**
 
 2.1.7 The system shall support project statuses:
 
@@ -47,14 +47,14 @@ The system shall support the following user roles:
 - Completed  
 - Cancelled  
 
-### **Project Timeline Management**
+#### **Project Timeline Management**
 
 2.1.8 The system shall allow setting project milestones.  
 2.1.9 The system shall display scheduled milestones.  
 2.1.10 The system shall record actual milestone durations.  
 2.1.11 The system shall allow marking milestones as completed.  
 
-### **Project Costing**
+#### **Project Costing**
 
 2.1.12 The system shall allow adding cost factors.  
 
@@ -67,7 +67,7 @@ The system shall support the following user roles:
 2.1.16 The system shall calculate profit by deducting income from cost.  
 2.1.17 The system shall allow listing and filtering income and costs.  
 
-### **Project Progress Tracking**
+#### **Project Progress Tracking**
 
 2.1.18 The system shall divide projects into phases.  
 
@@ -91,7 +91,7 @@ The system shall support the following user roles:
 2.1.25 Show upcoming tasks nearing deadlines.  
 2.1.26 Show overdue tasks.  
 
-### **Project Resource Allocation**
+#### **Project Resource Allocation**
 
 2.1.27 Assign PM to projects.  
 2.1.28 Notify assigned PM.  
@@ -101,7 +101,7 @@ The system shall support the following user roles:
 2.1.31 Notify assigned Developers.  
 2.1.32 Validate Developer availability.  
 
-## **2.2 Authorization Matrix**
+### **2.2 Authorization Matrix**
 
 | Action         | Owner | Manager | PM           | Dev          |
 | -------------- | ----- | ------- | ------------ | ------------ |
@@ -116,9 +116,9 @@ The system shall support the following user roles:
 
 ---
 
-# **3. Task Management**
+## **3. Task Management**
 
-## **3.1 Functional Requirements**
+### **3.1 Functional Requirements**
 
 3.1.1 The system shall allow PM to divide projects into tasks (maximum 2 levels).  
 3.1.2 The system shall allow PM to define estimated time and delivery date.  
@@ -140,7 +140,7 @@ The system shall support the following user roles:
 3.1.6 The system shall support task sorting and filtering.  
 3.1.7 The system shall allow file attachments (documents, screenshots, specifications).  
 
-### **Task Resource Allocation**
+#### **Task Resource Allocation**
 
 3.1.8 Assign tasks to Developers.  
 
@@ -149,7 +149,7 @@ The system shall support the following user roles:
 - Leave overlaps  
 - Task conflicts  
 
-## **3.2 Authorization Matrix**
+### **3.2 Authorization Matrix**
 
 | Action             | Owner | Manager | PM | Dev |
 | ------------------ | ----- | ------- | -- | --- |
@@ -160,9 +160,9 @@ The system shall support the following user roles:
 
 ---
 
-# **4. Timesheet Management**
+## **4. Timesheet Management**
 
-## **4.1 Functional Requirements**
+### **4.1 Functional Requirements**
 
 4.1.1 Users (PM, Dev) shall submit monthly timesheets.  
 4.1.2 Managers and Owners shall approve timesheets.  
@@ -170,7 +170,7 @@ The system shall support the following user roles:
 4.1.4 The system shall support filtering by month.  
 4.1.5 The system shall allow marking leave days in timesheets.  
 
-## **4.2 Authorization Matrix**
+### **4.2 Authorization Matrix**
 
 | Action            | Owner | Manager | PM       | Dev      |
 | ----------------- | ----- | ------- | -------- | -------- |
@@ -180,22 +180,22 @@ The system shall support the following user roles:
 
 ---
 
-# **5. User Management**
+## **5. User Management**
 
-## **5.1 Functional Requirements**
+### **5.1 Functional Requirements**
 
-### **User Account Management**
+#### **User Account Management**
 
 5.1.1 The system shall view, create, update, delete user accounts.  
 5.1.2 The system shall allow managing working/resigned status.  
 5.1.3 The system shall allow enabling/disabling accounts.  
 
-### **Profile Management**
+#### **Profile Management**
 
 5.1.4 Users shall manage their personal information (except username).  
 5.1.5 Users shall manage profile pictures.  
 
-### **Employee Data Management**
+#### **Employee Data Management**
 
 5.1.6 The system shall store:
 
@@ -209,13 +209,13 @@ The system shall support the following user roles:
 
 > Monthly Salary / (22 × 8 hours)  
 
-### **Employee Designation Management**
+#### **Employee Designation Management**
 
 5.1.8 The system shall manage designation hierarchy.  
 5.1.9 The system shall manage designation and sub-designation details.  
 5.1.10 The system shall assign designations to users.  
 
-## **5.2 Authorization Matrix**
+### **5.2 Authorization Matrix**
 
 | Action              | Owner | Manager       | PM | Dev |
 | ------------------- | ----- | ------------- | -- | --- |
@@ -225,16 +225,16 @@ The system shall support the following user roles:
 
 ---
 
-# **6. Communication**
+## **6. Communication**
 
-## **6.1 Functional Requirements**
+### **6.1 Functional Requirements**
 
 6.1.1 Users shall send private messages.  
 6.1.2 Messages shall support file attachments.  
 6.1.3 The system shall support project-based discussion threads.  
 6.1.4 The system shall support task-based discussion threads.  
 
-## **6.2 Authorization Matrix**
+### **6.2 Authorization Matrix**
 
 | Action            | Owner | Manager | PM | Dev          |
 | ----------------- | ----- | ------- | -- | ------------ |
@@ -244,9 +244,9 @@ The system shall support the following user roles:
 
 ---
 
-# **7. Reporting**
+## **7. Reporting**
 
-## **7.1 Functional Requirements**
+### **7.1 Functional Requirements**
 
 7.1.1 View project assignment durations.  
 7.1.2 View employee project-wise time tracking.  
@@ -261,7 +261,7 @@ The system shall support the following user roles:
 - Delayed projects  
 - Task summaries  
 
-### **Calendar**
+#### **Calendar**
 
 7.1.7 Display deadlines (daily, weekly, monthly).  
 
@@ -269,7 +269,7 @@ The system shall support the following user roles:
 
 7.1.9 Provide workload reports.  
 
-## **7.2 Authorization Matrix**
+### **7.2 Authorization Matrix**
 
 | Action        | Owner | Manager | PM | Dev |
 | ------------- | ----- | ------- | -- | --- |
@@ -278,9 +278,9 @@ The system shall support the following user roles:
 
 ---
 
-# **8. Leave Management**
+## **8. Leave Management**
 
-## **8.1 Functional Requirements**
+### **8.1 Functional Requirements**
 
 8.1.1 Users (PM, Dev) shall apply for leave.  
 8.1.2 Users shall cancel leave requests.  
@@ -295,7 +295,7 @@ The system shall support the following user roles:
 8.1.5 The system shall support filtering by date and employee.  
 8.1.6 The system shall provide a leave calendar view.  
 
-## **8.2 Authorization Matrix**
+### **8.2 Authorization Matrix**
 
 | Action        | Owner | Manager | PM      | Dev      |
 | ------------- | ----- | ------- | ------- | -------- |
