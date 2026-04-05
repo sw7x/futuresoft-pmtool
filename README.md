@@ -149,7 +149,7 @@ maintainability.
 | | Project phase completion % = (Number of Done tasks/Total number of tasks) * 100% |
 | | Project-wise, view the progress of tasks according to their progress levels (progress levels - pending, submited, delayed-pending, delayed-submited) |
 | PM, Owner, Manager, Assigned Dev | View Project progress by it's phases |
-| PM, Owner, Manager | ~~calculat and show Project Estimate time.(WHEN ALL TASK EST TIME SET)~~ |
+| PM, Owner, Manager | ~~calculate and show Project Estimate time.(WHEN ALL TASK EST TIME SET)~~ |
 | |
 | | ~~show  recent tasks that complete~~ |
 | | show  recent tasks that have to complete(near deadline) -> in Dashboard |

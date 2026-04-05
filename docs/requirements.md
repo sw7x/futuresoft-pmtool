@@ -85,9 +85,9 @@ The system shall support the following user roles:
 - Delayed-Submitted  
 
 2.1.22 The system shall allow viewing project progress by phases.  
-2.1.23 The system shall calculate total estimated project time (if all tasks are estimated).  
+~~2.1.23 The system shall calculate total estimated project time (if all tasks are estimated).~~  
 
-2.1.24 Show recently completed tasks.  
+~~2.1.24 Show recently completed tasks.~~  
 2.1.25 Show upcoming tasks nearing deadlines.  
 2.1.26 Show overdue tasks.  
 
@@ -138,7 +138,7 @@ The system shall support the following user roles:
 - Low  
 
 3.1.6 The system shall support task sorting and filtering.  
-3.1.7 The system shall allow file attachments (documents, screenshots, specifications).  
+~~3.1.7 The system shall allow file attachments (documents, screenshots, specifications).~~
 
 #### **Task Resource Allocation**
 
@@ -230,7 +230,7 @@ The system shall support the following user roles:
 ### **6.1 Functional Requirements**
 
 6.1.1 Users shall send private messages.  
-6.1.2 Messages shall support file attachments.  
+~~6.1.2 Messages shall support file attachments.~~  
 6.1.3 The system shall support project-based discussion threads.  
 6.1.4 The system shall support task-based discussion threads.  
 
