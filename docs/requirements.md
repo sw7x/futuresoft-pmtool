@@ -1,7 +1,5 @@
 ## **Requirements for FutureSoft Pvt Ltd Project Management System**
 
----
-
 # **1. User Roles and Access Levels**
 
 ### **1.1 User Roles**
@@ -304,5 +302,3 @@ The system shall support the following user roles:
 | Apply Leave   | ✖     | ✖       | ✔       | ✔        |
 | Approve Leave | ✔     | ✔       | ✖       | ✖        |
 | View Leaves   | ✔     | ✔       | ✔ (Own) | ✔ (Own)  |
-
----
