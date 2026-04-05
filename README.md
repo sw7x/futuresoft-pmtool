@@ -270,6 +270,263 @@ maintainability.
 
 ***
 
+# Creating & Integrating a Laravel Module
+
+## Overview
+
+Each module is a self-contained package that lives inside the `modules/` folder at the project root. It has its own `composer.json`, source code, database files, and tests — and integrates into the Laravel project automatically via Composer's package auto-discovery.
+
+---
+
+## Part 1 — Creating a Module
+
+### 1. Create the Folder Structure
+
+Create your module folder inside `modules/` at the project root:
+
+```
+modules/
+└── Project/
+    ├── composer.json
+    ├── src/
+    │   ├── Providers/
+    │   │   └── ProjectServiceProvider.php
+    │   ├── Models/
+    │   ├── Controllers/
+    │   ├── Services/
+    │   ├── Requests/
+    │   └── routes/
+    │       ├── web.php
+    │       └── api.php
+    ├── database/
+    │   ├── migrations/
+    │   ├── seeders/
+    │   └── factories/
+    ├── config/
+    ├── resources/
+    │   └── views/
+    └── tests/
+        ├── TestCase.php
+        ├── Unit/
+        └── Feature/
+```
+
+---
+
+### 2. Add `composer.json` to the Module
+
+Each module must have its own `composer.json`. All paths here are **relative to this file**, not the project root.
+
+```json
+// modules/Project/composer.json
+{
+    "name": "futuresoft/project-module",
+    "description": "This Laravel module manages project profiles, planning documents, client records, and invoice tracking for futuresoft PVT LTD",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Modules\\Project\\": "src/",
+            "Modules\\Project\\Database\\Seeders\\": "database/seeders/",
+            "Modules\\Project\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Project\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Project\\Providers\\ProjectServiceProvider"
+            ]
+        }
+    }
+}
+```
+
+> **Note:** `type` should be `"library"` not `"laravel-module"` — Composer does not recognise `laravel-module` as a valid type and may cause issues.
+
+---
+
+### 3. Create the Service Provider
+
+The Service Provider is the **entry point** of your module. It tells Laravel how to load the module's routes, migrations, views, and config.
+
+```php
+// modules/Project/src/Providers/ProjectServiceProvider.php
+
+namespace Modules\Project\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+class ProjectServiceProvider extends ServiceProvider
+{
+    public function register(): void
+    {
+        $this->mergeConfigFrom(
+            __DIR__ . '/../../config/project.php', 'project'
+        );
+    }
+
+    public function boot(): void
+    {
+        $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
+        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'project');
+    }
+}
+```
+
+---
+
+### 4. Create the Test Base Class
+
+```php
+// modules/Project/tests/TestCase.php
+
+namespace Modules\Project\Tests;
+
+use Orchestra\Testbench\TestCase as OrchestraTestCase;
+use Modules\Project\Providers\ProjectServiceProvider;
+
+abstract class TestCase extends OrchestraTestCase
+{
+    protected function getPackageProviders($app): array
+    {
+        return [ProjectServiceProvider::class];
+    }
+
+    protected function defineDatabaseMigrations(): void
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+    }
+}
+```
+
+---
+
+## Part 2 — Integrating the Module into the Project
+
+### 1. Update Root `composer.json`
+
+Two things need to be added — a `repositories` entry so Composer knows where to find local modules, and a `require` entry for the module itself.
+
+```json
+// composer.json (project root)
+{
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./modules/*"
+        }
+    ],
+    "require": {
+        "futuresoft/project-module": "*"
+    }
+}
+```
+
+> The `./modules/*` wildcard automatically discovers all subfolders inside `modules/`. When you add a new module in future, you only need to add it to `require` — no need to touch `repositories` again.
+
+---
+
+### 2. Terminal Commands
+
+Run these commands in order from the **project root**:
+
+```bash
+# 1. Install the module via Composer
+composer update futuresoft/project-module
+
+# 2. Regenerate the autoload files
+composer dump-autoload
+
+# 3. Run the module's migrations
+php artisan migrate
+```
+
+---
+
+### 3. Verify Auto-Discovery
+
+After `composer update`, confirm Laravel has detected the module's service provider:
+
+```bash
+cat bootstrap/cache/packages.php
+```
+
+You should see:
+
+```php
+'futuresoft/project-module' => [
+    'providers' => [
+        'Modules\\Project\\Providers\\ProjectServiceProvider',
+    ],
+],
+```
+
+If it appears here, the module is fully integrated — no changes needed in `config/app.php`.
+
+---
+
+### 4. Add Module to `phpunit.xml` for Testing
+
+```xml
+<testsuites>
+    <testsuite name="Unit">
+        <directory>tests/Unit</directory>
+    </testsuite>
+    <testsuite name="Feature">
+        <directory>tests/Feature</directory>
+    </testsuite>
+
+    <!-- Project Module -->
+    <testsuite name="Project">
+        <directory>modules/Project/tests</directory>
+    </testsuite>
+</testsuites>
+```
+
+Then run the module's tests:
+
+```bash
+# Run only this module's tests
+php artisan test --testsuite=Project
+
+# Run all tests including all modules
+php artisan test
+```
+
+---
+
+## Summary
+
+### Creating a Module
+| Step | Action |
+|---|---|
+| 1 | Create folder structure under `modules/Project/` |
+| 2 | Add `composer.json` with correct relative paths |
+| 3 | Create `ProjectServiceProvider` and register routes, migrations, views |
+| 4 | Create test base `TestCase.php` |
+
+### Integrating into the Project
+| Step | Action |
+|---|---|
+| 1 | Add `repositories` with `./modules/*` to root `composer.json` |
+| 2 | Add module name to `require` in root `composer.json` |
+| 3 | Run `composer update futuresoft/project-module` |
+| 4 | Run `composer dump-autoload` |
+| 5 | Run `php artisan migrate` |
+| 6 | Verify `bootstrap/cache/packages.php` shows the provider |
+| 7 | Add testsuite to `phpunit.xml` and run tests |
+
+
+
+
+***
+
 ## How to Run Migrations
 
 In this project, migration files exist for both the core application and individual modules.
