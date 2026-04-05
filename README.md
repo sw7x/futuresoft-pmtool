@@ -270,17 +270,17 @@ maintainability.
 
 ***
 
-# Creating & Integrating a Laravel Module
+## Creating & Integrating a Laravel Module
 
-## Overview
+### Overview
 
 Each module is a self-contained package that lives inside the `modules/` folder at the project root. It has its own `composer.json`, source code, database files, and tests — and integrates into the Laravel project automatically via Composer's package auto-discovery.
 
 ---
 
-## Part 1 — Creating a Module
+### Part 1 — Creating a Module
 
-### 1. Create the Folder Structure
+#### 1. Create the Folder Structure
 
 Create your module folder inside `modules/` at the project root:
 
@@ -313,7 +313,7 @@ modules/
 
 ---
 
-### 2. Add `composer.json` to the Module
+#### 2. Add `composer.json` to the Module
 
 Each module must have its own `composer.json`. All paths here are **relative to this file**, not the project root.
 
@@ -349,7 +349,7 @@ Each module must have its own `composer.json`. All paths here are **relative to 
 
 ---
 
-### 3. Create the Service Provider
+#### 3. Create the Service Provider
 
 The Service Provider is the **entry point** of your module. It tells Laravel how to load the module's routes, migrations, views, and config.
 
@@ -381,7 +381,7 @@ class ProjectServiceProvider extends ServiceProvider
 
 ---
 
-### 4. Create the Test Base Class
+#### 4. Create the Test Base Class
 
 ```php
 // modules/Project/tests/TestCase.php
@@ -407,9 +407,9 @@ abstract class TestCase extends OrchestraTestCase
 
 ---
 
-## Part 2 — Integrating the Module into the Project
+### Part 2 — Integrating the Module into the Project
 
-### 1. Update Root `composer.json`
+#### 1. Update Root `composer.json`
 
 Two things need to be added — a `repositories` entry so Composer knows where to find local modules, and a `require` entry for the module itself.
 
@@ -432,7 +432,7 @@ Two things need to be added — a `repositories` entry so Composer knows where t
 
 ---
 
-### 2. Terminal Commands
+#### 2. Terminal Commands
 
 Run these commands in order from the **project root**:
 
@@ -449,7 +449,7 @@ php artisan migrate
 
 ---
 
-### 3. Verify Auto-Discovery
+#### 3. Verify Auto-Discovery
 
 After `composer update`, confirm Laravel has detected the module's service provider:
 
@@ -471,7 +471,7 @@ If it appears here, the module is fully integrated — no changes needed in `con
 
 ---
 
-### 4. Add Module to `phpunit.xml` for Testing
+#### 4. Add Module to `phpunit.xml` for Testing
 
 ```xml
 <testsuites>
@@ -501,9 +501,9 @@ php artisan test
 
 ---
 
-## Summary
+### Summary
 
-### Creating a Module
+#### Creating a Module
 | Step | Action |
 |---|---|
 | 1 | Create folder structure under `modules/Project/` |
@@ -511,7 +511,7 @@ php artisan test
 | 3 | Create `ProjectServiceProvider` and register routes, migrations, views |
 | 4 | Create test base `TestCase.php` |
 
-### Integrating into the Project
+#### Integrating into the Project
 | Step | Action |
 |---|---|
 | 1 | Add `repositories` with `./modules/*` to root `composer.json` |
@@ -521,9 +521,6 @@ php artisan test
 | 5 | Run `php artisan migrate` |
 | 6 | Verify `bootstrap/cache/packages.php` shows the provider |
 | 7 | Add testsuite to `phpunit.xml` and run tests |
-
-
-
 
 ***
 
