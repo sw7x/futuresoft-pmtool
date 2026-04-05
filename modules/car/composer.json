@@ -1,0 +1,24 @@
+{
+    "name": "futuresoft/car-module",
+    "description": "This laravel module handles timesheet management in futuresoft PVT LTD",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Modules\\Car\\": "src/",
+            "Modules\\Car\\Database\\Seeders\\": "database/seeders/",
+            "Modules\\Car\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Car\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Car\\Providers\\CarServiceProvider"
+            ]
+        }
+    }
+}
