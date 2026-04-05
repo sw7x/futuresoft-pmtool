@@ -88,6 +88,18 @@ The system shall support the following user roles:
 2.1.25 Show upcoming tasks nearing deadlines.
 2.1.26 Show overdue tasks.
 
+### **Project Resource Allocation**
+
+2.1.27 Assign PM to projects.  
+2.1.28 Notify assigned PM.  
+2.1.29 Validate PM availability before assignment.  
+
+2.1.30 Assign Developers to projects.  
+2.1.31 Notify assigned Developers.  
+2.1.32 Validate Developer availability.
+
+
+
 ---
 
 ## **2.2 Authorization Matrix**
@@ -100,6 +112,8 @@ The system shall support the following user roles:
 | Manage Costing | ✔     | ✔       | ✔ (Assigned) | ✖            |
 | View Progress  | ✔     | ✔       | ✔            | ✔(Assigned)  |
 | View Estimates | ✔     | ✔       | ✔            | ✖(Assigned)  |
+| Assign PM      | ✔     | ✔       | ✖            | ✖            |
+| Assign Dev     | ✖     | ✖       | ✔            | ✖            |
 
 ---
 
@@ -125,6 +139,14 @@ The system shall support the following user roles:
 3.1.6 The system shall support task sorting and filtering.
 3.1.7 The system shall allow file attachments (documents, screenshots, specifications).
 
+### **Task Resource Allocation**
+
+3.1.8 Assign tasks to Developers.  
+3.1.9 Validate:
+
+* Leave overlaps
+* Task conflicts
+
 ---
 
 ## **3.2 Authorization Matrix**
@@ -135,6 +157,7 @@ The system shall support the following user roles:
 | Assign Tasks       | ✖     | ✖       | ✔  | ✖   |
 | Update Task Status | ✖     | ✖       | ✖  | ✔   |
 | View Tasks         | ✔     | ✔       | ✔  | ✔   |
+| Assign Tasks       | ✖     | ✖       | ✔  | ✖   |
 
 ---
 
@@ -246,15 +269,18 @@ The system shall support the following user roles:
 
 ### **Calendar**
 
-7.1.7 Display deadlines (daily, weekly, monthly).
+7.1.7 Display deadlines (daily, weekly, monthly).  
 
+~~7.1.8 Provide resource availability chart.~~
+7.1.9 Provide workload reports.
 ---
 
 ## **7.2 Authorization Matrix**
 
-| Action       | Owner | Manager | PM | Dev |
-| ------------ | ----- | ------- | -- | --- |
-| View Reports | ✔     | ✔       | ✔  | ✖   |
+| Action        | Owner  | Manager   | PM  | Dev   |
+| ------------  | -----  | -------   | --  | ---   |
+| View Reports  | ✔     | ✔       | ✔  | ✖   |
+| View Workload | ✔     | ✔       | ✔  | ✖   |
 
 ---
 
@@ -285,35 +311,3 @@ The system shall support the following user roles:
 | View Leaves   | ✔     | ✔       | ✔(own)  | ✔(own)   |
 
 ---
-
-# **9. Resource Allocation**
-
-## **9.1 Functional Requirements**
-
-9.1.1 Assign PM to projects.
-9.1.2 Notify assigned PM.
-9.1.3 Validate PM availability before assignment.
-
-9.1.4 Assign Developers to projects.
-9.1.5 Notify assigned Developers.
-9.1.6 Validate Developer availability.
-
-9.1.7 Assign tasks to Developers.
-9.1.8 Validate:
-
-* Leave overlaps
-* Task conflicts
-
-9.1.9 Provide resource availability chart.
-9.1.10 Provide workload reports.
-
----
-
-## **9.2 Authorization Matrix**
-
-| Action        | Owner | Manager | PM | Dev |
-| ------------- | ----- | ------- | -- | --- |
-| Assign PM     | ✔     | ✔       | ✖  | ✖   |
-| Assign Dev    | ✖     | ✖       | ✔  | ✖   |
-| Assign Tasks  | ✖     | ✖       | ✔  | ✖   |
-| View Workload | ✔     | ✔       | ✔  | ✖   |
