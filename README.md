@@ -98,7 +98,7 @@ When draw class diagram
 
 ***
 
-## modules
+## Modules
 To develop the project management system for FutureSoft Pvt Ltd, we first gathered key stakeholders to understand their needs. 
 Based on the requirements, we defined core system tasks and organized the functionality into structured modules for clarity and 
 maintainability. 
