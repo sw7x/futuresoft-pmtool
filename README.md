@@ -21,8 +21,8 @@
     - [Part 1 — Creating a Module](#part-1--creating-a-module)
     - [Part 2 — Integrating the Module into the Project](#part-2--integrating-the-module-into-the-project)
     - [summary](#summary)
-- [How to Run Migrations #how-to-run-migrations](#how-to-run-migrations)
-- [How to Seed Data #how-to-seed-data](#how-to-seed-data)
+- [How to Run Migrations](#how-to-run-migrations)
+- [How to Seed Data](#how-to-seed-data)
 
 
 ## Introduction
