@@ -68,7 +68,7 @@ In this guide, we use Single Class Diagram Approach approach
 ## ER diagram
 ER diagram consist most im,portnat attributes only  
 
-<img src=".docs/diagrams/erd.png">  
+<img src="./docs/diagrams/erd.png">  
 All attributes are not shown in the ER diagram to avoid clutter and maintain clarity. Only key 
 attribute were include for better readability.
 
@@ -79,7 +79,7 @@ attribute were include for better readability.
 
 ## Overall class diagram  
 
-<img src=".docs/diagrams/cls.png">  
+<img src="./docs/diagrams/cls.png">  
 When draw class diagram 
 
 - Attributes and behaviors of the classes are omitted to keep the class diagram simple and readable.  
@@ -270,9 +270,6 @@ maintainability.
 
 ***
 
-
----
-
 ## How to Run Migrations
 
 In this project, migration files exist for both the core application and individual modules.
@@ -292,7 +289,7 @@ php artisan migrate:in-order
 
 This ensures that all migrations are executed in the proper sequence, avoiding dependency and constraint issues.
 
----
+***
 
 ## How to Seed Data
 
