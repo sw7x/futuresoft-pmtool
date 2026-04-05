@@ -1,64 +1,315 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Table of Contents
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+- [Introduction](#introduction)
+- [Project Overview](#project-overview)
+- [Objective](#objective)
+- [Requirements](#requirements)
+- [ER diagram](#er-diagram)
+- [Overall class diagram](#overall-class-diagram)  
+- [Packages](#packages)
+	- [Project management package](#project-management-package)
+	- [Task management package](#task-management-package)
+	- [Project progress tracking package](#project-progress-tracking-package)
+	- [Timesheet management package](#timesheet-management-package)
+	- [User management package](#user-management-package)
+	- [Designation management package](#designation-management-package)
+	- [Communication package](#communication-package)
+	- [Reporting package](#reporting-package)
+	- [Leave management package](#leave-management-package)
+	- [Resource allocation package](#resource-allocation-package)
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Introduction
+This web application is custom project management software system for FutureSoft Pvt 
+Ltd.system will be structured into logically organized packages using Object-Oriented Analysis and Design (OOAD) 
+principles
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+***
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Project Overview
+This Project Management System is a customized software solution designed to help FutureSoft Pvt Ltd efficiently manage 
+its internal projects, teams, and workflows
 
-## Learning Laravel
+### Key features of the system
+- Project creation and management
+- Task assignment and tracking
+- Role-based access control
+- Progress monitoring and reporting
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Target Users
+The system will support four user roles within the company:
+- Company Owner (Owner)
+- Manager
+- Project Manager (PM)
+- Developer (Dev)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+***
 
-## Laravel Sponsors
+## Objective
+Objective of this guide is Design the system using Object-Oriented Analysis and Design (OOAD) principles, and organize it into packages.
+for that we consider two possible approaches:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+1. Single Class Diagram Approach – Create one comprehensive class diagram for the entire system and divide it into packages.
+2. Package-Wise Class Diagrams Approach – Create separate class diagrams for each package
 
-### Premium Partners
+In this guide, we use Single Class Diagram Approach approach
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+***
 
-## Contributing
+## Requirements
+> Markdown is a lightweight markup language with plain-text-formatting syntax, created in 2004 by John Gruber with Aaron Swartz.
+>
+>> Markdown is often used to format readme files, for writing messages in online discussion forums, and to create rich text using a plain text editor.  
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**[View requirements page](./docs/req.md)**
 
-## Code of Conduct
+***
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## ER diagram
+ER diagram consist most im,portnat attributes only  
 
-## Security Vulnerabilities
+<img src=".docs/diagrams/erd.png">  
+All attributes are not shown in the ER diagram to avoid clutter and maintain clarity. Only key 
+attribute were include for better readability.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+**[Goto ER diagram page to view all attributes of the entities](./docs/er.md)**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+***
+
+## Overall class diagram  
+
+<img src=".docs/diagrams/cls.png">  
+When draw class diagram 
+
+- Attributes and behaviors of the classes are omitted to keep the class diagram simple and readable.  
+- Minimized bidirectional associations to optimize performance and memory usage
+- Some associations were skipped to maintain clarity in the diagram, as they were not considered essential. Those are 
+    - Timesheet ----approvedBy--> managementEmployee
+    - Leave ----approvedBy--> managementEmployee
+
+**[Goto class diagram page to view all attributes and behaviours of the classes](./docs/cls.md)**
+
+***
+
+## Packages
+To develop the project management system for FutureSoft Pvt Ltd, we first gathered key stakeholders to understand their needs. 
+Based on the requirements, we defined core system tasks and organized the functionality into structured modules for clarity and 
+maintainability. 
+
+### Project management package 
+| Authorized | Description |
+| --- | --- |
+| Owner | Create project profile with Client information and Project Plan |
+| Owner | Add project Details to project profile |
+| Owner | Add Scheduled Dates to project profile such as Delivery Date, deadline |
+| Owner | Categorize Projects as local or foreign |
+| Owner | Managing project profile |
+| Owner, Manager, PM, Assigned Dev | View project profile |
+| | project statuses: Initiated, In Progress, On Hold, Completed, Cancelled. |
+| |
+| | **Project timeline** |
+| | set,Display Scheduled Milestones for the project |
+| | set,Display Actual Duration of Milestones for the project |
+| | mark complete for Actual Milestones of the project |
+| |
+| | **Project costing** |
+| Manager, Owner, Assigned PM | Add costing factors and cost |
+| Manager, Owner, Assigned PM | Calculate Employee cost (Employee cost  = employee hourly rate * time) |
+| Manager, Owner, Assigned PM | Calculate total Cost |
+| Manager, Owner, Assigned PM | Add incomes to the project cost profile |
+| Manager, Owner, Assigned PM | deduct income amount from cost.(Calculating profit) |
+| Manager, Owner, Assigned PM | list income, costs , filter by (incomes, costs) |
+
+***
+
+### Task management package
+| Authorized | Description |
+| --- | --- |
+| Assigned PM | Divide project into sub tasks that consist of maximum two levels. |
+| PM | set Estimate time, Delivery date to the Tasks |
+| Dev | Submit task with Spend time and additional comment.(done/cannot done) |
+| | view task info(including delivery status) |
+| | Add priority levels (High, Medium, Low) and allow sorting/filtering |
+| | ~~Attach documents, screenshots, or specifications to each task~~  |
+
+***
+
+### Project progress tracking package
+| Authorized | Description |
+| --- | --- |
+| | The project is split into different phases, and the progress is measured by the percentage of each phase that has been completed |
+| | show percentages for each phase of the project |
+| | Project phase completion % = (Number of Done tasks/Total number of tasks) * 100% |
+| | Project-wise, view the progress of tasks according to their progress levels (progress levels - pending, submited, delayed-pending, delayed-submited) |
+| PM, Owner, Manager, Assigned Dev | View Project progress by it's phases |
+| PM, Owner, Manager | ~~calculat and show Project Estimate time.(WHEN ALL TASK EST TIME SET)~~ |
+| |
+| | ~~show  recent tasks that complete~~ |
+| | show  recent tasks that have to complete(near deadline) -> in Dashboard |
+| | show  recent tasks that exceed the deadline -> in Dashboard |
+
+~~task => Attach documents, screenshots, or file to each task~~  
+
+***
+
+### Timesheet management package
+| Authorized | Description |
+| --- | --- |
+| PM, Dev | submit time sheets by monthly basis |
+| Manager, Owner | approve all users timesheets |
+| Manager, Owner | view all users previous timesheets(filter by month) |
+| | can Mark leave days in timesheet |
+
+***
+
+### User management package	 
+| Authorized | Description |
+| --- | --- |
+| | managing user account |
+| Owner | manage manager, Developers and PM’s Personal Information and Demographic Information |
+| Manager | manage Developers and PM’s Personal Information and Demographic Information |
+| | Anyone can manage his/her own account Personal Information and Demographic Information |
+| |
+| | Manage Emp. Salary information, Employee hourly rate(monthly salary/22 days*8 hours), EPF-ETF details Education Qualifications and skills |
+| Owner | manage above details of Manager, Developers and  PM’s |
+| Manager | manage above details of Developers and PM |
+| |
+| | Admin level users can manage other user accounts (CRUD,working/resign, account enable/disable) |
+| Owner | create, delete and change working status of manager, Developers and PM’s |
+| Manager | create, delete and change working status of Developers and PM’s |
+| |
+| Dev, PM | Manage their Profile Picture,  Personal Information(except username)|
+
+~~system shall give Users authenticate~~  
+~~system shall be able given appropriate privileges according to their user role~~  
+
+***
+
+### Designation management package 
+| Authorized | Description |
+| --- | --- |
+| Owner | Manage designation hierarchy |
+| Owner | Manage designation ,sub designation information |
+| |
+| | admin level users can manage designations of users |
+| Owner | Manage designation of manager, PM’s and Developers |
+| Manager | Manage designation of PM’s and Developers |
+
+***
+
+### Communication package
+| Authorized | Description |
+| --- | --- |
+| | Users shall be able pass private messages to other users(Able to upload files with private messages) |
+| Project assigned dev, PM, Manager, Owner | thread to each project. can post, reply and see messages in that thread |
+| Task assigned dev, Project assigned PM, Manager, Owner| thread to each Task. can post, reply and see messages in that thread |
+
+~~message                => Attach documents, screenshots, or file to each~~  
+~~project thread message => Attach documents, screenshots, or file to each~~  
+~~task thread message    => Attach documents, screenshots, or file to each~~  
+
+***
+
+### Reporting package
+| Authorized | Description |
+| --- | --- |
+| PM, Manager, Owner | view developer project assignment time periods with project time frame |
+| PM, Manager, Owner | view employee(developer/pm) Project wise timing (spend time, schedule time) |
+| PM, Manager, Owner | view Designation wise spend time for a project (spend time, schedule time) |
+| |
+| | Developer monthly efficincy report - tasks delayed, tasks on time, tasks before time |
+| | Yearly calendar - show Planned and actual duration of the projects plotted throughout the year |
+| |
+| | **Dashboard page** |
+| | show  recent projects that engaged in with deadlines|
+| | show  recent projects that completed|
+| | show  recent projects that delayed with deadlines |
+| | show  recent tasks that complete |
+| | ~~show  recent tasks that have to complete~~ |
+| | ~~show  recent tasks that exceed the deadline~~ |
+| |
+| | **Deadline Calendar View** |
+| | view of project deadlines in Today, week, Month |
+| | view of tasks deadlines in Today, week, Month |
+
+***
+
+### Leave management package
+| Authorized | Description |
+| --- | --- |
+| | PM,Dev can apply leave |
+| | PM,Dev can discard applied leave |
+| | Manager can approve/disapprove leave |
+| | Show  recent leaves |
+| | Show  leaves monthly, given date range |
+| | Leave types [medical(15), Casual(10), Annual(10) per year] and track limits per type |
+| | Leaves can filter in data ranges for specific DEV/PM |
+| | Leaves filter by month |
+| | Leave Calendar -  Display team availability in calendar view |
+
+***
+
+### Resource allocation package 
+| Authorized | Description |
+| --- | --- |
+| Owner, Manager| Assign PM for a project |
+| | When PROJ is assigned to a PM system shall be able to notify it to the assigned PM |
+| | Before assigning PM to project → check if the PM is already assigned to other projects in the same time frame |
+| |
+| Project assigned PM | Assign Devs for a project |
+| | When PROJ is assigned to a DEV system shall be able to notify it to the assigned user |
+| | Before assigning a DEV to a project → check if the DEV is already assigned to another project in the same time frame |
+| |
+| Project assigned PM | Assign Tasks for Dev(project tasks for project assigned Dev) |
+| | Before assigning a task → check if the DEV has a leave request overlapping with delivery date |
+| | Before assigning a task → check if the Dev is already assigned to other tasks in the same time frame |
+| |
+| PM, Manager | ~~Resource Availability Chart Who is available, busy(task count), or on leave~~ |
+| PM, Manager | Developer Workload Report =>  show selected Dev currently assigned tasks  and their deadlines, estimated times, their statues, already spend time spent |
+
+***
+
+
+---
+
+## How to Run Migrations
+
+In this project, migration files exist for both the core application and individual modules.
+
+Some migrations must be executed in a specific order defined by the developer, rather than the default execution order. For example:
+
+* Migrations that add foreign key constraints should be executed **after all related tables are created**.
+* Migrations from certain modules may need to run **before** others due to dependencies.
+
+Because of these requirements, you should not rely on the default migration command.
+
+Instead, use the following command to run migrations in the correct order:
+
+```
+php artisan migrate:in-order
+```
+
+This ensures that all migrations are executed in the proper sequence, avoiding dependency and constraint issues.
+
+---
+
+## How to Seed Data
+
+To run database seeders in the correct order:
+
+1. Go to the following file:
+   `<project_root>\database\seeders\DatabaseSeeder.php`
+
+2. Add your seeder classes inside this file in the **desired execution order**.
+
+This ensures that seed data is inserted correctly, especially when there are dependencies between tables.
+
+---
+
+
+
+
+### TODO 
+------er detailed page  
+-----class diagram detaild - attr, methods 
