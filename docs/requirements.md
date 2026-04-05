@@ -103,8 +103,6 @@ The system shall support the following user roles:
 2.1.31 Notify assigned Developers.  
 2.1.32 Validate Developer availability.  
 
----
-
 ## **2.2 Authorization Matrix**
 
 | Action         | Owner | Manager | PM           | Dev          |
@@ -153,8 +151,6 @@ The system shall support the following user roles:
 - Leave overlaps  
 - Task conflicts  
 
----
-
 ## **3.2 Authorization Matrix**
 
 | Action             | Owner | Manager | PM | Dev |
@@ -175,8 +171,6 @@ The system shall support the following user roles:
 4.1.3 The system shall allow viewing historical timesheets.  
 4.1.4 The system shall support filtering by month.  
 4.1.5 The system shall allow marking leave days in timesheets.  
-
----
 
 ## **4.2 Authorization Matrix**
 
@@ -223,8 +217,6 @@ The system shall support the following user roles:
 5.1.9 The system shall manage designation and sub-designation details.  
 5.1.10 The system shall assign designations to users.  
 
----
-
 ## **5.2 Authorization Matrix**
 
 | Action              | Owner | Manager       | PM | Dev |
@@ -243,8 +235,6 @@ The system shall support the following user roles:
 6.1.2 Messages shall support file attachments.  
 6.1.3 The system shall support project-based discussion threads.  
 6.1.4 The system shall support task-based discussion threads.  
-
----
 
 ## **6.2 Authorization Matrix**
 
@@ -281,8 +271,6 @@ The system shall support the following user roles:
 
 7.1.9 Provide workload reports.  
 
----
-
 ## **7.2 Authorization Matrix**
 
 | Action        | Owner | Manager | PM | Dev |
@@ -308,8 +296,6 @@ The system shall support the following user roles:
 
 8.1.5 The system shall support filtering by date and employee.  
 8.1.6 The system shall provide a leave calendar view.  
-
----
 
 ## **8.2 Authorization Matrix**
 
