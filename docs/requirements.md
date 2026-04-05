@@ -160,7 +160,7 @@ The system shall support the following user roles:
 
 ---
 
-## **4. Timesheet Management**
+## **4. Timesheet**
 
 ### **4.1 Functional Requirements**
 
@@ -244,7 +244,7 @@ The system shall support the following user roles:
 
 ---
 
-## **7. Reporting**
+## **7. Reports**
 
 ### **7.1 Functional Requirements**
 
@@ -264,9 +264,7 @@ The system shall support the following user roles:
 #### **Calendar**
 
 7.1.7 Display deadlines (daily, weekly, monthly).  
-
 ~~7.1.8 Provide resource availability chart.~~  
-
 7.1.9 Provide workload reports.  
 
 ### **7.2 Authorization Matrix**
