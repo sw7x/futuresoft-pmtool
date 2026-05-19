@@ -111,7 +111,7 @@ maintainability.
 | Owner, Manager, PM, Assigned Dev | View project profile |
 | | project statuses: Initiated, In Progress, On Hold, Completed, Cancelled. |
 | |
-| | **Project timeline** |
+| | <u>**Project timeline**</u> |
 | | set,Display Scheduled Milestones for the project |
 | | set,Display Actual Duration of Milestones for the project |
 | | mark complete for Actual Milestones of the project |
