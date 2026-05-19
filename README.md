@@ -7,16 +7,13 @@
 - [ER diagram](#er-diagram)
 - [Overall class diagram](#overall-class-diagram)  
 - [Modules](#modules)
-	- [Project management module](#project-management-module)
-	- [Task management module](#task-management-module)
-	- [Project progress tracking module](#project-progress-tracking-module)
-	- [Timesheet management module](#timesheet-management-module)
-	- [User management module](#user-management-module)
-	- [Designation management module](#designation-management-module)
-	- [Communication module](#communication-module)
-	- [Reporting module](#reporting-module)
-	- [Leave management module](#leave-management-module)
-	- [Resource allocation module](#resource-allocation-module)
+    - [Project module](#project-module)
+    - [Task module](#task-module)
+    - [Timesheet module](#timesheet-module)
+    - [Employee module](#employee-module)
+    - [Communication module](#communication-module)
+    - [Reporting module](#reporting-module)
+    - [Leave module](#leave-module)
 - [Creating & Integrating a Laravel Module](#creating--integrating-a-laravel-module)
     - [Part 1 — Creating a Module](#part-1--creating-a-module)
     - [Part 2 — Integrating the Module into the Project](#part-2--integrating-the-module-into-the-project)
@@ -103,7 +100,7 @@ To develop the project management system for FutureSoft Pvt Ltd, we first gather
 Based on the requirements, we defined core system tasks and organized the functionality into structured modules for clarity and 
 maintainability. 
 
-### Project management module 
+### Project module 
 | Authorized | Description |
 | --- | --- |
 | Owner | Create project profile with Client information and Project Plan |
@@ -126,10 +123,28 @@ maintainability.
 | Manager, Owner, Assigned PM | Add incomes to the project cost profile |
 | Manager, Owner, Assigned PM | deduct income amount from cost.(Calculating profit) |
 | Manager, Owner, Assigned PM | list income, costs , filter by (incomes, costs) |
+| |
+| | **Resource allocation** |
+| Owner, Manager| Assign PM for a project |
+| | When PROJ is assigned to a PM system shall be able to notify it to the assigned PM |
+| | Before assigning PM to project → check if the PM is already assigned to other projects in the same time frame |
+| |
+| Project assigned PM | Assign Devs for a project |
+| | When PROJ is assigned to a DEV system shall be able to notify it to the assigned user |
+| | Before assigning a DEV to a project → check if the DEV is already assigned to another project in the same time frame |
+| |
+| | **Project progress tracking** |
+| | The project is split into different phases, and the progress is measured by the percentage of each phase that has been completed |
+| | show percentages for each phase of the project |
+| | Project phase completion % = (Number of Done tasks/Total number of tasks) * 100% |
+| | Project-wise, view the progress of tasks according to their progress levels (progress levels - pending, submited, delayed-pending, delayed-submited) |
+| PM, Owner, Manager, Assigned Dev | View Project progress by it's phases |
+| PM, Owner, Manager | ~~calculate and show Project Estimate time.(WHEN ALL TASK EST TIME SET)~~ |
+
 
 ***
 
-### Task management module
+### Task module
 | Authorized | Description |
 | --- | --- |
 | Assigned PM | Divide project into sub tasks that consist of maximum two levels. |
@@ -138,28 +153,21 @@ maintainability.
 | | view task info(including delivery status) |
 | | Add priority levels (High, Medium, Low) and allow sorting/filtering |
 | | ~~Attach documents, screenshots, or specifications to each task~~  |
+| |
+| | **Resource allocation** |
+| Project assigned PM | Assign Tasks for Dev(project tasks for project assigned Dev) |
+| | Before assigning a task → check if the DEV has a leave request overlapping with delivery date |
+| | Before assigning a task → check if the Dev is already assigned to other tasks in the same time frame |
 
 ***
 
-### Project progress tracking module
-| Authorized | Description |
-| --- | --- |
-| | The project is split into different phases, and the progress is measured by the percentage of each phase that has been completed |
-| | show percentages for each phase of the project |
-| | Project phase completion % = (Number of Done tasks/Total number of tasks) * 100% |
-| | Project-wise, view the progress of tasks according to their progress levels (progress levels - pending, submited, delayed-pending, delayed-submited) |
-| PM, Owner, Manager, Assigned Dev | View Project progress by it's phases |
-| PM, Owner, Manager | ~~calculate and show Project Estimate time.(WHEN ALL TASK EST TIME SET)~~ |
-| |
-| | ~~show  recent tasks that complete~~ |
-| | show  recent tasks that have to complete(near deadline) -> in Dashboard |
-| | show  recent tasks that exceed the deadline -> in Dashboard |
+
 
 ~~task => Attach documents, screenshots, or file to each task~~  
 
 ***
 
-### Timesheet management module
+### Timesheet module
 | Authorized | Description |
 | --- | --- |
 | PM, Dev | submit time sheets by monthly basis |
@@ -169,7 +177,7 @@ maintainability.
 
 ***
 
-### User management module	 
+### Employee module  
 | Authorized | Description |
 | --- | --- |
 | | managing user account |
@@ -186,21 +194,17 @@ maintainability.
 | Manager | create, delete and change working status of Developers and PM’s |
 | |
 | Dev, PM | Manage their Profile Picture,  Personal Information(except username)|
-
-~~system shall give Users authenticate~~  
-~~system shall be able given appropriate privileges according to their user role~~  
-
-***
-
-### Designation management module 
-| Authorized | Description |
-| --- | --- |
+| |
+| | **Designation management** |
 | Owner | Manage designation hierarchy |
 | Owner | Manage designation ,sub designation information |
 | |
 | | admin level users can manage designations of users |
 | Owner | Manage designation of manager, PM’s and Developers |
 | Manager | Manage designation of PM’s and Developers |
+
+~~system shall give Users authenticate~~  
+~~system shall be able given appropriate privileges according to their user role~~  
 
 ***
 
@@ -232,12 +236,15 @@ maintainability.
 | | show  recent projects that completed|
 | | show  recent projects that delayed with deadlines |
 | | show  recent tasks that complete |
-| | ~~show  recent tasks that have to complete~~ |
-| | ~~show  recent tasks that exceed the deadline~~ |
+| | show  recent tasks that have to complete(near deadline) -> in Dashboard |
+| | show  recent tasks that exceed the deadline -> in Dashboard |
 | |
 | | **Deadline Calendar View** |
 | | view of project deadlines in Today, week, Month |
 | | view of tasks deadlines in Today, week, Month |
+| |
+| PM, Manager | ~~Resource Availability Chart Who is available, busy(task count), or on leave~~ |
+| PM, Manager | Developer Workload Report =>  show selected Dev currently assigned tasks  and their deadlines, estimated times, their statues, already spend time spent |
 
 ***
 
@@ -253,26 +260,6 @@ maintainability.
 | | Leaves can filter in data ranges for specific DEV/PM |
 | | Leaves filter by month |
 | | Leave Calendar -  Display team availability in calendar view |
-
-***
-
-### Resource allocation module 
-| Authorized | Description |
-| --- | --- |
-| Owner, Manager| Assign PM for a project |
-| | When PROJ is assigned to a PM system shall be able to notify it to the assigned PM |
-| | Before assigning PM to project → check if the PM is already assigned to other projects in the same time frame |
-| |
-| Project assigned PM | Assign Devs for a project |
-| | When PROJ is assigned to a DEV system shall be able to notify it to the assigned user |
-| | Before assigning a DEV to a project → check if the DEV is already assigned to another project in the same time frame |
-| |
-| Project assigned PM | Assign Tasks for Dev(project tasks for project assigned Dev) |
-| | Before assigning a task → check if the DEV has a leave request overlapping with delivery date |
-| | Before assigning a task → check if the Dev is already assigned to other tasks in the same time frame |
-| |
-| PM, Manager | ~~Resource Availability Chart Who is available, busy(task count), or on leave~~ |
-| PM, Manager | Developer Workload Report =>  show selected Dev currently assigned tasks  and their deadlines, estimated times, their statues, already spend time spent |
 
 ***
 
