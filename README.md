@@ -116,7 +116,7 @@ maintainability.
 | | set,Display Actual Duration of Milestones for the project |
 | | mark complete for Actual Milestones of the project |
 | |
-| | **Project costing** |
+| | <ins>**Project costing**</ins> |
 | Manager, Owner, Assigned PM | Add costing factors and cost |
 | Manager, Owner, Assigned PM | Calculate Employee cost (Employee cost  = employee hourly rate * time) |
 | Manager, Owner, Assigned PM | Calculate total Cost |
@@ -124,7 +124,7 @@ maintainability.
 | Manager, Owner, Assigned PM | deduct income amount from cost.(Calculating profit) |
 | Manager, Owner, Assigned PM | list income, costs , filter by (incomes, costs) |
 | |
-| | **Resource allocation** |
+| | <ins>**Resource allocation**</ins> |
 | Owner, Manager| Assign PM for a project |
 | | When PROJ is assigned to a PM system shall be able to notify it to the assigned PM |
 | | Before assigning PM to project → check if the PM is already assigned to other projects in the same time frame |
@@ -133,7 +133,7 @@ maintainability.
 | | When PROJ is assigned to a DEV system shall be able to notify it to the assigned user |
 | | Before assigning a DEV to a project → check if the DEV is already assigned to another project in the same time frame |
 | |
-| | **Project progress tracking** |
+| | <ins>**Project progress tracking**</ins> |
 | | The project is split into different phases, and the progress is measured by the percentage of each phase that has been completed |
 | | show percentages for each phase of the project |
 | | Project phase completion % = (Number of Done tasks/Total number of tasks) * 100% |
@@ -154,7 +154,7 @@ maintainability.
 | | Add priority levels (High, Medium, Low) and allow sorting/filtering |
 | | ~~Attach documents, screenshots, or specifications to each task~~  |
 | |
-| | **Resource allocation** |
+| | <ins>**Resource allocation**</ins> |
 | Project assigned PM | Assign Tasks for Dev(project tasks for project assigned Dev) |
 | | Before assigning a task → check if the DEV has a leave request overlapping with delivery date |
 | | Before assigning a task → check if the Dev is already assigned to other tasks in the same time frame |
@@ -180,7 +180,7 @@ maintainability.
 ### Employee module  
 | Authorized | Description |
 | --- | --- |
-| | managing user account |
+| | <ins>**Managing user account**</ins> |
 | Owner | manage manager, Developers and PM’s Personal Information and Demographic Information |
 | Manager | manage Developers and PM’s Personal Information and Demographic Information |
 | | Anyone can manage his/her own account Personal Information and Demographic Information |
@@ -195,7 +195,7 @@ maintainability.
 | |
 | Dev, PM | Manage their Profile Picture,  Personal Information(except username)|
 | |
-| | **Designation management** |
+| | <ins>**Designation management**</ins> |
 | Owner | Manage designation hierarchy |
 | Owner | Manage designation ,sub designation information |
 | |
@@ -231,7 +231,7 @@ maintainability.
 | | Developer monthly efficincy report - tasks delayed, tasks on time, tasks before time |
 | | Yearly calendar - show Planned and actual duration of the projects plotted throughout the year |
 | |
-| | **Dashboard page** |
+| | <ins>**Dashboard page**</ins> |
 | | show  recent projects that engaged in with deadlines|
 | | show  recent projects that completed|
 | | show  recent projects that delayed with deadlines |
@@ -239,7 +239,7 @@ maintainability.
 | | show  recent tasks that have to complete(near deadline) -> in Dashboard |
 | | show  recent tasks that exceed the deadline -> in Dashboard |
 | |
-| | **Deadline Calendar View** |
+| | <ins>**Deadline Calendar View**</ins> |
 | | view of project deadlines in Today, week, Month |
 | | view of tasks deadlines in Today, week, Month |
 | |
