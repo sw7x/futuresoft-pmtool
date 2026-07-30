@@ -1,4 +1,4 @@
-@extends('layouts.master',['title' => 'Empty'])
+@extends('core-module::layouts.master',['title' => 'Empty'])
 @section('title','Read mail')
 
 
