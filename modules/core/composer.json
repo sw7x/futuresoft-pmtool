@@ -1,0 +1,24 @@
+{
+    "name": "futuresoft/core-module",
+    "description": "core classes for Futuresoft PVT LTD - cannot work independently",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Modules\\Core\\": "src/",
+            "Modules\\Core\\Database\\Seeders\\": "database/seeders/",
+            "Modules\\Core\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Core\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Core\\Providers\\CoreModuleServiceProvider"
+            ]
+        }
+    }    
+}

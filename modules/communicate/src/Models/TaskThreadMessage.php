@@ -8,7 +8,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class TaskThreadMessage extends Model
 {
     use HasFactory, SoftDeletes;
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 
+
+    
     /**
      * The attributes that are mass assignable.
      *

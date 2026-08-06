@@ -1,0 +1,26 @@
+{
+    "name": "futuresoft/employee-module",
+    "description": "This laravel module handles employees(users) management in futuresoft PVT LTD",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Modules\\Employee\\": "src/",
+            "Modules\\Employee\\Database\\Seeders\\": "database/seeders/",
+            "Modules\\Employee\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Employee\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Employee\\Providers\\EmployeeServiceProvider"
+            ]
+        }
+    }
+}
+
+

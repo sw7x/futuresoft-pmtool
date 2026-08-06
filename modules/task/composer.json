@@ -1,0 +1,24 @@
+{
+    "name": "futuresoft/task-module",
+    "description": "This laravel module handles task management in futuresoft PVT LTD",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Modules\\Task\\": "src/",
+            "Modules\\Task\\Database\\Seeders\\": "database/seeders/",
+            "Modules\\Task\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Task\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Task\\Providers\\TaskServiceProvider"
+            ]
+        }
+    }
+}

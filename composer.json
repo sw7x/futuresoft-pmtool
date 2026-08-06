@@ -10,6 +10,14 @@
         "cviebrock/eloquent-sluggable": "^8.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
+        "futuresoft/core-module": "*",
+        "futuresoft/communicate-module": "*",
+        "futuresoft/employee-module": "*",
+        "futuresoft/leave-module": "*",
+        "futuresoft/project-module": "*",
+        "futuresoft/reporting-module": "*",
+        "futuresoft/task-module": "*",
+        "futuresoft/timesheet-module": "*",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
@@ -17,20 +25,7 @@
         "moneyphp/money": "^3.3",
         "ramsey/uuid": "^4.2",
         "staudenmeir/belongs-to-through": "^2.11",
-        "staudenmeir/eloquent-has-many-deep": "^1.14",
-
-
-        "futuresoft/reporting-module": "*",
-        "futuresoft/leave-module": "*",
-        "futuresoft/timesheet-module": "*",
-        "futuresoft/messaging-module": "*",
-        "futuresoft/designation-module": "*",
-        "futuresoft/user-management-module": "*",
-        "futuresoft/resource-allocation-module": "*",
-        "futuresoft/task-management-module": "*",
-        "futuresoft/project-progress-tracking-module": "*",
-        "futuresoft/project-module": "*",
-        "futuresoft/car-module": "*"
+        "staudenmeir/eloquent-has-many-deep": "^1.14"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -56,8 +51,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/",            
-            "Modules\\Reporting\\Tests\\": "modules/reporting/tests"
+            "Tests\\": "tests/"            
         }
     },
     "scripts": {

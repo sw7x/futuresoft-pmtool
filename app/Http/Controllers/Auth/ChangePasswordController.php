@@ -63,6 +63,13 @@ class ChangePasswordController extends Controller
                 ], 401);
             }
 
+            if(!$user->account_status){
+                return response()->json([
+                    'status'    => 'error',
+                    'msg'       => 'You account is disabled therefore you cannot change your password'
+                ], 403);
+            }
+
             if (!$hasher->check($oldPassword, $user->password)){
                 return response()->json([
                     'status'    => 'error',

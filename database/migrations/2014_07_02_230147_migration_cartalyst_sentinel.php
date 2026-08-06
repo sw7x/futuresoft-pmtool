@@ -104,6 +104,7 @@ class MigrationCartalystSentinel extends Migration
             $table->string('username',25)->nullable();
             $table->string('password');
             
+            /*
             $table->date('date_of_birth')->nullable();
             $table->enum('gender', ['male','female','other']);
             $table->text('address')->nullable();
@@ -117,11 +118,14 @@ class MigrationCartalystSentinel extends Migration
             $table->decimal('monthly_salary',10,2)->nullable();
             $table->text('epf_etf_details')->nullable();            
             $table->text('edu_qualifications')->nullable();
-            $table->text('skills')->nullable();   
+            $table->text('skills')->nullable();
+            */   
             
             $table->boolean('account_status')->default(True);
+            /*
             $table->enum('employment_status', ['pending', 'active', 'resigned', 'terminated']);
             $table->timestamp("termination_date")->nullable();
+            */
 
         
             $table->text('permissions')->nullable();

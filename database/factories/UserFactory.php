@@ -21,8 +21,6 @@ class UserFactory extends Factory
      */
     protected $model = UserModel::class;
 
-
-
     /**
      * Define the model's default state.
      *
@@ -47,7 +45,7 @@ class UserFactory extends Factory
 
             'address' => $this->faker->address,
             'nic' => $this->faker->unique()->numerify('#########V'),
-            'profile_pic' => $this->faker->imageUrl(200, 200, 'people', true, 'User'),
+            //'profile_pic' => $this->faker->imageUrl(200, 200, 'people', true, 'User'),
 
             'date_of_joined' => $this->faker->dateTimeBetween('-5 years', 'now')->format('Y-m-d H:i:s'),
             
@@ -57,14 +55,40 @@ class UserFactory extends Factory
             'date_of_birth' => $this->faker->dateTimeBetween('-45 years', '-20 years')->format('Y-m-d'),
 
             'account_status' => $this->faker->boolean(90), // 90% chance true
-            'employment_status' => $this->faker->randomElement(['pending', 'active', 'resigned', 'terminated']),
-            //'permissions' => json_encode(['view_dashboard', 'edit_profile']), // Dummy permissions
-                        
+            
+            //'employment_status' => $this->faker->randomElement(['pending', 'active', 'active', 'active', 'active', 'active', 'resigned', 'terminated']),
+            'employment_status' => $this->getWeightedEmploymentStatus(),
 
+            //'permissions' => json_encode(['view_dashboard', 'edit_profile']), // Dummy permissions
+                    
             'last_login' => $this->faker->optional()->dateTimeBetween('-1 year', 'now'),
             'created_at' => now(),
             'updated_at' => now(),
         ];
+    }
+
+    /**
+     *  Get weighted random employment status
+     *  Distribution: 
+     *      pending=5%, 
+     *      active=70%, 
+     *      resigned=20%, 
+     *      terminated=5%
+     */
+    protected function getWeightedEmploymentStatus(): string
+    {
+        // Use randomFloat for more precise control
+        $rand = $this->faker->randomFloat(2, 0, 100);
+        
+        if ($rand <= 5) {
+            return 'pending';
+        } elseif ($rand <= 75) {
+            return 'active';
+        } elseif ($rand <= 95) {
+            return 'resigned';
+        } else {
+            return 'terminated';
+        }
     }
 
     /**

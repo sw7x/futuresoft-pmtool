@@ -15,7 +15,7 @@ class ReportingServiceProvider extends ServiceProvider
     public function register()
     {
         // 1. Load Config
-        $this->mergeConfigFrom(__DIR__ . '/../../config/config.php', 'reporting');
+        $this->mergeConfigFrom(__DIR__ . '/../../config/config.php', 'reporting-module');
 
         // 2. Register Middleware
         $this->app['router']->aliasMiddleware('check.report', \Modules\Reporting\Http\Middleware\CheckReport::class);
@@ -33,10 +33,10 @@ class ReportingServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
         
         // 2. Load Views
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'reporting');
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'reporting-module');
 
         // 3. Load Translations
-        $this->loadTranslationsFrom(__DIR__ . '/../../resources/translations', 'reporting');
+        $this->loadTranslationsFrom(__DIR__ . '/../../resources/translations', 'reporting-module');
 
         // 4. Load Routes
         //$this->loadRoutesFrom(__DIR__ . '/../../routes/routes.php');
@@ -48,12 +48,12 @@ class ReportingServiceProvider extends ServiceProvider
 
         // 5. Publish Assets 
         // to publish files inside into PROJECT_ROOT/public folder 
-        // run - php artisan vendor:publish --tag=reporting-assets --force
+        // run - php artisan vendor:publish --tag=reporting-module-assets --force
         $this->publishes([
-            __DIR__.'/../../resources/js'       => public_path('modules/reporting/js'),
-            __DIR__.'/../../resources/css'      => public_path('modules/reporting/css'),            
-            __DIR__.'/../../resources/images'   => public_path('modules/reporting/images'),            
-        ], 'reporting-assets');       
+            __DIR__.'/../../resources/js'       => public_path('modules/reporting-module/js'),
+            __DIR__.'/../../resources/css'      => public_path('modules/reporting-module/css'),            
+            __DIR__.'/../../resources/images'   => public_path('modules/reporting-module/images'),            
+        ], 'reporting-module-assets');       
 
     }
 

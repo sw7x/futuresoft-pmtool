@@ -15,18 +15,35 @@ class ReportController extends Controller
         //$this->middleware('check.stock');
     }
 
-    public function store(Request $request)
-    {
-        dump('ReportController.store');
+    
+
+
+
+
+
+    public function projectTimingsByDesignation(){
+        return view('reporting-module::project-timings-by-designation');
     }
 
-    public function index()
-    {
-        dump('ReportController.index');
-    }    
-
-    public function edit()
-    {
-        dump('ReportController.edit');
+    public function DesignationTimingsByProject(){
+        return view('reporting-module::designation-timings-by-project');
     }
+
+    public function ProjectTimingsByEmployee(){
+        return view('reporting-module::project-timings-by-employee');
+    }
+
+    public function EmployeeTimingsByProject(){
+        return view('reporting-module::employee-timings-by-project');
+    }
+
+    public function devWorkloadReport(){
+        return view('reporting-module::dev-workload');
+    }
+
+    public function pmWorkloadReport(){
+        return view('reporting-module::pm-workload');
+    }
+
+
 }

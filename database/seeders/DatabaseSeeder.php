@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         * seeders for modules
         */
         //$this->call(\Modules\Designation\Database\Seeders\DatabaseSeeder::class);
-        $this->call(\Modules\Reporting\Database\Seeders\DatabaseSeeder::class);
+        //$this->call(\Modules\Reporting\Database\Seeders\DatabaseSeeder::class);
         
         $this->call(RoleSeeder::class);
 
@@ -28,6 +28,36 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         
         $this->call(PermissionsTableSeeder::class);
+        
+        $this->call(DesignationSeeder::class);
+
+
+        $this->call(AssignDesignationToUserSeeder::class);
+
+        $this->call(PrivateMessageSeeder::class);
+
+        
+        $this->call(LeavesTableSeeder::class);
+
+        $this->call(ClientSeeder::class);
+        
+        // Project
+        $this->call(ProjectSeeder::class);
+        $this->call(ProjectPhaseSeeder::class);
+        $this->call(DeveloperProjectEnrollmentSeeder::class);
+        $this->call(ProjectThreadSeeder::class);
+        $this->call(InvoiceSeeder::class);
+
+
+
+
+        $this->call(TaskSeeder::class);
+        $this->call(DeveloperTaskAssignmentSeeder::class);
+        $this->call(TaskAssignmentMessageSeeder::class);
+        $this->call(TaskThreadSeeder::class);
+
+
+        $this->call(TimesheetSeeder::class);
 
 
 

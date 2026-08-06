@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\auth;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -54,6 +54,8 @@ class LoginController extends Controller
             if(is_null($user))
                 throw new CustomException('Invalid user or account diabled');
 
+            if ($user->account_status == 0)
+                throw new CustomException('Your account is currently disabled. Please contact the administrator.');
             
             $arr = ['login' => $request->email, 'password' => $request->password];            
             if(Sentinel::authenticate($arr, $remember_me)){    

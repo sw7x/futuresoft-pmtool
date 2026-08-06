@@ -16,7 +16,8 @@ class ProjectServiceProvider extends ServiceProvider
     public function register()
     {
         // 1. Load Config
-        $this->mergeConfigFrom(__DIR__ . '/../../config/config.php', 'project');
+        // $value = config('project-module.some.key', 'default value');
+        $this->mergeConfigFrom(__DIR__ . '/../../config/config.php', 'project-module');
 
         // 2. Register Middleware
         //$this->app['router']->aliasMiddleware('check.report', \Modules\Reporting\Http\Middleware\CheckReport::class);
@@ -34,10 +35,10 @@ class ProjectServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
         
         // 2. Load Views
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'project');
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'project-module');
 
         // 3. Load Translations
-        $this->loadTranslationsFrom(__DIR__ . '/../../resources/translations', 'project');
+        $this->loadTranslationsFrom(__DIR__ . '/../../resources/translations', 'project-module');
 
         // 4. Load Routes
         //$this->loadRoutesFrom(__DIR__ . '/../../routes/routes.php');
@@ -49,12 +50,12 @@ class ProjectServiceProvider extends ServiceProvider
 
         // 5. Publish Assets 
         // to publish files inside into PROJECT_ROOT/public folder 
-        // run - php artisan vendor:publish --tag=project-assets --force
+        // run - php artisan vendor:publish --tag=project-module-assets --force
         $this->publishes([
             __DIR__.'/../../resources/js'       => public_path('modules/project/js'),
             __DIR__.'/../../resources/css'      => public_path('modules/project/css'),            
             __DIR__.'/../../resources/images'   => public_path('modules/project/images'),            
-        ], 'project-assets');       
+        ], 'project-module-assets');       
 
     }
 

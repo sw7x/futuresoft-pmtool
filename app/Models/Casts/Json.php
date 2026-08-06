@@ -2,6 +2,7 @@
 namespace App\Models\Casts;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
+use InvalidArgumentException;
 
 class Json implements CastsAttributes
 {
@@ -16,15 +17,17 @@ class Json implements CastsAttributes
      */
     public function get($model, $key, $value, $attributes)
     {
-        //dump($model);
-        ///dump($key);
-        //dump($value);
-        //dump($attributes);
-        //return json_decode($value, true);
-        //dd('value',$value);
+        if (is_null($value) || $value === '') {
+            return [];
+        }
         
-        return json_decode($value, true, 512);
-        //return json_decode($value, true, 512, JSON_THROW_ON_ERROR);        
+        try {
+            $decoded = json_decode($value, true, 512, JSON_THROW_ON_ERROR);
+            return is_array($decoded) ? $decoded : [];
+        } catch (\JsonException $e) {
+            // Log error or return empty array
+            return [];
+        }
     }
 
     /**
@@ -32,14 +35,24 @@ class Json implements CastsAttributes
      *
      * @param  \Illuminate\Database\Eloquent\Model  $model
      * @param  string  $key
-     * @param  array  $value
+     * @param  mixed  $value
      * @param  array  $attributes
-     * @return string
+     * @return string|null
      */
     public function set($model, $key, $value, $attributes)
-    {        
-
-        return json_encode($value,512);
-        //return json_encode($value,JSON_THROW_ON_ERROR ,512);        
+    {
+        if (is_null($value)) {
+            return null;
+        }
+        
+        if (!is_array($value)) {
+            $value = (array) $value;
+        }
+        
+        try {
+            return json_encode($value, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE, 512);
+        } catch (\JsonException $e) {
+            throw new InvalidArgumentException("Unable to encode value to JSON: {$e->getMessage()}");
+        }
     }
 }

@@ -1,0 +1,24 @@
+{
+    "name": "futuresoft/communicate-module",
+    "description": "This laravel module handles sending and reciving messages among the users in futuresoft PVT LTD",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Modules\\Communicate\\": "src/",
+            "Modules\\Communicate\\Database\\Seeders\\": "database/seeders/",
+            "Modules\\Communicate\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Communicate\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Communicate\\Providers\\CommunicateServiceProvider"
+            ]
+        }
+    }
+}

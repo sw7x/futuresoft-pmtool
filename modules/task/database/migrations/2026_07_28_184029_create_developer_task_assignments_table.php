@@ -22,18 +22,19 @@ class CreateDeveloperTaskAssignmentsTable extends Migration
             $table->boolean('is_notify')->default(false);
             
             // Timestamps
-            $table->timestamp('assigned_date_time');
+            $table->timestamp('assigned_date_time')->nullable();
             $table->timestamp('finished_date_time')->nullable();
+			$table->timestamp('stopped_date_time')->nullable();
             
             // Duration (spent time)
             $table->integer('spend_time')->nullable(); // Duration in minutes/hours
 
             // Progress status
-            $table->enum('progress', ['not_started', 'in_progress', 'completed', 'blocked', 'cancelled']);
+            $table->enum('progress', ['not_started', 'in_progress', 'completed', 'blocked', 'cancelled','mixed']);
             
             
             //------------$table->foreignId('task_id')->constrained('tasks');
-            //------------$table->foreignId('developer_project_enrollment_id')->constrained('developer_project_enrollments');
+            //------------$table->foreignId('developer_project_enrollment_id')->nullable()->constrained('developer_project_enrollments');
 			
             // Timestamps
             $table->timestamps();
@@ -55,8 +56,3 @@ class CreateDeveloperTaskAssignmentsTable extends Migration
     }
 }
 
-
-
-
-
-    

@@ -9,6 +9,8 @@ class ProjectThreadMessage extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public $timestamps = false;
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -29,9 +31,9 @@ class ProjectThreadMessage extends Model
      */
     protected $casts = [
         'posted_date_time' => 'datetime',
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-        'deleted_at' => 'datetime'
+        //'created_at' => 'datetime',
+        //'updated_at' => 'datetime',
+        //'deleted_at' => 'datetime'
     ];
 
     /**
@@ -283,5 +285,7 @@ class ProjectThreadMessage extends Model
         return !is_null($this->replied_to_message_id);
     }
 }
+
+
 
 
