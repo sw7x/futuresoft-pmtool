@@ -1,5 +1,5 @@
 <?php
-namespace Database\Seeders;
+namespace Modules\Project\Database\Seeders;
 
 use Modules\Project\Models\DeveloperProjectEnrollment;
 use Modules\Project\Models\Project;

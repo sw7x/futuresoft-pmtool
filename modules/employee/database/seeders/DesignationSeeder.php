@@ -1,5 +1,5 @@
 <?php
-namespace Database\Seeders;
+namespace Modules\Employee\Database\Seeders;
 
 
 

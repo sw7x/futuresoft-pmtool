@@ -1,12 +1,14 @@
 <?php
-namespace Database\Seeders;
+namespace Modules\Project\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Modules\Project\Models\Client;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-use Database\Factories\ClientFactory; // Add this import
+//use Database\Factories\ClientFactory; // Add this import
+use Modules\Project\Database\Factories\ClientFactory;
+
 
 
 class ClientSeeder extends Seeder

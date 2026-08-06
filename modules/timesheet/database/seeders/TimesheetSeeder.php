@@ -1,5 +1,5 @@
 <?php
-namespace Database\Seeders;
+namespace Modules\Timesheet\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;

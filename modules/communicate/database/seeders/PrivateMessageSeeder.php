@@ -1,5 +1,5 @@
 <?php
-namespace Database\Seeders;
+namespace Modules\Communicate\Database\Seeders;
 
 use Modules\Communicate\Models\PrivateMessage;
 use Modules\Communicate\Models\PrivateMessageThread;

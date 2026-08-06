@@ -1,5 +1,5 @@
 <?php
-namespace Database\Seeders;
+namespace Modules\Communicate\Database\Seeders;
 
 use App\Models\User;
 use Carbon\Carbon;

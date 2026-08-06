@@ -1,5 +1,5 @@
 <?php
-namespace Database\Factories;
+namespace Modules\Project\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Project\Models\Client as ClientModel;
